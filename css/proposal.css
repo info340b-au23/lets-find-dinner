@@ -16,7 +16,7 @@ main {
     background-color: white;
 }
 
-#page-title, #problem-domain, #app-description, #footer-content {
+.page-title, .problem-domain, .app-description, .footer-content {
     margin: 2rem;
 }
 
@@ -33,19 +33,19 @@ hr {
     border: 2px solid tomato;
 }
 
-#problem-domain {
+.problem-domain {
     margin-top: 0;
     padding-top: 0.75em;
     border-top: 5px solid tomato;
 }
 
-#app-description {
+.app-description {
     margin-bottom: 0;
     padding-bottom: 0.75em;
     border-bottom: 5px solid tomato;
 }
 
-#page-title {
+.page-title {
     color: white;
     font-weight: bold;
     font-size: 4em;
@@ -65,11 +65,11 @@ footer p, address {
     color: white;
 }
 
-#footer-content {
+.footer-content {
     margin-bottom: 0;
 }
 
-#copyright {
+.copyright {
     padding-bottom: 2.5em;
     margin-bottom: 0;
 }
