@@ -1,3 +1,88 @@
 * {
     box-sizing: border-box;
 }
+
+table, th, td {
+    border: 1px solid black;
+    text-align: left;
+}
+
+body {
+    background-color: wheat;
+    font-family: 'Roboto', 'Trebuchet MS', Arial, sans-serif;
+    margin: 0;
+}
+
+header, main, footer {
+    margin: 0 15%;
+}
+
+header {
+    background-color: #101010;
+}
+
+main {
+    background-color: white;
+}
+
+.page-title, .problem-domain, .app-description, .footer-content {
+    margin: 2rem;
+}
+
+h2 {
+    color: tan;
+    font-size: 1.75em;
+}
+
+main p {
+    color: #101010;
+}
+
+hr {
+    border: 2px solid tomato;
+}
+
+.problem-domain {
+    margin-top: 0;
+    padding-top: 0.75em;
+    border-top: 5px solid tomato;
+}
+
+.app-description {
+    margin-bottom: 0;
+    padding-bottom: 0.75em;
+    border-bottom: 5px solid tomato;
+}
+
+.page-title {
+    color: white;
+    font-weight: bold;
+    font-size: 4em;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    margin: 0 2rem;
+    font-family: 'Roboto Slab', serif;
+}
+
+footer {
+    background-color: #101010;
+    padding-top: 1rem;
+    font-size: 80%;
+}
+
+footer p, address {
+    color: white;
+}
+
+.footer-content {
+    margin-bottom: 0;
+}
+
+.copyright {
+    padding-bottom: 4em;
+    margin-bottom: 0;
+}
+
+.footer-link:link {
+    color: tan;
+}
