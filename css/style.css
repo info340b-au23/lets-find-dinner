@@ -87,6 +87,8 @@ footer p, address {
     color: tan;
 }
 
-label {
+/* css for find-a-bank */
+
+#filter-time .input-element {
     display: inline-block;
 }
