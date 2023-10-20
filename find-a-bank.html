@@ -5,13 +5,10 @@
         <meta name="author" content="Soha Sultana, Richard Tran, Carol Yan, Raymond Smith">
         <meta name="description" content="Find a Bank search feature for Let's Find Dinner!">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- TODO: link CSS fonts, Bootstrap, css/style.css -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <nav>
-            <!-- ... -->
-        </nav>
         <header>
         </header>
         <main>
@@ -23,12 +20,31 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
-                        <h2>Search Filters</h2>
+                        <h2>Filters</h2>
+                        <h3>Accepted Donations</h3>
+                        <input id="donation-produce" type="checkbox" name="donation-produce">
+                        <label for="donation-produce">Produce</label>
+                        <input id="donation-bread" type="checkbox" name="donation-bread">
+                        <label for="donation-bread">Bread</label>
+                        <input id="donation-dairy" type="checkbox" name="donation-dairy">
+                        <label for="donation-dairy">Dairy</label>
+                        <input id="donation-poultry" type="checkbox" name="donation-poultry">
+                        <label for="donation-poultry">Poultry (Chicken, Turkey)</label>
+                        <input id="donation-redmeat" type="checkbox" name="donation-redmeat">
+                        <label for="donation-redmeat">Red Meat (Beef, Pork)</label>
+                        <input id="donation-nonperishables" type="checkbox" name="donation-nonperishables">
+                        <label for="donation-nonperishables">Nonperishables</label>
+                        <h3>Location Radius</h3>
+                        <h3>Hours of Operation</h3>
                     </div>
                     <div class="col">
                         <h2>Results:</h2>
                         <div class="card">
-                            <p>Card 1</p>
+                            <div class="card-body">
+                                <h2>Bank 1</h2>
+                                <p>Description</p>
+                                <p>Contact</p>
+                            </div>
                         </div>
                         <div class="card">
                             <p>Card 2</p>
