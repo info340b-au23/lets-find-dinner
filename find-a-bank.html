@@ -9,52 +9,106 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <header>
-        </header>
+        <nav>
+
+        </nav>
         <main>
             <div class="container">
-                <div class="col-sm-12">
-                    <h1>Find a Food Bank</h1>
-                    <label for="bank-search">Search by name:</label>
-                    <input id="bank-search" type="text" name="bank-search"/>
+                <div class="row">
+                    <div class="col">
+                        <h1>Food Bank Search</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <section id="search-bar">
+                            <label for="bank-search">Search by name:</label>
+                            <input id="bank-search" type="text" name="bank-search"/>
+                        </section>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
-                        <h2>Filters</h2>
-                        <h3>Accepted Donations</h3>
-                        <input id="donation-produce" type="checkbox" name="donation-produce">
-                        <label for="donation-produce">Produce</label>
-                        <input id="donation-bread" type="checkbox" name="donation-bread">
-                        <label for="donation-bread">Bread</label>
-                        <input id="donation-dairy" type="checkbox" name="donation-dairy">
-                        <label for="donation-dairy">Dairy</label>
-                        <input id="donation-poultry" type="checkbox" name="donation-poultry">
-                        <label for="donation-poultry">Poultry (Chicken, Turkey)</label>
-                        <input id="donation-redmeat" type="checkbox" name="donation-redmeat">
-                        <label for="donation-redmeat">Red Meat (Beef, Pork)</label>
-                        <input id="donation-nonperishables" type="checkbox" name="donation-nonperishables">
-                        <label for="donation-nonperishables">Nonperishables</label>
-                        <h3>Location Radius</h3>
-                        <h3>Hours of Operation</h3>
+                        <section id="search-filters">
+                            <h2>Filters</h2>
+                            <section class="filter-donation">
+                                <h3>Donation Requests</h3>
+                                <div class="input-element">
+                                    <input id="donation-produce" type="checkbox" name="donation-produce">
+                                    <label for="donation-produce">Produce</label>
+                                </div>
+                                <div class="input-element">
+                                    <input id="donation-bread" type="checkbox" name="donation-bread">
+                                    <label for="donation-bread">Bread</label>
+                                </div>
+                                <div class="input-element">
+                                    <input id="donation-dairy" type="checkbox" name="donation-dairy">
+                                    <label for="donation-dairy">Dairy</label>
+                                </div>
+                                <div class="input-element">
+                                    <input id="donation-poultry" type="checkbox" name="donation-poultry">
+                                    <label for="donation-poultry">Poultry (Chicken, Turkey)</label>
+                                </div>
+                                <div class="input-element">
+                                    <input id="donation-redmeat" type="checkbox" name="donation-redmeat">
+                                    <label for="donation-redmeat">Red Meat (Beef, Pork)</label>
+                                </div>
+                                <div class="input-element">
+                                    <input id="donation-nonperishables" type="checkbox" name="donation-nonperishables">
+                                    <label for="donation-nonperishables">Nonperishables</label>
+                                </div>
+                            </section>
+                            <section class="filter-location">
+                                <!-- probably change to select city -->
+                                <h3>Location</h3>
+                                    <div class="input-element">
+                                        <input id="location-all" type="radio" name="location-all">
+                                        <label>Any Location</label> 
+                                    </div>
+                                    <div class="input-element">
+                                        <input id="location-5" type="radio" name="location-5">
+                                        <label>Within 5 Miles</label> 
+                                    </div>
+                                    <div class="input-element">
+                                        <input id="location-10" type="radio" name="location-10">
+                                        <label>Within 10 Miles</label> 
+                                    </div>
+                                    <div class="input-element">
+                                        <input id="location-20" type="radio" name="location-20">
+                                        <label>Within 20 Miles</label> 
+                                    </div>
+                            </section>
+                            <section class="filter-hours">
+                                <h3>Hours of Operation</h3>
+                            </section>
+                        </section>
                     </div>
                     <div class="col">
-                        <h2>Results:</h2>
-                        <div class="card">
-                            <div class="card-body">
-                                <h2>Bank 1</h2>
-                                <p>Description</p>
-                                <p>Contact</p>
+                        <section id="search-results">
+                            <h2>Results:</h2>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2>Bank 1</h2>
+                                    <p>Description</p>
+                                    <p>Contact</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card">
-                            <p>Card 2</p>
-                        </div>
-                        <div class="card">
-                            <p>Card 3</p>
-                        </div>
-                        <div class="card">
-                            <p>Card 4</p>
-                        </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <p>Bank 2</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <p>Bank 3</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <p>Bank 4</p>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>

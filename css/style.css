@@ -13,21 +13,21 @@ body {
     margin: 0;
 }
 
-header, main, footer {
+/* header, main, footer {
     margin: 0 15%;
-}
+} */
 
-header {
+/* header {
     background-color: #101010;
-}
+} */
 
 main {
     background-color: white;
 }
 
-.page-title, .problem-domain, .app-description, .footer-content {
+/* .page-title, .problem-domain, .app-description, .footer-content {
     margin: 2rem;
-}
+} */
 
 h2 {
     color: tan;
@@ -54,7 +54,7 @@ hr {
     border-bottom: 5px solid tomato;
 }
 
-.page-title {
+/* .page-title {
     color: white;
     font-weight: bold;
     font-size: 4em;
@@ -62,7 +62,7 @@ hr {
     padding-bottom: 0.5em;
     margin: 0 2rem;
     font-family: 'Roboto Slab', serif;
-}
+} */
 
 footer {
     background-color: #101010;
@@ -85,4 +85,8 @@ footer p, address {
 
 .footer-link:link {
     color: tan;
+}
+
+label {
+    display: inline-block;
 }
