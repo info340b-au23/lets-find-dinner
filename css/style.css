@@ -1,7 +1,32 @@
-/* css idea: questions are left aligned, answers are right aligned in block w/ different back color
-body is centered 
+body {
+    background-color: wheat;
+    font-family: 'Roboto', 'Trebuchet MS', Arial, sans-serif;
+    margin: 2rem;
 
-solid background color + white center and text in that center 
+}
+h1, main {
+    padding:1rem;
+    text-align: center;
+}
 
-need to adjust margins later
-*/
+
+button {
+    margin-top: 2rem;
+    color:black;
+    background-color: whitesmoke;
+    font-size: 16px;
+    border-radius: 8px;
+
+}
+h1 {
+    background-color: burlywood;
+}
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: burlywood;
+    padding: 0.001rem 0.001rem 0.001rem 0.001rem;
+    color: white;
+}
