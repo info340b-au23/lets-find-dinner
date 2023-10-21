@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Soha Sultana, Richard Tran, Carol Yan, Raymond Smith">
+        <meta name="description" content="The project proposal for the Let's Find Dinner! interactive web app">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Let's Find Dinner!</title>
+    </head>
+    <body>
+        <!-- div for main body for css purposes, todo later or monday during lab very quickly -->
+        <header>
+            <h1>Interactive Web App Project Proposal</h1>
+            <p>By Soha Sultana, Richard Tran, Carol Yan, Raymond Smith</p>
+        </header>
+        <main>
+            <section id="problem-domain">
+                <h2>Problem Domain</h2>
+                <p>Food insecurity is defined as a lack of regular access to enough safe and nutritious food for normal growth and development and an active and healthy life. 
+                    According to the USDA, approximately 33.8 million Americans were food-insecure in 2021. 
+                    Within King county, approximately 117,894 households received basic food assistance in 2023. 
+                    Given this, food insecurity is a widespread problem within the United States and King County. 
+                    Though common navigation tools and web browsers can be used to find information about food banks, there is no comprehensive one-stop website for this information. 
+                    Because resources are scattered across individual webpages and there is no centralization of information, both clients and those on the server-side are unable to efficiently pass information to each other. 
+                    For example, a client looking for the closest open food bank needs to individually check the hours of each food bank. 
+                    Those on the server side (food banks) are unable to broadcast information to a larger market because they can only share to their private websites, limiting them from accessing new clientele. 
+                    This also includes volunteering or donating clients. Without a centralization of information, volunteers or those dropping off donations have to check each individual food bank to find information from them, rather than having an easy one-stop solution. 
+                    One existing attempt to solve this problem is the <a href="https://www.seattlefoodcommittee.org/find-a-food-bank/">Find a food bank</a> resource from the Seattle Food Committee. 
+                    This web application is an embedded html map that shows all of the nearby food banks. 
+                    When you select a food bank, it shows relevant information and links to its website. 
+                    However, this web application is lacking for a few reasons. For one, it is not very transparent on what food banks need. 
+                    They are unable to request items or volunteers - you still have to navigate to their website for this information. 
+                    The only view available is an embedded html map view, which isn’t very accessible for mobile users or those using assistive technology.
+                     Finally, you still need to self-search through the foodbanks to find the closest or open food bank rather than the application figuring this out for you.
+                     </p> 
+
+            </section>
+            <section id="app-description">
+                <h2>App Description</h2>
+                <!-- section for each question? -->
+                <p><em>Users:</em>The users will be people who want to volunteer and donate to the food banks and people who want to access the food banks. 
+                    Further, food banks can use the website to post or update their active donation requests, which ensures that each bank has access to the items that they need the most.
+                </p>
+                <p><em>Impacts:</em>The app would assist families facing food insecurity by providing them with a resource for locating food banks in their local community.
+                </p>
+                <section></section>
+                <p>
+                    <em>What will the users do with the web app? 
+                    What kind of interactive features are you expecting to provide?</em>
+                  <ul>
+                    <li>
+                        Our goal is to provide time availability and contact information for food banks in King County. 
+                        To meet different needs, we wanted to make two buttons, one for finding the earliest food bank to pick up, and one for finding the nearest food bank. 
+
+                    </li>
+                    <li>
+                        We would also like to include a page specifically to show which donations (or types of donations) are being sought by each food bank; users could rearrange how this information is displayed by filtering for certain banks by name, donation type, or proximity. 
+                        Each entry would display information pertinent to the bank which it represents, such as contact information and active requests.
+
+                    </li>
+                    <li>
+                        Food banks have the option of logging in and viewing their active requests, items that they are not accepting, location details, registered volunteers/number of volunteers, and donation counts.
+
+                    </li>
+                  </ul>
+
+                    
+                        
+                </p>
+            </section>
+            <section>
+
+
+                <p>
+                    <em>What kind of information will the users be viewing?</em>
+                    We will likely be using manually created data to represent the underlying food bank network which our app will be visualizing. 
+                    This data would likely include food bank locations, their donation requests, restricted donation types, contact information, and hours of operation, among other details.
+
+                </p>
+            </section>
+            <section>
+                <p>
+                    <em>How will using this app help to solve your chosen problem?</em>
+                    This app focuses on solving the issue of food insecurity by providing information about food banks in the area. 
+                    This app makes it easy for people to find information related to food banks by providing them with multiple resources that are housed centrally. 
+                    Additionally, this app also lets users create an account that keeps track of their volunteering and donations. 
+                    It also keeps track of users who want to access the food banks resources and gives them the closest location and timings of food banks in their area. 
+                    The apps main goal is to solve the social issue of food insecurity by providing users with the access to food banks and solves the technical issue of decentralized information by having all information related to food banks in the area in one place as a way to increase ease in design. 
+
+                </p>
+
+               
+            </section>
+        </main>
+        <footer>
+            <!-- copyright info, link to ischool, etc. -->
+        </footer>
+    </body>
+</html>
