@@ -29,19 +29,22 @@
             </div>
         </header>
         <main>
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col">
                         <section id="search-bar">
-                            <label for="bank-search">Search by name:</label>
-                            <input id="bank-search" type="text" name="bank-search"/>
+                            <label for="bank-search-text">SEARCH BY NAME</label>
+                            <input id="bank-search-text" type="text" name="bank-search-text">
+                            <button id="bank-search-btn" type="submit">Search</button>
                         </section>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-3">
                         <section id="search-filters">
-                            <h2>Filters</h2>
+                            <div class="row filter-title">
+                                <h2>Filters</h2>
+                            </div>
                             <section class="filter-category" id="filter-time">
                                 <h3>Hours of Operation</h3>
                                 <h4>Day of Week</h4>
@@ -70,8 +73,8 @@
                                     <label for="time-saturday">Sat</label>
                                 </div>
                                 <div class="input-element">
-                                    <input id="time-tuesday" type="checkbox" name="time-tuesday">
-                                    <label for="time-tuesday">Sun</label>
+                                    <input id="time-sunday" type="checkbox" name="time-sunday">
+                                    <label for="time-sunday">Sun</label>
                                 </div>
                                 <h4>Time Period</h4>
                                 <div class="input-element">
@@ -157,10 +160,10 @@
                                 <div class="col-lg-4 d-lg-flex">
                                     <div class="card result-item my-2">
                                         <div class="card-body">
-                                            <h2>Snohomish Community Food Bank</h2>
-                                            <h3>Location</h3>
+                                            <h3>Snohomish Community Food Bank</h3>
+                                            <h4>Location</h4>
                                             <p>1330 Ferguson Park Rd, Snohomish, WA, 98292</p>
-                                            <h3>Contact Info</h3>
+                                            <h4>Contact Info</h4>
                                             <p>Phone:</p>
                                             <a href="tel:3605687993">(360)-568-7993</a>
                                             <p>Email:</p>
@@ -173,10 +176,10 @@
                                 <div class="col-lg-4 d-lg-flex">
                                     <div class="card result-item my-2">
                                         <div class="card-body">
-                                            <h2>Lynnwood Food Bank</h2>
-                                            <h3>Location</h3>
+                                            <h3>Lynnwood Food Bank</h3>
+                                            <h4>Location</h4>
                                             <p>5320 176th SW, Lynnwood, WA, 98037</p>
-                                            <h3>Contact Info</h3>
+                                            <h4>Contact Info</h4>
                                             <p>Phone</p>
                                             <a href="tel:4257451635">(425)-745-1635</a>
                                             <p>Email</p>
@@ -189,10 +192,10 @@
                                 <div class="col-lg-4 d-lg-flex">
                                     <div class="card result-item my-2">
                                         <div class="card-body">
-                                            <h2>Community Resource Network</h2>
-                                            <h3>Location</h3>
+                                            <h3>Community Resource Network</h3>
+                                            <h4>Location</h4>
                                             <p>15725 Simonds Rd NE, Kenmore, WA, 98028</p>
-                                            <h3>Contact Info</h3>
+                                            <h4>Contact Info</h4>
                                             <p>Phone</p>
                                             <a href="tel:4254482589">(425)-448-2589</a>
                                             <p>Website</p>
@@ -203,10 +206,10 @@
                                 <div class="col-lg-4 d-lg-flex">
                                     <div class="card result-item my-2">
                                         <div class="card-body">
-                                            <h2>Annie's Community Kitchen</h2>
-                                            <h3>Location</h3>
+                                            <h3>Annie's Community Kitchen</h3>
+                                            <h4>Location</h4>
                                             <p>23525 84th Ave W, Edmonds, WA, 98026</p>
-                                            <h3>Contact Info</h3>
+                                            <h4>Contact Info</h4>
                                             <p>Phone</p>
                                             <a href="tel:4257448090">(425)-744-8090</a>
                                             <p>Website</p>
