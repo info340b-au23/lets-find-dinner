@@ -8,87 +8,49 @@ table, th, td {
 }
 
 body {
-    background-color: wheat;
     font-family: 'Roboto', 'Trebuchet MS', Arial, sans-serif;
     margin: 0;
 }
 
-/* header, main, footer {
-    margin: 0 15%;
-} */
+/* css for find-a-bank */
 
-/* header {
-    background-color: #101010;
-} */
-
-main {
-    background-color: white;
+h1, h2, h3 {
+    font-weight: bold;
 }
-
-/* .page-title, .problem-domain, .app-description, .footer-content {
-    margin: 2rem;
-} */
 
 h2 {
-    color: tan;
-    font-size: 1.75em;
+    font-size: 1.75rem;
 }
 
-main p {
-    color: #101010;
+h3 {
+    font-size: 1.5rem;
 }
 
-hr {
-    border: 2px solid tomato;
+#filter-time h4 {
+    font-size: 1.25em;
+    padding: 0.25em 0;
 }
-
-.problem-domain {
-    margin-top: 0;
-    padding-top: 0.75em;
-    border-top: 5px solid tomato;
-}
-
-.app-description {
-    margin-bottom: 0;
-    padding-bottom: 0.75em;
-    border-bottom: 5px solid tomato;
-}
-
-/* .page-title {
-    color: white;
-    font-weight: bold;
-    font-size: 4em;
-    padding-top: 1em;
-    padding-bottom: 0.5em;
-    margin: 0 2rem;
-    font-family: 'Roboto Slab', serif;
-} */
-
-footer {
-    background-color: #101010;
-    padding-top: 1rem;
-    font-size: 80%;
-}
-
-footer p, address {
-    color: white;
-}
-
-.footer-content {
-    margin-bottom: 0;
-}
-
-.copyright {
-    padding-bottom: 4em;
-    margin-bottom: 0;
-}
-
-.footer-link:link {
-    color: tan;
-}
-
-/* css for find-a-bank */
 
 #filter-time .input-element {
     display: inline-block;
+}
+
+#search-bar label {
+    display: block;
+}
+
+#search-bar input {
+    width: 100%;
+}
+
+.result-item h2 {
+    font-size: 1.6rem;
+}
+
+.result-item p {
+    margin: 0.25em 0;
+}
+
+.result-item a {
+    font-size: 1em;
 }
