@@ -2,19 +2,22 @@
     box-sizing: border-box;
 }
 
-table, th, td {
-    border: 1px solid black;
-    text-align: left;
-}
-
 body {
-    font-family: 'Roboto', 'Trebuchet MS', Arial, sans-serif;
+    font-family: 'Montsserat', 'Trebuchet MS', Arial, sans-serif;
+    background-color: wheat;
 }
 
-/* css for find-a-bank */
+main {
+    margin: auto 0.25rem;
+}
 
-h1, h2, h3 {
+h1, h2, h3, h4, .app-name {
+    font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
     font-weight: bold;
+}
+
+h1 {
+    font-size: 2.9rem;
 }
 
 h2 {
@@ -25,6 +28,37 @@ h3 {
     font-size: 1.5rem;
 }
 
+.nav-links {
+    padding: 0;
+}
+
+.nav-links li {
+    list-style: none;
+    font-size: 1.75rem;
+    text-align: center;
+    padding: .75rem 0;
+    background-color: antiquewhite;
+}
+
+.nav-links .app-name {
+    background-color: lightcoral;
+}
+
+.find-a-bank-title {
+    background-color: orangered;
+    padding: 1rem 1rem 1rem 0;
+    margin-right: 2rem;
+}
+
+/* profile page styling */
+
+table, th, td {
+    border: 1px solid black;
+    text-align: left;
+}
+
+/* css for find-a-bank */
+
 #filter-time h4 {
     font-size: 1.25em;
     padding: 0.25em 0;
@@ -34,12 +68,19 @@ h3 {
     display: inline-block;
 }
 
+#search-bar {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
 #search-bar label {
     display: block;
+    margin-bottom: 1rem;
 }
 
 #search-bar input {
     width: 100%;
+    height: auto;
 }
 
 .result-item h2 {
@@ -52,4 +93,13 @@ h3 {
 
 .result-item a {
     font-size: 1em;
+}
+
+@media (min-width: 900px) {
+    /* search page styling */
+    /* margin left for search bar */
+
+    #search-bar input {
+        width: 40%;
+    }
 }
