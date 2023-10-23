@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html, body { 
+    height: 100%;
+}
+
 body {
     font-family: 'Montsserat', 'Trebuchet MS', Arial, sans-serif;
     background-color: whitesmoke;
@@ -15,7 +19,7 @@ h1, h2, h3, h4, .app-name, .nav-element {
 }
 
 h1 {
-    font-size: 2.9rem;
+    font-size: 2.75rem;
 }
 
 h2 {
@@ -88,6 +92,36 @@ footer a {
     color: #ce318d;
 }
 
+.non-search-btn {
+    color: ivory;
+    font-size: 1.25rem;
+    border: 1px solid grey;
+}
+
+.btn--darkred, .btn--darkred:focus {
+    background-color: #330a08;
+}
+
+.btn--darkred:hover {
+    background-color: #ce313f;
+}
+
+.btn--darkred:active {
+    background-color: #cf1b2a;
+}
+
+.btn--tan, .btn--tan:focus {
+    background-color: #c37231;
+}
+
+.btn--tan:hover {
+    background-color: #d4803d;
+}
+
+.btn--tan:active {
+    background-color: #e38c46;
+}
+
 /* index.html styling */
 .home-page-title h1 {
     font-size: 2rem;
@@ -137,7 +171,7 @@ footer a {
     width: 74%;
 }
 
-.search-button {
+.search-button, .search-button:focus {
     width: 24%;
     height: 2.5rem;
     border: 4px solid darkred;
@@ -145,9 +179,13 @@ footer a {
     color: ivory;
 }
 
-.search-button:hover, .search-button:focus {
+.search-button:hover {
     background-color:darkred;
     border: 4px solid #ce313f;
+}
+
+.search-button:active {
+    background-color: #4d0806;
 }
 
 #search-bar label {
