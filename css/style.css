@@ -208,9 +208,15 @@ table {
     border: none;
 }
 
+
+
 @media (min-width: 900px) {
     /* search page styling */
     /* margin left for search bar */
+    main {
+        margin-right: 15rem;
+        margin-left: 15rem;
+  }
 
     #search-bar input {
         width: 40%;
