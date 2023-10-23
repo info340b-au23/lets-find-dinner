@@ -30,6 +30,12 @@ h4 {
     font-size: 1.5rem;
 }
 
+hr {
+    border: 2px solid #c37231;
+    margin-top: 0;
+    opacity: 0.5;
+}
+
 footer {
     background-color: #ce313f;
     border-top: 10px ridge black;
@@ -103,13 +109,6 @@ footer a {
     padding-bottom: 1rem;
 }
 
-/* profile page styling */
-
-table, th, td {
-    border: 1px solid black;
-    text-align: left;
-}
-
 /* find-a-bank.html styling */
 
 #filter-time h4 {
@@ -138,12 +137,17 @@ table, th, td {
     width: 74%;
 }
 
-#bank-search-btn {
+.search-button {
     width: 24%;
     height: 2.5rem;
     border: 4px solid darkred;
     background-color: #ce313f;
     color: ivory;
+}
+
+.search-button:hover, .search-button:focus {
+    background-color:darkred;
+    border: 4px solid #ce313f;
 }
 
 #search-bar label {
@@ -184,6 +188,24 @@ table, th, td {
 .card-header {
     background-color: #c37231;
     color: black;
+}
+
+/* profile page styling */
+
+table {
+    text-align: left;
+}
+
+.profile-content h3 {
+    font-size: 1.25rem;
+}
+
+.profile-password-display {
+    letter-spacing: 4px;
+}
+
+#password-hide-btn {
+    border: none;
 }
 
 @media (min-width: 900px) {
