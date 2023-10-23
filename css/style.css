@@ -1,15 +1,13 @@
+/* General site styling */
+
 * {
     box-sizing: border-box;
 }
 
 body {
     font-family: 'Montsserat', 'Trebuchet MS', Arial, sans-serif;
-    background-color: wheat;
+    background-color: whitesmoke;
 }
-
-/* main {
-    margin: auto 0.25rem;
-} */
 
 h1, h2, h3, h4, .app-name {
     font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
@@ -25,30 +23,47 @@ h2 {
 }
 
 h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
     font-size: 1.5rem;
 }
 
-.nav-links {
-    padding: 0;
+footer {
+    background-color: #ce313f;
+    color: ivory;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
 }
 
-.nav-links li {
-    list-style: none;
+footer a {
+    color: #330a08;
+}
+
+.nav-links {
     font-size: 1.75rem;
     text-align: center;
-    padding: .75rem 0;
-    background-color: antiquewhite;
+    padding: 0;
+    background-color: lightcoral;
+    color: ivory; 
+    margin-bottom: 1em;
+}
+
+.nav-links .col {
+    padding: 0.5rem 0;
+}
+
+.nav-links .col:not(:last-child) {
+    border-bottom: 2px solid #f06060;
 }
 
 .nav-links .app-name {
-    background-color: lightcoral;
+    background-color: #ce313f;
 }
 
-.find-a-bank-title, .filter-title {
-    background-color: orangered;
-    padding: 1rem 1rem 1rem 0;
-    margin-right: 2rem;
-}
+/* about.html styling */
 
 /* profile page styling */
 
@@ -57,7 +72,7 @@ table, th, td {
     text-align: left;
 }
 
-/* css for find-a-bank */
+/* find-a-bank.html styling */
 
 #filter-time h4 {
     font-size: 1.25em;
@@ -84,11 +99,6 @@ table, th, td {
 
 #bank-search-text {
     width: 74%;
-}
-
-.filter-title {
-    background-color: blue;
-    margin-bottom: 1rem;
 }
 
 #bank-search-btn {
@@ -120,6 +130,27 @@ table, th, td {
 
 .result-item a {
     font-size: 1em;
+}
+
+.find-a-bank-title, .filter-title, .results-title {
+    padding: 0.75rem 1rem 0.75rem 0;
+    margin-right: 2rem;
+}
+
+.find-a-bank-title {
+    background-color: #ce313f;
+    color: ivory;
+}
+
+.filter-title, .results-title {
+    background-color: #ce318d;
+    margin-bottom: 1rem;
+    color: ivory;
+}
+
+.card-header {
+    background-color: #c37231;
+    color: black;
 }
 
 @media (min-width: 900px) {

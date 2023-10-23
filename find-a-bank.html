@@ -13,13 +13,13 @@
         <header>
             <div class="container nav-bar">
                 <div class="row">
-                    <ul class="nav-links">
-                        <li class="app-name"><a>Let's Find Dinner!</a></li>
-                        <li><a>Our Mission</a></li>
-                        <li><a>Find a Food Bank</a></li>
-                        <li><a>Sign In</a></li>
-                        <li><a>Account</a></li>
-                    </ul>
+                    <div class="nav-links">
+                        <div class="col app-name"><a>Let's Find Dinner!</a></div>
+                        <div class="col"><a>Our Mission</a></div>
+                        <div class="col"><a>Find a Food Bank</a></div>
+                        <div class="col"><a>Sign In</a></div>
+                        <div class="col"><a>Account</a></div>
+                    </div>
                 </div>
                 <div class="row find-a-bank-title">
                     <div class="col">
@@ -155,12 +155,17 @@
                     </div>
                     <div class="col">
                         <section id="search-results">
-                            <h2>Results</h2>
+                            <!-- todo: use list group to represent phone numbers, include info on days of week -->
+                            <div class="row results-title">
+                                <h2>Results</h2>
+                            </div>
                             <div class="row">
                                 <div class="col-lg-4 d-lg-flex">
-                                    <div class="card result-item my-2">
-                                        <div class="card-body">
+                                    <div class="card result-item my-2 shadow">
+                                        <div class="card-header pt-4">
                                             <h3>Snohomish Community Food Bank</h3>
+                                        </div>
+                                        <div class="card-body">
                                             <h4>Location</h4>
                                             <p>1330 Ferguson Park Rd, Snohomish, WA, 98292</p>
                                             <h4>Contact Info</h4>
@@ -174,9 +179,11 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 d-lg-flex">
-                                    <div class="card result-item my-2">
-                                        <div class="card-body">
+                                    <div class="card result-item my-2 shadow">
+                                        <div class="card-header pt-4">
                                             <h3>Lynnwood Food Bank</h3>
+                                        </div>
+                                        <div class="card-body">
                                             <h4>Location</h4>
                                             <p>5320 176th SW, Lynnwood, WA, 98037</p>
                                             <h4>Contact Info</h4>
@@ -190,9 +197,11 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 d-lg-flex">
-                                    <div class="card result-item my-2">
-                                        <div class="card-body">
+                                    <div class="card result-item my-2 shadow">
+                                        <div class="card-header pt-4">
                                             <h3>Community Resource Network</h3>
+                                        </div>
+                                        <div class="card-body">
                                             <h4>Location</h4>
                                             <p>15725 Simonds Rd NE, Kenmore, WA, 98028</p>
                                             <h4>Contact Info</h4>
@@ -204,9 +213,11 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 d-lg-flex">
-                                    <div class="card result-item my-2">
-                                        <div class="card-body">
+                                    <div class="card result-item my-2 shadow">
+                                        <div class="card-header pt-4">
                                             <h3>Annie's Community Kitchen</h3>
+                                        </div>
+                                        <div class="card-body">
                                             <h4>Location</h4>
                                             <p>23525 84th Ave W, Edmonds, WA, 98026</p>
                                             <h4>Contact Info</h4>
@@ -224,7 +235,14 @@
             </div>
         </main>
         <footer>
-            
+            <div class="container">
+                <p>Let's Find Dinner! was created by Soha Sultana, Richard Tran, Carol Yan, Raymond Smith.</p>
+                <address>
+                    Contact us at <a class="footer-link" href="informatics@uw.edu">informatics@uw.edu</a>, 
+                    or at <a class="footer-link" href="tel:555-123-4567">(555)-123-4567</a>.
+                </address>
+                <p class="copyright">&copy; 2023 Let's Find Dinner!</p>
+            </div>
         </footer>
     </body>
 </html>
