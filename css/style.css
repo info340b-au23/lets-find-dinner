@@ -48,8 +48,12 @@ footer a {
     font-size: 1.75rem;
     text-align: center;
     padding: 0;
-    color: ivory; 
     margin-bottom: 1em;
+}
+
+.nav-links a {
+    color: ivory;
+    text-decoration: none;
 }
 
 .nav-element {
@@ -81,6 +85,22 @@ footer a {
 /* index.html styling */
 .home-page-title h1 {
     font-size: 2.5rem;
+}
+
+.home-page-selection {
+    margin-bottom: 1.5rem;
+}
+
+/* contact.html styling */
+#contact-submit-btn {
+    margin-top: 1.5rem;
+}
+
+.contact-field label {
+    display: block;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
 }
 
 /* profile page styling */
