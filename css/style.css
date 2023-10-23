@@ -222,3 +222,10 @@ table {
         width: 40%;
     }
 }
+
+@media (min-width: 768px) {
+    main {
+        margin-right: 12rem;
+        margin-left: 12rem;
+    }
+}
