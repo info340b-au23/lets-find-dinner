@@ -13,7 +13,7 @@ body {
     background-color: whitesmoke;
 }
 
-h1, h2, h3, h4, .app-name, .nav-element {
+h1, h2, h3, h4 {
     font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
     font-weight: bold;
 }
@@ -44,41 +44,15 @@ footer {
     background-color: #ce313f;
     border-top: 10px ridge black;
     color: ivory;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     margin-top: 1.5rem;
+    font-size: 1rem;
     font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
 }
 
 footer a {
     color: #330a08;
-}
-
-.nav-links {
-    font-size: 1.75rem;
-    text-align: center;
-    padding: 0;
-    margin-bottom: 1em;
-}
-
-.nav-links a {
-    color: ivory;
-    text-decoration: none;
-}
-
-.nav-element {
-    background-color: lightcoral;
-    padding: 0.5rem 0;
-    font-weight: normal;
-}
-
-.nav-element:not(:last-child) {
-    border-bottom: 2px solid #f06060;
-}
-
-.nav-links .app-name {
-    background-color: #ce313f;
-    font-weight: bold;
 }
 
 .page-title {
@@ -93,9 +67,13 @@ footer a {
 }
 
 .non-search-btn {
-    color: ivory;
     font-size: 1.25rem;
     border: 1px solid grey;
+}
+
+.non-search-btn a {
+    color: ivory;
+    text-decoration: none;
 }
 
 .btn--darkred, .btn--darkred:focus {
