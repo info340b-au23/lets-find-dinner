@@ -9,7 +9,7 @@ body {
     background-color: whitesmoke;
 }
 
-h1, h2, h3, h4, .app-name {
+h1, h2, h3, h4, .app-name, .nav-element {
     font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
     font-weight: bold;
 }
@@ -32,9 +32,11 @@ h4 {
 
 footer {
     background-color: #ce313f;
+    border-top: 10px ridge black;
     color: ivory;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+    margin-top: 1.5rem;
     font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
 }
 
@@ -46,21 +48,23 @@ footer a {
     font-size: 1.75rem;
     text-align: center;
     padding: 0;
-    background-color: lightcoral;
     color: ivory; 
     margin-bottom: 1em;
 }
 
-.nav-links .col {
+.nav-element {
+    background-color: lightcoral;
     padding: 0.5rem 0;
+    font-weight: normal;
 }
 
-.nav-links .col:not(:last-child) {
+.nav-element:not(:last-child) {
     border-bottom: 2px solid #f06060;
 }
 
 .nav-links .app-name {
     background-color: #ce313f;
+    font-weight: bold;
 }
 
 /* about.html styling */
@@ -104,8 +108,9 @@ table, th, td {
 #bank-search-btn {
     width: 24%;
     height: 2.5rem;
-    border: 4px solid gold;
-    background-color: yellow;
+    border: 4px solid darkred;
+    background-color: #ce313f;
+    color: ivory;
 }
 
 #search-bar label {
@@ -113,6 +118,10 @@ table, th, td {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
+}
+
+#search-button-text {
+    display: none;
 }
 
 /* #search-bar .bank-search-text {

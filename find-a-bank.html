@@ -2,9 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="author" content="Soha Sultana, Richard Tran, Carol Yan, Raymond Smith">
-        <meta name="description" content="Find a Bank search feature for Let's Find Dinner!">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://kit.fontawesome.com/a8837c9916.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&family=Poppins:wght@400;700" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css">
@@ -12,16 +11,16 @@
     <body>
         <header>
             <div class="container nav-bar">
-                <div class="row">
-                    <div class="nav-links">
-                        <div class="col app-name"><a>Let's Find Dinner!</a></div>
-                        <div class="col"><a>Our Mission</a></div>
-                        <div class="col"><a>Find a Food Bank</a></div>
-                        <div class="col"><a>Sign In</a></div>
-                        <div class="col"><a>Account</a></div>
+                <div class="nav-links">
+                    <div class="row">
+                        <div class="col-12 nav-element app-name"><a>Let's Find Dinner!</a></div>
+                        <div class="col-12 nav-element"><a>Our Mission</a></div>
+                        <div class="col-12 nav-element"><a>Find a Food Bank</a></div>
+                        <div class="col-12 nav-element"><a>Sign In</a></div>
+                        <div class="col-12 nav-element"><a>Account</a></div>
                     </div>
                 </div>
-                <div class="row find-a-bank-title">
+                <div class="row shadow-lg find-a-bank-title">
                     <div class="col">
                         <h1>Find a Food Bank</h1>
                     </div>
@@ -35,14 +34,17 @@
                         <section id="search-bar">
                             <label for="bank-search-text">SEARCH BY NAME</label>
                             <input id="bank-search-text" type="text" name="bank-search-text">
-                            <button id="bank-search-btn" type="submit">Search</button>
+                            <button id="bank-search-btn" type="submit">
+                                <i id="search-button-icon" aria-label="submit" class="fa-solid fa-magnifying-glass"></i>
+                                <p id="search-button-text">Search</p>
+                            </button>
                         </section>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-3">
                         <section id="search-filters">
-                            <div class="row filter-title">
+                            <div class="row shadow-lg filter-title">
                                 <h2>Filters</h2>
                             </div>
                             <section class="filter-category" id="filter-time">
@@ -156,7 +158,7 @@
                     <div class="col">
                         <section id="search-results">
                             <!-- todo: use list group to represent phone numbers, include info on days of week -->
-                            <div class="row results-title">
+                            <div class="row shadow-lg results-title">
                                 <h2>Results</h2>
                             </div>
                             <div class="row">
