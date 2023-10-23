@@ -31,9 +31,10 @@
     </header>
     <main>
         <div class="container">
-            <h2>Profile Information</h2>
-            <hr>
             <section class="profile-content">
+                <h2>Profile Information</h2>
+                <hr>
+
                 <h3>Username</h3>
                 <p>raysmith1234</p>
 
@@ -52,16 +53,19 @@
                 <h3>Phone Number</h3>
                 <p>123-456-7890</p>
             </section>
-            <hr>
-            <div>
-                <table class="table">
-                    <tr>
-                        <th colspan="3">Volunteer History</th>
-                    </tr>
+            <section class="profile-volunteer-history">
+                <h2>Volunteer History</h2>
+                <hr>
+                <table class="table table-sm table-striped">
                     <tr>
                         <th>Food Bank</th>
                         <th>Date</th>
                         <th>Hours</th>
+                    </tr>
+                    <tr>
+                        <td>Annie's Community Kitchen</td>
+                        <td>04-25-2002</td>
+                        <td>3</td>
                     </tr>
                     <tr>
                         <td>Ballard Food Bank</td>
@@ -69,22 +73,26 @@
                         <td>5</td>
                     </tr>
                 </table>
-                <table class="table">
+            </section>
+            <section class="profile-request-history">
+                <h2>Request History</h2>
+                <hr>
+                <p>Here's all of the food banks from which you've requested from in the past:</p>
+                <table class="table table-sm table-responsive table-striped">
                     <tr>
-                        <th colspan="3">Requests</th>
-                    </tr>
-                    <tr>
+                        <th>Food Bank</th>
+                        <th>Date</th>
                         <th>Requests</th>
                         <th>Fulfilled?</th>
-                        <th>Location</th>
                     </tr>
                     <tr>
-                        <td>Fresh Fruits</td>
-                        <td>No</td>
-                        <td>Ballard Food Bank</td>
+                        <td>Snohomish Community Food Bank</td>
+                        <td>11-01-2003</td>
+                        <td>Fresh Fruit, Milk</td>
+                        <th>Yes</th>
                     </tr>
                 </table>
-            </div>
+            </section>
         </div>
     </main>
     <footer>
