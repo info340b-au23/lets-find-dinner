@@ -108,6 +108,10 @@ footer a {
     background-color: #e38c46;
 }
 
+.navbar-brand {
+    font-family: 'Tilt Neon', 'Poppins', Arial, sans-serif;
+}
+
 /* index.html styling */
 .home-page-title h1 {
     font-size: 2rem;
@@ -244,26 +248,26 @@ table {
 }
 
 .login-card {
-    margin: 2rem 20vw;
+    margin-top: 2rem;
     text-align: center;
 }
 
-@media (min-width: 900px) {
-    /* search page styling */
-    /* margin left for search bar */
-    main {
-        margin-right: 15rem;
-        margin-left: 15rem;
-  }
+@media (min-width: 768px) {
+    .page-title {
+        width: 100%;
+    }
+}
+
+@media (min-width: 960px) {
+    .sub-section-title {
+        width: ;
+    }
 
     #search-bar input {
         width: 40%;
     }
-}
 
-@media (min-width: 768px) {
-    main {
-        margin-right: 12rem;
-        margin-left: 12rem;
+    #bank-search-btn {
+        width: 10%;
     }
 }
