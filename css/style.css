@@ -51,6 +51,10 @@ footer {
     font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
 }
 
+footer * {
+    padding: 0.1rem;
+}
+
 footer a {
     color: #330a08;
 }
@@ -69,6 +73,10 @@ footer a {
 .non-search-btn {
     font-size: 1.25rem;
     border: 1px solid grey;
+}
+
+.non-search-btn {
+    color: ivory;
 }
 
 .non-search-btn a {
@@ -143,6 +151,11 @@ footer a {
 #search-bar label {
     font-weight: bold;
     font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
+}
+
+.result-apply {
+    margin-top: 0.5rem;
+    display: block;
 }
 
 #bank-search-text {
@@ -224,7 +237,16 @@ table {
     border: none;
 }
 
+/* login.html styling */
+.login-heading {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
 
+.login-card {
+    margin: 2rem 20vw;
+    text-align: center;
+}
 
 @media (min-width: 900px) {
     /* search page styling */
