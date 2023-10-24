@@ -113,7 +113,7 @@ footer a {
 }
 
 /* index.html styling */
-#pantry-shopping-img {
+img {
     display: none;
 }
 
@@ -123,11 +123,6 @@ footer a {
 
 .home-page-selection {
     margin-bottom: 1.5rem;
-}
-
-/* about.html styling */
-#uw-food-bank-img {
-    display: none;
 }
 
 /* contact.html styling */
@@ -143,11 +138,6 @@ footer a {
 }
 
 /* find-a-bank.html styling */
-
-#happy-family-art {
-    display: none;
-}
-
 #filter-time h4 {
     font-size: 1.25em;
     padding: 0.25em 0;
@@ -270,15 +260,7 @@ table {
         width: 100%;
     }
 
-    #happy-family-art {
-        display: block;
-    }
-
-    #uw-food-bank-img {
-        display: block;
-    }
-
-    #pantry-shopping-img {
+    img {
         display: block;
     }
 }
