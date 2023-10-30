@@ -117,7 +117,9 @@ img {
     display: none;
 }
 
-.home-page-title h1 {
+.home-page-hook p {
+    font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
+    font-weight: bold;
     font-size: 2rem;
 }
 
@@ -207,6 +209,12 @@ img {
 
 .result-item a {
     font-size: 1em;
+}
+
+.home-page-hook{
+    padding: 0.75rem 1rem 0.75rem 0;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
 }
 
 .page-title, .sub-section-title {
