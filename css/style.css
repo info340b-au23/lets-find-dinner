@@ -120,11 +120,24 @@ img {
 .home-page-hook p {
     font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
     font-weight: bold;
+}
+
+#pantry-shopping-img {
+    width: 50%;
+    margin-bottom: 2rem;
+}
+
+.home-page-title h1 {
     font-size: 2rem;
 }
 
 .home-page-selection {
     margin-bottom: 1.5rem;
+}
+
+/* about.html styling */
+#uw-food-bank-img {
+    width: 60%;
 }
 
 /* contact.html styling */
@@ -140,6 +153,10 @@ img {
 }
 
 /* find-a-bank.html styling */
+#happy-family-art {
+    width: 30%;
+}
+
 #filter-time h4 {
     font-size: 1.25em;
     padding: 0.25em 0;
@@ -275,7 +292,7 @@ table {
 
 @media (min-width: 960px) {
     .home-title {
-        width: 40%;
+        width: 60%;
     }
 
     #search-bar input {
