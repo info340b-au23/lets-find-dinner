@@ -166,6 +166,10 @@ img {
     display: inline-block;
 }
 
+.input-element label {
+    margin: 0 0.25rem;
+}
+
 .filter-category {
     margin-bottom: 1.5rem;
 }
