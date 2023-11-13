@@ -1,19 +1,15 @@
 import BankFinder from './BankFinder';
-
-function NavBar(props) {
-    return (
-        <h1>
-            Header
-        </h1>
-    )
-}
-
-function Header(props) {
-    
-}
+import { useState } from 'react';
 
 export default function App(props) {
     return (
-        <NavBar />
+        <div>
+            {/* <Home /> */}
+            {/* <About /> */}
+            {/* <Volunteer /> */}
+            <BankFinder />
+            {/* <Login /> */}
+            {/* <Profile /> */}
+        </div>
     );
 }

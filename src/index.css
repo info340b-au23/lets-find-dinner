@@ -1,0 +1,322 @@
+/* General site styling */
+
+* {
+    box-sizing: border-box;
+}
+
+html, body { 
+    height: 100%;
+}
+
+body {
+    font-family: 'Montsserat', 'Trebuchet MS', Arial, sans-serif;
+    background-color: whitesmoke;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2.75rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+hr {
+    border: 2px solid #c37231;
+    margin-top: 0;
+    opacity: 0.5;
+}
+
+footer {
+    background-color: #ce313f;
+    border-top: 10px ridge black;
+    color: ivory;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
+}
+
+footer * {
+    padding: 0.1rem;
+}
+
+footer a {
+    color: #330a08;
+}
+
+.page-title {
+    background-color: #ce313f;
+    color: ivory;
+}
+
+.em--pink {
+    font-style: normal;
+    font-weight: bold;
+    color: #ce318d;
+}
+
+.non-search-btn {
+    font-size: 1.25rem;
+    border: 1px solid grey;
+}
+
+.non-search-btn {
+    color: ivory;
+}
+
+.non-search-btn a {
+    color: ivory;
+    text-decoration: none;
+}
+
+.btn--darkred, .btn--darkred:focus {
+    background-color: #330a08;
+}
+
+.btn--darkred:hover {
+    background-color: #ce313f;
+}
+
+.btn--darkred:active {
+    background-color: #cf1b2a;
+}
+
+.btn--tan, .btn--tan:focus {
+    background-color: #c37231;
+}
+
+.btn--tan:hover {
+    background-color: #d4803d;
+}
+
+.btn--tan:active {
+    background-color: #e38c46;
+}
+
+.navbar-brand {
+    font-family: 'Tilt Neon', 'Poppins', Arial, sans-serif;
+}
+
+/* Home styling */
+img {
+    display: none;
+}
+
+.home-page-hook p {
+    font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
+    font-weight: bold;
+}
+
+#pantry-shopping-img {
+    width: 50%;
+    margin-bottom: 2rem;
+}
+
+.home-page-title h1 {
+    font-size: 2rem;
+}
+
+.home-page-selection {
+    margin-bottom: 1.5rem;
+}
+
+/* About styling */
+#uw-food-bank-img {
+    width: 60%;
+}
+
+/* Volunteer Form styling */
+#contact-submit-btn {
+    margin-top: 1.5rem;
+}
+
+.contact-field label {
+    display: block;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+/* Bank Search styling */
+#happy-family-art {
+    width: 30%;
+}
+
+#filter-time h4 {
+    font-size: 1.25em;
+    padding: 0.25em 0;
+}
+
+#filter-time .input-element {
+    display: inline-block;
+}
+
+.filter-category {
+    margin-bottom: 1.5rem;
+}
+
+#search-bar {
+    margin-bottom: 1.5rem;
+}
+
+#search-bar label {
+    font-weight: bold;
+    font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
+}
+
+.result-apply {
+    margin-top: 0.5rem;
+    display: block;
+}
+
+#bank-search-text {
+    width: 74%;
+}
+
+.search-button, .search-button:focus {
+    width: 24%;
+    height: 2.5rem;
+    border: 4px solid darkred;
+    background-color: #ce313f;
+    color: ivory;
+}
+
+.search-button:hover {
+    background-color:darkred;
+    border: 4px solid #ce313f;
+}
+
+.search-button:active {
+    background-color: #4d0806;
+}
+
+#search-bar label {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+#search-button-text {
+    display: none;
+}
+
+.result-item h3 {
+    font-size: 1.6rem;
+}
+
+.result-item p {
+    margin: 0.25em 0;
+}
+
+.result-item a {
+    font-size: 1em;
+}
+
+.home-page-hook{
+    padding: 0.75rem 1rem 0.75rem 0;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+}
+
+.page-title, .sub-section-title {
+    padding: 0.75rem 1rem 0.75rem 0;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+}
+
+.sub-section-title {
+    background-color: #ce318d;
+    margin-bottom: 1rem;
+    color: ivory;
+}
+
+.card-header {
+    background-color: #c37231;
+    color: black;
+}
+
+/* Profile styling */
+
+table {
+    text-align: left;
+}
+
+.profile-content h3 {
+    font-size: 1.25rem;
+}
+
+.profile-password-display {
+    letter-spacing: 4px;
+}
+
+#password-hide-btn {
+    border: none;
+}
+
+/* Login styling */
+.login-heading {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.login-card {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .page-title {
+        width: 100%;
+    }
+
+    img {
+        display: block;
+    }
+}
+
+@media (min-width: 960px) {
+    .home-title {
+        width: 60%;
+    }
+
+    #search-bar input {
+        width: 40%;
+    }
+
+    #bank-search-btn {
+        width: 10%;
+    }
+
+    .text-content {
+        padding-right: 20%;
+    }
+
+    .page-title {
+        width: 100vw;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .find-a-bank-title {
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
+            url("../public/img/foodbank.jpg");
+        background-size: cover;
+        padding-top: 25vh;
+    }
+}
