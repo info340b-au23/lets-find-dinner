@@ -1,4 +1,4 @@
-function contactForm(props) {
+export default function ContactForm(props) {
  return (
     <form>
         <h2 class="text-small">Fill out the form below.</h2>
