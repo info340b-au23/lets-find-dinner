@@ -8,6 +8,10 @@ function NavBar(props) {
     )
 }
 
+function Header(props) {
+    
+}
+
 export default function App(props) {
     return (
         <NavBar />
