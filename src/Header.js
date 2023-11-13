@@ -23,7 +23,10 @@ function NavBar(props) {
 }
 
 export default function Header(props) {
-    const classList = "row shadow-lg page-title " + props.backgroundClass + "-title";
+    let classList = "row shadow-lg page-title";
+    if (props.background) {
+        classList += " " + props.background + "-title";
+    }
     
     return (
         <div>

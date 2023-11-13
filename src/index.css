@@ -312,6 +312,10 @@ table {
         padding: 0.75rem 1.5rem;
     }
 
+    /* .sub-section-title {
+        width: 100%;
+    } */
+
     .find-a-bank-title {
         background-image:
             linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
