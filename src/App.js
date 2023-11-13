@@ -1,4 +1,5 @@
 import BankFinder from './BankFinder';
+import Footer from './Footer';
 import { useState } from 'react';
 
 export default function App(props) {
@@ -10,6 +11,7 @@ export default function App(props) {
             <BankFinder />
             {/* <Login /> */}
             {/* <Profile /> */}
+            <Footer />
         </div>
     );
 }

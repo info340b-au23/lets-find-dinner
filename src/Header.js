@@ -27,6 +27,8 @@ export default function Header(props) {
     if (props.background) {
         classList += " " + props.background + "-title";
     }
+
+    
     
     return (
         <div>

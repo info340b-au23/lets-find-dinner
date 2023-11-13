@@ -1,13 +1,22 @@
 import Header from './Header';
+import { useState } from 'react';
 
 function SearchBar(props) {
     // TODO: Add image back? Removed family.jpg in favor of background image
+    const [searchQuery, setSearchQuery] = useState("");
+
+    function handleChange(event) {
+        setSearchQuery(event.target.value);
+    }
+
+    // console.log("curr search = " + searchQuery);
+
     return (
         <div className="row">
             <div className="col">
                 <section id="search-bar">
                     <label for="bank-search-text">SEARCH BY NAME</label>
-                    <input id="bank-search-text" type="text" name="bank-search-text" />
+                    <input id="bank-search-text" type="text" name="bank-search-text" onChange={handleChange} />
                     <button className="search-button" id="bank-search-btn" type="submit">
                         <i id="search-button-icon" aria-label="submit" className="fa-solid fa-magnifying-glass"></i>
                         <p id="search-button-text">Search</p>
