@@ -22,19 +22,17 @@ function NavBar(props) {
     )
 }
 
-export default function Header(props) {
-    let classList = "row shadow-lg page-title";
+export default function Header(props) {    
+    let titleClassList = "container-fluid m-lg-0";
     if (props.background) {
-        classList += " " + props.background + "-title";
+        titleClassList += " " + props.background + "-title";
     }
-
-    
     
     return (
-        <div>
+        <div className="header">
             <NavBar />
-            <div className="container m-lg-0">
-                <div className={classList}>
+            <div className={titleClassList}>
+                <div className="row shadow page-title">
                     <div className="col">
                         <h1>{props.title}</h1>
                     </div>

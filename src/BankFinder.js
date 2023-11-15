@@ -9,18 +9,30 @@ function SearchBar(props) {
         setSearchQuery(event.target.value);
     }
 
-    // console.log("curr search = " + searchQuery);
-
     return (
         <div className="row">
-            <div className="col">
+            <div className="col col-lg-8">
                 <section id="search-bar">
-                    <label for="bank-search-text">SEARCH BY NAME</label>
-                    <input id="bank-search-text" type="text" name="bank-search-text" onChange={handleChange} />
-                    <button className="search-button" id="bank-search-btn" type="submit">
-                        <i id="search-button-icon" aria-label="submit" className="fa-solid fa-magnifying-glass"></i>
-                        <p id="search-button-text">Search</p>
-                    </button>
+                    <form>
+                        <div className="form-group">
+                            <label for="bank-search-text-input">SEARCH BY NAME</label>
+                            <div className="input-group">
+                                {/* <input id="bank-search-text" type="text" name="bank-search-text" onChange={handleChange} />
+                                <button className="search-button" id="bank-search-btn" type="submit">
+                                    <i id="search-button-icon" aria-label="submit" className="fa-solid fa-magnifying-glass"></i>
+                                    <p id="search-button-text">Search</p>
+                                </button> */}
+
+                                <input type="text" id="bank-search-text-input" name="bank-search-text-input" value={searchQuery} placeholder="Enter the name of a food bank to search and apply filters" className="form-control border border-secondary" onChange={handleChange} aria-label="food bank search box" />
+                                <div className="input-group-append">
+                                    <button id="bank-search-button" class="btn btn-danger" type="button">
+                                        <i id="search-button-icon" aria-label="submit" className="fa-solid fa-magnifying-glass"></i>
+                                        <p id="search-button-text">Search</p>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </section>
             </div>
         </div>
@@ -157,10 +169,12 @@ function ResultsPanel(props) {
             <section id="search-results">
                 {/* TODO: use list group to represent phone numbers, include info on days of week */}
                 <div className="row shadow-lg sub-section-title">
-                    <h2>Results</h2>
+                    <div className="col">
+                        <h2>Results</h2>
+                    </div>
                 </div>
                 <div className="row">
-                    <div className="col-lg-4">
+                    <div className="col-md-6 col-xl-4">
                         <div className="card result-item my-2 shadow">
                             <div className="card-header pt-4">
                                 <h3>Snohomish Community Food Bank</h3>
@@ -179,7 +193,7 @@ function ResultsPanel(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-4">
+                    <div className="col-md-6 col-xl-4">
                         <div className="card result-item my-2 shadow">
                             <div className="card-header pt-4">
                                 <h3>Lynnwood Food Bank</h3>
@@ -198,7 +212,7 @@ function ResultsPanel(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-4">
+                    <div className="col-md-6 col-xl-4">
                         <div className="card result-item my-2 shadow">
                             <div className="card-header pt-4">
                                 <h3>Community Resource Network</h3>
@@ -215,7 +229,7 @@ function ResultsPanel(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-4">
+                    <div className="col-md-6 col-xl-4">
                         <div className="card result-item my-2 shadow">
                             <div className="card-header pt-4">
                                 <h3>Annie's Community Kitchen</h3>

@@ -178,6 +178,11 @@ img {
     margin-bottom: 1.5rem;
 }
 
+#bank-search-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
 #search-bar label {
     font-weight: bold;
     font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
@@ -188,11 +193,7 @@ img {
     display: block;
 }
 
-#bank-search-text {
-    width: 74%;
-}
-
-.search-button, .search-button:focus {
+/* .search-button, .search-button:focus {
     width: 24%;
     height: 2.5rem;
     border: 4px solid darkred;
@@ -207,7 +208,7 @@ img {
 
 .search-button:active {
     background-color: #4d0806;
-}
+} */
 
 #search-bar label {
     display: block;
@@ -218,6 +219,7 @@ img {
 
 #search-button-text {
     display: none;
+    margin: 0;
 }
 
 .result-item h3 {
@@ -284,27 +286,58 @@ table {
     text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
     .page-title {
-        width: 100%;
+        width: 100vw;
+
     }
 
-    img {
-        display: block;
+    .sub-section-title {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 768px) {
+    img {
+        display: block;
+    }
+
+    #search-button-text {
+        display: block;
+    }
+
+    #search-button-icon {
+        display: none;
+    }
+
+    .page-title {
+        padding: 0.75rem 1.5rem;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+        width: 460px;
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));  
+    }
+
+    .find-a-bank-title {
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
+            url("../public/img/foodbank.jpg");
+        background-size: cover;
+        overflow-x: hidden;
+        padding-top: 22vh;
+    }
+
+    .header {
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media (min-width: 992px) {
     .home-title {
         width: 60%;
-    }
-
-    #search-bar input {
-        width: 40%;
-    }
-
-    #bank-search-btn {
-        width: 10%;
     }
 
     .text-content {
@@ -313,11 +346,12 @@ table {
 
     .page-title {
         padding: 0.75rem 1.5rem;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+        width: 460px;
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));  
     }
-
-    /* .sub-section-title {
-        width: 100%;
-    } */
 
     .find-a-bank-title {
         background-image:
@@ -325,7 +359,10 @@ table {
             url("../public/img/foodbank.jpg");
         background-size: cover;
         overflow-x: hidden;
-        width: calc(100vw - 17px);
-        padding-top: 25vh;
+        padding-top: 22vh;
+    }
+
+    .header {
+        margin-bottom: 2.5rem;
     }
 }
