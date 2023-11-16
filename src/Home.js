@@ -1,10 +1,12 @@
+// import Header from './Header';
 export default function Home(props) {
     return (
       <div>
+        {/* <Header /> */}
         <div className="container">
-          <div className="row shadow-lg page-title home-page-hook">
+          <div className="row shadow-lg home-page-hook">
             <div className="col">
-              <h2>Because families deserve not to worry about their next meal.</h2>
+              <p>Because families deserve not to worry about their next meal.</p>
             </div>
           </div>
         </div>
@@ -34,6 +36,3 @@ export default function Home(props) {
       </div>
     );
   }
-   
-   
-   
