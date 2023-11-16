@@ -112,6 +112,11 @@ footer a {
     font-family: 'Tilt Neon', 'Poppins', Arial, sans-serif;
 }
 
+.header {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 /* Home styling */
 img {
     display: none;
@@ -192,23 +197,6 @@ img {
     margin-top: 0.5rem;
     display: block;
 }
-
-/* .search-button, .search-button:focus {
-    width: 24%;
-    height: 2.5rem;
-    border: 4px solid darkred;
-    background-color: #ce313f;
-    color: ivory;
-}
-
-.search-button:hover {
-    background-color:darkred;
-    border: 4px solid #ce313f;
-}
-
-.search-button:active {
-    background-color: #4d0806;
-} */
 
 #search-bar label {
     display: block;
@@ -342,27 +330,5 @@ table {
 
     .text-content {
         padding-right: 20%;
-    }
-
-    .page-title {
-        padding: 0.75rem 1.5rem;
-        margin-left: 1rem;
-        margin-bottom: 1rem;
-        width: 460px;
-        background:
-            linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));  
-    }
-
-    .find-a-bank-title {
-        background-image:
-            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
-            url("../public/img/foodbank.jpg");
-        background-size: cover;
-        overflow-x: hidden;
-        padding-top: 22vh;
-    }
-
-    .header {
-        margin-bottom: 2.5rem;
     }
 }

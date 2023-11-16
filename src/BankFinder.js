@@ -2,30 +2,28 @@ import Header from './Header';
 import { useState } from 'react';
 
 function SearchBar(props) {
-    // TODO: Add image back? Removed family.jpg in favor of background image
-    const [searchQuery, setSearchQuery] = useState("");
+    const [searchText, setSearchText] = useState("");
 
-    function handleChange(event) {
-        setSearchQuery(event.target.value);
+    const handleTextChange = (event) => {
+        setSearchText(event.target.value);
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        props.submitCallback(searchText);
     }
 
     return (
         <div className="row">
             <div className="col col-lg-8">
                 <section id="search-bar">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label for="bank-search-text-input">SEARCH BY NAME</label>
+                            <label htmlFor="bank-search-text-input">SEARCH BY NAME</label>
                             <div className="input-group">
-                                {/* <input id="bank-search-text" type="text" name="bank-search-text" onChange={handleChange} />
-                                <button className="search-button" id="bank-search-btn" type="submit">
-                                    <i id="search-button-icon" aria-label="submit" className="fa-solid fa-magnifying-glass"></i>
-                                    <p id="search-button-text">Search</p>
-                                </button> */}
-
-                                <input type="text" id="bank-search-text-input" name="bank-search-text-input" value={searchQuery} placeholder="Enter the name of a food bank to search and apply filters" className="form-control border border-secondary" onChange={handleChange} aria-label="food bank search box" />
+                                <input type="text" id="bank-search-text-input" name="bank-search-text-input" value={searchText} placeholder="Enter the name of a food bank to search and apply filters" className="form-control border border-secondary" onChange={handleTextChange} aria-label="food bank search box" />
                                 <div className="input-group-append">
-                                    <button id="bank-search-button" class="btn btn-danger" type="button">
+                                    <button id="bank-search-button" className="btn btn-danger" type="submit">
                                         <i id="search-button-icon" aria-label="submit" className="fa-solid fa-magnifying-glass"></i>
                                         <p id="search-button-text">Search</p>
                                     </button>
@@ -253,11 +251,25 @@ function ResultsPanel(props) {
 }
 
 export default function BankFinder(props) {
+    const [filters, setFilters] = useState({
+        timeStart: "6:00",
+        timeEnd: "18:00",
+        days: [],
+        donationFilters: [],
+    });
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSearchSubmit = (query) => {
+        setSearchQuery(query);
+    }
+
+    console.log(searchQuery);
+
     return (
         <div>
             <Header title="Find a Food Bank" background="find-a-bank"/>
             <div className="container">
-                <SearchBar />
+                <SearchBar submitCallback={handleSearchSubmit} />
                 <div className="row">
                     <FiltersPanel />
                     <ResultsPanel />
