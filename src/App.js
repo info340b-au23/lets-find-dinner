@@ -1,6 +1,7 @@
 import BankFinder from './BankFinder';
 import Volunteer from './Contact';
 import NavBar from './NavBar';
+import Home from './Home';
 import { useState } from 'react';
 
 function Footer(props) {
