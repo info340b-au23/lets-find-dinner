@@ -222,7 +222,7 @@ img {
 }
 
 .result-item p {
-    margin: 0.25em 0;
+    margin: 0.1rem 0;
 }
 
 .result-item a {
@@ -232,6 +232,7 @@ img {
 .contact-info-group * {
     margin-right: 0.5rem;
     display: inline;
+    text-decoration: none;
 }
 
 .icon-expand {
