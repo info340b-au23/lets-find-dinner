@@ -9,7 +9,7 @@ export function SearchBar(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.submitCallback(searchText);
+        props.submitCallback(searchText.toLowerCase());
     }
 
     return (

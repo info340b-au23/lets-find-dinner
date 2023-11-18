@@ -3,6 +3,7 @@ import { Footer } from './Footer';
 import { BankFinder } from './bank-filter-components/BankFinder';
 import Volunteer from './Contact';
 import Home from './Home';
+import bankList from '../data/banks.json';
 import { useState } from 'react';
 
 export default function App(props) {
@@ -18,7 +19,7 @@ export default function App(props) {
             {/* <Home /> */}
             {/* <About /> */}
             {/* <Volunteer /> */}
-            <BankFinder />
+            <BankFinder banks={bankList} />
             {/* <Login /> */}
             {/* <Profile /> */}
             <Footer />

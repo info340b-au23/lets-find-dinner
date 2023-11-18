@@ -87,3 +87,7 @@ export function ResultsPanel(props) {
         </div>
     );
 }
+
+function ResultCard(props) {
+    
+}

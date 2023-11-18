@@ -117,6 +117,16 @@ footer a {
     padding-right: 0;
 }
 
+/* NavBar styling */
+
+.navbar a {
+    color: white;
+}
+
+.navbar a:hover {
+    color: #ce313f;
+}
+
 /* Home styling */
 img {
     display: none;
