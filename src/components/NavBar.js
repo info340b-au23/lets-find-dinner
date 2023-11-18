@@ -1,4 +1,4 @@
-export default function NavBar(props) {
+export function NavBar(props) {
     const navItemClass = "nav-item";
     const navLinkActiveClass = "nav-link active";
 
@@ -16,7 +16,11 @@ export default function NavBar(props) {
                         <li className={navItemClass}><a className={navLinkActiveClass} href="find-a-bank.html">Find a Food Bank</a></li>
                     </ul>
                     <ul className="navbar-nav d-flex pe-lg-4">
-                        <li className={navItemClass}><a className={navLinkActiveClass} href="login.html">Sign In</a></li>
+                        <li className={navItemClass}>
+                            <a className={navLinkActiveClass} href="login.html">
+                                {props.loggedIn ? "Sign Out" : "Sign In"}
+                            </a>
+                        </li>
                         <li className={navItemClass}><a className={navLinkActiveClass} href="user-profile.html">Account</a></li>
                     </ul>
                 </div>

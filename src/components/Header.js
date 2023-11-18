@@ -1,4 +1,4 @@
-export default function Header(props) {
+export function Header(props) {
     let titleClassList = "container-fluid m-lg-0";
     if (props.background) {
         titleClassList += " " + props.background + "-title";

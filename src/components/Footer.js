@@ -1,10 +1,4 @@
-import BankFinder from './BankFinder';
-import Volunteer from './Contact';
-import NavBar from './NavBar';
-import Home from './Home';
-import { useState } from 'react';
-
-function Footer(props) {
+export function Footer(props) {
     return (
         <footer>
             <div className="container">
@@ -16,20 +10,5 @@ function Footer(props) {
                 <p className="copyright">&copy; 2023 Let's Find Dinner!</p>
             </div>
         </footer>
-    );
-}
-
-export default function App(props) {
-    return (
-        <div>
-            <NavBar />
-            {/* <Home /> */}
-            {/* <About /> */}
-            {/* <Volunteer /> */}
-            <BankFinder />
-            {/* <Login /> */}
-            {/* <Profile /> */}
-            <Footer />
-        </div>
     );
 }
