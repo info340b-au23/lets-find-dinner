@@ -21,8 +21,6 @@ export function BankFinder(props) {
         setSearchQuery(query);
     }
 
-    console.log(searchQuery);
-
     return (
         <div>
             <Header title="Find a Food Bank" background="find-a-bank"/>
