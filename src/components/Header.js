@@ -1,18 +1,22 @@
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 export function Header(props) {
-    let titleClassList = "container-fluid m-lg-0";
+    let titleClassList = "m-lg-0";
     if (props.background) {
         titleClassList += " " + props.background + "-title";
     }
     
     return(
-        <div className="container-fluid header">
-            <div className={titleClassList}>
-                <div className="row shadow page-title">
-                    <div className="col">
+        <Container fluid className="header">
+            <Container fluid className={titleClassList}>
+                <Row className="shadow page-title">
+                    <Col>
                         <h1>{props.title}</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </Col>
+                </Row>
+            </Container>
+        </Container>
     )
 }

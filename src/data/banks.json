@@ -12,7 +12,7 @@
         },
         "phone": "2067897800",
         "website": "https://www.ballardfoodbank.org",
-        "bid": 1
+        "bid": "0001"
     },
     {
         "name": "Pike Market Senior Center & Food Bank",
@@ -26,7 +26,8 @@
         },
         "phone": "2066266462",
         "email": "boardmember@pmsc-dtfb.org",
-        "website": "https://www.pmsc-fb.org/food-bank"
+        "website": "https://www.pmsc-fb.org/food-bank",
+        "bid": "0002"
     },
     {
         "name": "University District Food Bank",
@@ -41,7 +42,8 @@
         },
         "phone": "2065237060",
         "email": "volunteer@udistrictfoodbank.org",
-        "website": "https://www.udistrictfoodbank.org/"
+        "website": "https://www.udistrictfoodbank.org/",
+        "bid": "0003"
     },
     {
         "name": "The Auburn Food Bank",
@@ -55,7 +57,8 @@
             "Fri": "09:00am-01:15pm"
         },
         "phone": "2538338925",
-        "website": "https://www.theauburnfoodbank.org"
+        "website": "https://www.theauburnfoodbank.org",
+        "bid": "0004"
     },
     {
         "name": "White Center Food Bank",
@@ -69,6 +72,7 @@
             "Fri": "10:00am-01:00pm"
         },
         "phone": "2538338925",
-        "website": "https://www.whitecenterfoodbank.org/"
+        "website": "https://www.whitecenterfoodbank.org/",
+        "bid": "0005"
     }
 ]

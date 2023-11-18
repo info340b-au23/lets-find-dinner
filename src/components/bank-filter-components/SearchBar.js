@@ -1,4 +1,10 @@
 import { useState } from "react";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Button from "react-bootstrap/Button";
+
 
 export function SearchBar(props) {
     const [searchText, setSearchText] = useState("");
@@ -12,36 +18,33 @@ export function SearchBar(props) {
         props.submitCallback(searchText.toLowerCase());
     }
 
+
     return (
-        <div className="row">
-            <div className="col col-lg-8">
+        <Row>
+            <Col lg="6">
                 <section id="search-bar">
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="bank-search-text-input">SEARCH BY NAME</label>
-                            <div className="input-group">
-                                <input
-                                    type="text"
-                                    id="bank-search-text-input"
-                                    name="bank-search-text-input"
-                                    value={searchText}
-                                    placeholder="Enter the name of a food bank to search for"
-                                    className="form-control border border-secondary"
-                                    onChange={handleTextChange}
-                                    aria-label="Food bank search input"
-                                    autoComplete="off"
-                                />
-                                <div className="input-group-append">
-                                    <button id="bank-search-button" className="btn btn-danger" type="submit">
-                                        <i id="search-button-icon" aria-label="submit" className="fa-solid fa-magnifying-glass"></i>
-                                        <p id="search-button-text">Search</p>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Label htmlFor="bank-search-text-input">SEARCH BY NAME</Form.Label>
+                        <InputGroup>
+                            <Form.Control
+                                type="text"
+                                id="bank-search-text-input"
+                                className="border border-secondary"
+                                name="bank-search-text-input"
+                                value={searchText}
+                                onChange={handleTextChange}
+                                placeholder="Enter food bank name"
+                                aria-label="Food bank search input"
+                                autoComplete="off"
+                            />
+                            <Button variant="danger" id="bank-search-button" type="submit">
+                                <i id="search-button-icon" aria-label="submit" className="fa-solid fa-magnifying-glass"></i>
+                                <p id="search-button-text">Search</p>
+                            </Button>
+                        </InputGroup>
+                    </Form>
                 </section>
-            </div>
-        </div>
+            </Col>
+        </Row>
     );
 }
