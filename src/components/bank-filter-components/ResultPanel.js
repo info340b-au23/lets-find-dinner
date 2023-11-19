@@ -4,11 +4,7 @@ import Card from "react-bootstrap/Card";
 import Collapse from "react-bootstrap/Collapse";
 import { useState } from "react";
 
-import Button from "react-bootstrap/Button";
-
 export function ResultsPanel(props) {
-    // TODO: add data to results.json; may need to use Firebase storage later
-
     const resultsList = props.banks.map((bank) => {
         return <ResultCard bankData={bank} key={bank.bid} />;
     })
@@ -29,7 +25,9 @@ export function ResultsPanel(props) {
     );
 }
 
-// Possible TODO: add donations section to each ResultCard?
+// TODO: think about whether we should add donations section to each ResultCard?
+// TODO: think about adding an autocomplete that goes to volunteer form for bank apply; not necessary though
+// TODO: pagination, may save for the break
 function ResultCard({bankData}) {
     const [expanded, setExpanded] = useState(false);
 
@@ -54,12 +52,10 @@ function ResultCard({bankData}) {
                 <Card.Header className="pt-4">
                     <Row>
                         <Col xs="1" className="d-flex align-items-center">
-                            <div aria-controls={bankData.bid + "-info"} aria-expanded={expanded} onClick={handleExpand}>
-                                {expanded ? 
-                                    <i className="fa-solid fa-angle-down icon-expand"></i> :
-                                    <i className="fa-solid fa-angle-right icon-expand"></i>
-                                }
-                            </div>
+                            {expanded ? 
+                                <i className="fa-solid fa-angle-down icon-expand" aria-controls={bankData.bid + "-info"} aria-expanded={expanded} onClick={handleExpand}></i> :
+                                <i className="fa-solid fa-angle-right icon-expand" aria-controls={bankData.bid + "-info"} aria-expanded={expanded} onClick={handleExpand}></i>
+                            }
                         </Col>
                         <Col>
                             <h3>{bankData.name}</h3>
@@ -91,7 +87,7 @@ function ResultCard({bankData}) {
                         }
                         {bankData.website &&
                             <div className="contact-info-group">
-                                <a href={bankData.website} target="_blank">
+                                <a href={bankData.website} target="_blank" rel="noreferrer">
                                     <i className="fa-solid fa-arrow-up-right-from-square"></i>
                                     <p>Website</p>
                                 </a>
