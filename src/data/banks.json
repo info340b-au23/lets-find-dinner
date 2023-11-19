@@ -74,5 +74,75 @@
         "phone": "2538338925",
         "website": "https://www.whitecenterfoodbank.org/",
         "bid": "0005"
+    },
+    {
+        "name": "FamilyWorks - Wallingford Food Bank",
+        "address": "1501 N 45th St",
+        "city": "Seattle",
+        "zip": 98103,
+        "hoursOpen": {
+            "Tues": "12:00pm-2:00pm",
+            "Thurs": "3:00pm-6:00pm",
+            "Fri": "11:00am-1:00pm"
+        },
+        "phone": "2066471780",
+        "website": "https://familyworksseattle.org/",
+        "bid": "0006"
+
+    },
+    {
+        "name": "Open Meal Service",
+        "address": "201 Alaskan Wy",
+        "city": "Seattle",
+        "zip": 98104,
+        "hoursOpen": {
+            "Mon": "11:30am-12:30pm, 3:30pm-4:30pm",
+            "Tues": "11:30am-12:30pm, 3:30pm-4:30pm",
+            "Wed": "11:30am-12:30pm, 3:30pm-4:30pm",
+            "Thurs": "11:30am-12:30pm, 3:30pm-4:30pm",
+            "Fri": "11:30am-12:30pm, 3:30pm-4:30pm",
+            "Sat": "1:30pm-3:00pm:"
+        },
+        "phone": "2066471780",
+        "website": "https://www.oslserves.org/open-meal-service",
+        "bid": "0007"
+    },
+    {
+        "name": "Paradise of Praise Food Bank - Food Distribution Center",
+        "address": "1316 SW Holden St",
+        "city": "Seattle",
+        "zip": 98106,
+        "hoursOpen": {
+            "Tues": "10:00 am - 12:00pm"
+        },
+        "phone": "2062342713",
+        "bid": "0008"
+    },
+    {
+        "name": "YWCA Central Area Food Bank",
+        "address": "2820 E Cherry Street",
+        "city": "Seattle",
+        "zip": 98122,
+        "hoursOpen": {
+            "Wed": "1:00pm-3:00pm"
+        },
+        "website": "https://www.ywcaworks.org/programs/central-area-food-bank",
+        "email": "foodbank@ywcaworks.org",
+        "bid": "0009"
+    },
+    {
+        "name": "West Seattle Food Bank",
+        "address": "3419 SW Morgan St",
+        "city": "Seattle",
+        "zip": 98126,
+        "hoursOpen": {
+            "Tues": "10:00am-2:00pm",
+            "Wed": "12:00pm-7:00pm",
+            "Thurs": "10:00am-2:00pm",
+            "Fri": "10:00am-2:00pm"
+        },
+        "phone": "2069329023",
+        "website": "https://westseattlefoodbank.org/",
+        "bid": "0010"
     }
 ]
