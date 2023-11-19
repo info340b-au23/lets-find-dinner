@@ -18,7 +18,6 @@ export function SearchBar(props) {
         props.submitCallback(searchText.toLowerCase());
     }
 
-
     return (
         <Row>
             <Col lg="6">

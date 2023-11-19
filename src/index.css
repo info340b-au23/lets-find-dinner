@@ -56,7 +56,8 @@ footer * {
 }
 
 footer a {
-    color: #330a08;
+    color: black;
+    font-weight: bold;
 }
 
 .page-title {
@@ -339,6 +340,10 @@ table {
 
     .header {
         margin-bottom: 2.5rem;
+    }
+
+    .sub-section-title {
+        background-color: #ce313f;
     }
 }
 

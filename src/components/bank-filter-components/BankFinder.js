@@ -4,6 +4,10 @@ import { FiltersPanel } from './FiltersPanel';
 import { SearchBar } from './SearchBar';
 import { useState } from 'react';
 
+const DAYS_OF_WEEK = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+const DONATION_FILTERS = ["produce", "bread", "dairy", "poultry", "red-meat", "nonperishables", "clothing",
+                          "bedding", "toiletries", "baby", "cleaning"];
+
 // TODO: implement ResultCard component; do we need a key?
 // TOOD: implement FilterGroup
 // TODO: implement FilterItem? could be combined in FilterGroup, but best to decompose as much as reasonably possible
@@ -12,21 +16,32 @@ export function BankFinder(props) {
     const [timeFilters, setTimeFilters] = useState({
         hourStart: "6:00",
         hourEnd: "18:00",
-        days: []
+        days: [false, false, false, false, false, false, false]
     });
     const [donationFilters, setDonationFilters] = useState([]);
     const [city, setCity] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
 
-    const handleSearchSubmit = (query) => {
+    const handleSearchSubmit = function(query) {
         setSearchQuery(query);
     }
 
+    const handleDayUpdate = function(day) {
+        const {days, ...rest} = timeFilters;
+        const dayIdx = DAYS_OF_WEEK.indexOf(day);
+        const updatedDays = days.map((checkDay, idx) => {
+            return idx === dayIdx ? !checkDay : checkDay;
+        });
+        setTimeFilters({rest, days: updatedDays});
+    }
+
+    console.log(timeFilters.days);
+
     const queryTerms = searchQuery.split(" ");
     const displayBanks = props.banks.filter((bank) => {
-        let matchedTerm = false;
         const bankName = bank.name.toLowerCase();
         if (searchQuery !== "") {
+            let matchedTerm = false;
             for (const query of queryTerms) {
                 if (bankName.indexOf(query) !== -1) {
                     matchedTerm = true;
@@ -36,13 +51,21 @@ export function BankFinder(props) {
                 return false;
             }
         }
-        // for (const day in bank.hoursOpen) {
-
-        // }
+        const days = timeFilters.days;
+        if (days.includes(true)) {
+            let matchedDay = false;
+            for (const day in bank.hoursOpen) {
+                if (days[DAYS_OF_WEEK.indexOf(day)]) {
+                    // more code inside if for processing time
+                    matchedDay = true;
+                }
+            }
+            if (!matchedDay) {
+                return false;
+            }
+        }
         return true;
     });
-
-    console.log(displayBanks);
 
     return (
         <div>
@@ -50,7 +73,7 @@ export function BankFinder(props) {
             <div className="container">
                 <SearchBar submitCallback={handleSearchSubmit} />
                 <div className="row">
-                    <FiltersPanel />
+                    <FiltersPanel days={DAYS_OF_WEEK} dayCallback={handleDayUpdate} />
                     <ResultsPanel banks={displayBanks} />
                 </div>
             </div>

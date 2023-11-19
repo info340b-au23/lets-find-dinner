@@ -2,12 +2,24 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
-const DAYS_OF_WEEK = ["Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun"];
-const DONATION_FILTERS = [""]
+import { useState } from "react";
 
 export function FiltersPanel(props) {
     // TODO: add filters to filter.json
+
+    return (
+        <Col lg="3">
+            <section id="search-filters">
+                <Row className="shadow-lg sub-section-title">
+                    <h2>Filters</h2>
+                </Row>
+                <Row>
+                    <TimeFilters days={props.days} dayCallback={props.dayCallback} />
+                </Row>
+            </section>
+        </Col>
+    );
+
     return (
         <div className="col-lg-3">
             <section id="search-filters">
@@ -121,6 +133,46 @@ export function FiltersPanel(props) {
                         </fieldset>
                 </section>
             </section>
+        </div>
+    );
+}
+
+function TimeFilters(props) {
+    const weekdayFilters = props.days.map((day) => {
+        return <CheckBoxFilter name={day} dayCallback={props.dayCallback} key={day} />;
+    });
+
+    return (
+        <Col md="6" lg="12" className="filter-category" id="filter-time">
+            <h3>Hours of Operation</h3>
+            <h4>Day of Week</h4>
+            <Form>
+                {weekdayFilters}
+            </Form>
+        </Col>
+    );
+}
+
+function CheckBoxFilter(props) {
+    const [checked, setChecked] = useState(false);
+
+    const handleChange = (event) => {
+        props.dayCallback(event.target.name);
+        setChecked(!checked);
+    }
+
+    const timeID = "time-" + props.name;
+
+    return (
+        <div className="input-element">
+            <input
+                type="checkbox"
+                id={timeID}
+                name={props.name}
+                checked={checked}
+                onChange={handleChange}
+            />
+            <Form.Label htmlFor={timeID}>{props.name}</Form.Label>
         </div>
     );
 }

@@ -37,13 +37,13 @@ function ResultCard({bankData}) {
 
     const fullAddress = bankData.address + ", " + bankData.city + ", WA, " + bankData.zip;
     
-    const hours = Object.entries(bankData.hoursOpen).map(([day, time]) => {
+    const hours = Object.entries(bankData.hoursOpen).map(([day, time], idx) => {
         let [timeStart, timeEnd] = time.split("-");
         timeStart = timeStart.replaceAll(/([^:0-9])/g, "$1.");
         timeStart = timeStart.replace(/(a|p)/g, " $1");
         timeEnd = timeEnd.replaceAll(/([^:0-9])/g, "$1.");
         timeEnd = timeEnd.replace(/(a|p)/g, " $1");
-        return <p><strong>{day}</strong>: {timeStart + " - " + timeEnd}</p>;
+        return <p key={bankData.bid + idx}><strong>{day}</strong>: {timeStart + " - " + timeEnd}</p>;
     });
 
     return (
@@ -57,43 +57,48 @@ function ResultCard({bankData}) {
                                 <i className="fa-solid fa-angle-right icon-expand" aria-controls={bankData.bid + "-info"} aria-expanded={expanded} onClick={handleExpand}></i>
                             }
                         </Col>
-                        <Col>
+                        <Col xs="10">
                             <h3>{bankData.name}</h3>
                         </Col>
                     </Row>
                 </Card.Header>
                 <Collapse in={expanded}>
-                    <Card.Body id={bankData.bid + "-info"}>
-                        <h4>Location</h4>
-                        <p>{fullAddress}</p>
-                        <h4>Hours</h4>
-                        {hours}
-                        <h4>Contact</h4>
-                        {bankData.phone &&
-                            <div className="contact-info-group">
-                                <a href={"tel:" + bankData.phone}>
-                                    <i className="fa-solid fa-phone"></i>
-                                    <p>Phone</p>
-                                </a>
-                            </div>
-                        }
-                        {bankData.email &&
-                            <div className="contact-info-group">
-                                <a href={"mailto:" + bankData.email}>
-                                    <i className="fa-solid fa-envelope"></i>
-                                    <p>Email</p>
-                                </a>
-                            </div>
-                        }
-                        {bankData.website &&
-                            <div className="contact-info-group">
-                                <a href={bankData.website} target="_blank" rel="noreferrer">
-                                    <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                                    <p>Website</p>
-                                </a>
-                            </div>
-                        }
-                    </Card.Body>
+                    <Row>
+                        <Col xs="1"></Col>
+                        <Col>
+                            <Card.Body id={bankData.bid + "-info"}>
+                                <h4>Location</h4>
+                                <p>{fullAddress}</p>
+                                <h4>Hours</h4>
+                                {hours}
+                                <h4>Contact</h4>
+                                {bankData.phone &&
+                                    <div className="contact-info-group">
+                                        <a href={"tel:" + bankData.phone}>
+                                            <i className="fa-solid fa-phone"></i>
+                                            <p>Phone</p>
+                                        </a>
+                                    </div>
+                                }
+                                {bankData.email &&
+                                    <div className="contact-info-group">
+                                        <a href={"mailto:" + bankData.email}>
+                                            <i className="fa-solid fa-envelope"></i>
+                                            <p>Email</p>
+                                        </a>
+                                    </div>
+                                }
+                                {bankData.website &&
+                                    <div className="contact-info-group">
+                                        <a href={bankData.website} target="_blank" rel="noreferrer">
+                                            <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                                            <p>Website</p>
+                                        </a>
+                                    </div>
+                                }
+                            </Card.Body>
+                        </Col>
+                    </Row>
                 </Collapse>
             </Card>
         </Col>
