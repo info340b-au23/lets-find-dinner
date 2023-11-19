@@ -1,7 +1,7 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Box, Slider, Typography } from "@mui/material";
 import { useState } from "react";
 
 export function FiltersPanel(props) {
@@ -27,36 +27,6 @@ export function FiltersPanel(props) {
                     <h2>Filters</h2>
                 </div>
                 <section className="filter-category" id="filter-time">
-                    <h3>Hours of Operation</h3>
-                    <h4>Day of Week</h4>
-                    <div className="input-element">
-                        <input id="time-monday" type="checkbox" name="time-monday" />
-                        <label htmlFor="time-monday">Mon</label>
-                    </div>
-                    <div className="input-element">
-                        <input id="time-tuesday" type="checkbox" name="time-tuesday" />
-                        <label htmlFor="time-tuesday">Tues</label>
-                    </div>
-                    <div className="input-element">
-                        <input id="time-wednesday" type="checkbox" name="time-wednesday" />
-                        <label htmlFor="time-wednesday">Wed</label>
-                    </div>
-                    <div className="input-element">
-                        <input id="time-thursday" type="checkbox" name="time-thursday" />
-                        <label htmlFor="time-thursday">Thurs</label>
-                    </div>
-                    <div className="input-element">
-                        <input id="time-friday" type="checkbox" name="time-friday" />
-                        <label htmlFor="time-friday">Fri</label>
-                    </div>
-                    <div className="input-element">
-                        <input id="time-saturday" type="checkbox" name="time-saturday" />
-                        <label htmlFor="time-saturday">Sat</label>
-                    </div>
-                    <div className="input-element">
-                        <input id="time-sunday" type="checkbox" name="time-sunday" />
-                        <label htmlFor="time-sunday">Sun</label>
-                    </div>
                     <h4>Time Period</h4>
                     <div className="input-element">
                         <p>7:00 AM - 8:30 PM</p>
@@ -137,7 +107,20 @@ export function FiltersPanel(props) {
     );
 }
 
+const MIN_TIME_PERIOD = 15;
+
 function TimeFilters(props) {
+    const [time, setTime] = useState([480, 1200]);
+    const [displayTime, setDisplayTime] = useState(["8:00 a.m.", "8:00 p.m."])
+
+    const handleTimeChange = (event, newValue, activeThumb) => {
+        if (activeThumb === 0) {
+            setTime([Math.min(newValue[0], time[1] - MIN_TIME_PERIOD), time[1]]);
+        } else {
+            setTime([time[0], Math.max(newValue[1], time[0] + MIN_TIME_PERIOD)]);
+        }
+    };
+
     const weekdayFilters = props.days.map((day) => {
         return <CheckBoxFilter name={day} dayCallback={props.dayCallback} key={day} />;
     });
@@ -145,9 +128,24 @@ function TimeFilters(props) {
     return (
         <Col md="6" lg="12" className="filter-category" id="filter-time">
             <h3>Hours of Operation</h3>
-            <h4>Day of Week</h4>
             <Form>
+                <h4>Day of Week</h4>
                 {weekdayFilters}
+                <h4>Time Period</h4>
+                <Box sx={{width: {lg: 0.8}}} >
+                    <Typography />
+                    <Slider
+                        getAriaLabel={() => 'Filter food banks by hours of operation'}
+                        value={time}
+                        min={480}
+                        max={1200}
+                        step={15}
+                        onChange={handleTimeChange}
+                        valueLabelDisplay="off"
+                        // getAriaValueText={valuetext}
+                        disableSwap
+                    />
+                </Box>
             </Form>
         </Col>
     );
