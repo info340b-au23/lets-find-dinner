@@ -38,12 +38,17 @@ function ResultCard({bankData}) {
     const fullAddress = bankData.address + ", " + bankData.city + ", WA, " + bankData.zip;
     
     const hours = Object.entries(bankData.hoursOpen).map(([day, time], idx) => {
-        let [timeStart, timeEnd] = time.split("-");
-        timeStart = timeStart.replaceAll(/([^:0-9])/g, "$1.");
-        timeStart = timeStart.replace(/(a|p)/g, " $1");
-        timeEnd = timeEnd.replaceAll(/([^:0-9])/g, "$1.");
-        timeEnd = timeEnd.replace(/(a|p)/g, " $1");
-        return <p key={bankData.bid + idx}><strong>{day}</strong>: {timeStart + " - " + timeEnd}</p>;
+        let times = time.split(",");
+        if (times.length === 1) {
+            let [timeStart, timeEnd] = time.split("-");
+            timeStart = timeStart.replaceAll(/([^:0-9])/g, "$1.");
+            timeStart = timeStart.replace(/(a|p)/g, " $1");
+            timeEnd = timeEnd.replaceAll(/([^:0-9])/g, "$1.");
+            timeEnd = timeEnd.replace(/(a|p)/g, " $1");
+            return <p key={bankData.bid + idx}><strong>{day}</strong>: {timeStart + " - " + timeEnd}</p>
+        } else {
+            return <p key={bankData.bid + idx}>whomp whomp</p>
+        }
     });
 
     return (
