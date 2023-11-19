@@ -3,6 +3,7 @@ import { Footer } from './Footer';
 import { BankFinder } from './bank-filter-components/BankFinder';
 import Volunteer from './Contact';
 import Home from './Home';
+import FoodBankProfile from './food-bank-profile';
 import bankList from '../data/banks.json';
 import { useState } from 'react';
 
