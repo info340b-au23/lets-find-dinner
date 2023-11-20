@@ -45,9 +45,23 @@ function ResultCard({bankData}) {
             timeStart = timeStart.replace(/(a|p)/g, " $1");
             timeEnd = timeEnd.replaceAll(/([^:0-9])/g, "$1.");
             timeEnd = timeEnd.replace(/(a|p)/g, " $1");
-            return <p key={bankData.bid + idx}><strong>{day}</strong>: {timeStart + " - " + timeEnd}</p>
+            return <p key={"day-entry-" + bankData.bid + "-" + idx}><strong>{day}</strong>: {timeStart + " - " + timeEnd}</p>
         } else {
-            return <p key={bankData.bid + idx}>whomp whomp</p>
+            const periods = [];
+            for (const period of times) {
+                let [timeStart, timeEnd] = period.split("-");
+                timeStart = timeStart.replaceAll(/([^:0-9])/g, "$1.");
+                timeStart = timeStart.replace(/(a|p)/g, " $1");
+                timeEnd = timeEnd.replaceAll(/([^:0-9])/g, "$1.");
+                timeEnd = timeEnd.replace(/(a|p)/g, " $1");
+                periods.push(<p key={"time-period-" + bankData.bid + "-day-" + day + "-" + period}>{timeStart + " - " + timeEnd}</p>);
+            }
+            const resultFormat = 
+                <div key={"day-entry-" + bankData.bid + "-" + idx}>
+                    <p><strong>{day}</strong>:</p>
+                    {periods}
+                </div>
+            return resultFormat;
         }
     });
 
