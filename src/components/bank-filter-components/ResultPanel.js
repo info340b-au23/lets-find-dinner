@@ -27,7 +27,7 @@ export function ResultsPanel(props) {
 
 // TODO: think about whether we should add donations section to each ResultCard?
 // TODO: think about adding an autocomplete that goes to volunteer form for bank apply; not necessary though
-// TODO: pagination, may save for the break
+// TODO: pagination, may save for the holiday break
 function ResultCard({bankData}) {
     const [expanded, setExpanded] = useState(false);
 
@@ -45,9 +45,23 @@ function ResultCard({bankData}) {
             timeStart = timeStart.replace(/(a|p)/g, " $1");
             timeEnd = timeEnd.replaceAll(/([^:0-9])/g, "$1.");
             timeEnd = timeEnd.replace(/(a|p)/g, " $1");
-            return <p key={bankData.bid + idx}><strong>{day}</strong>: {timeStart + " - " + timeEnd}</p>
+            return <p key={"day-entry-" + bankData.bid + "-" + idx}><strong>{day}</strong>: {timeStart + " - " + timeEnd}</p>
         } else {
-            return <p key={bankData.bid + idx}>whomp whomp</p>
+            const periods = [];
+            for (const period of times) {
+                let [timeStart, timeEnd] = period.split("-");
+                timeStart = timeStart.replaceAll(/([^:0-9])/g, "$1.");
+                timeStart = timeStart.replace(/(a|p)/g, " $1");
+                timeEnd = timeEnd.replaceAll(/([^:0-9])/g, "$1.");
+                timeEnd = timeEnd.replace(/(a|p)/g, " $1");
+                periods.push(<p key={"time-period-" + bankData.bid + "-day-" + day + "-" + period}>{timeStart + " - " + timeEnd}</p>);
+            }
+            const resultFormat = 
+                <div key={"day-entry-" + bankData.bid + "-" + idx}>
+                    <p><strong>{day}</strong>:</p>
+                    {periods}
+                </div>
+            return resultFormat;
         }
     });
 

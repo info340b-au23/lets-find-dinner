@@ -183,6 +183,14 @@ img {
     display: inline-block;
 }
 
+.time-filter-label {
+    margin-bottom: 0.5rem;
+}
+
+#time-slider-input {
+    margin-left: 0.25rem;
+}
+
 .input-element label {
     margin: 0 0.25rem;
 }

@@ -1,9 +1,10 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import { Box, Slider, Typography } from "@mui/material";
+import { Box, Slider } from "@mui/material";
 import { useState } from "react";
 
+const MIN_TIME_PERIOD = 15;
 export function FiltersPanel(props) {
     // TODO: add filters to filter.json
 
@@ -14,7 +15,12 @@ export function FiltersPanel(props) {
                     <h2>Filters</h2>
                 </Row>
                 <Row>
-                    <TimeFilters days={props.days} dayCallback={props.dayCallback} />
+                    <TimeFilters
+                        days={props.days}
+                        dayCallback={props.dayCallback}
+                        timeCallback={props.timeCallback}
+                    />
+                    <LocationFilters />
                 </Row>
             </section>
         </Col>
@@ -107,22 +113,34 @@ export function FiltersPanel(props) {
     );
 }
 
-const MIN_TIME_PERIOD = 15;
-
 function TimeFilters(props) {
     const [time, setTime] = useState([480, 1200]);
     const [displayTime, setDisplayTime] = useState(["8:00 a.m.", "8:00 p.m."])
 
     const handleTimeChange = (event, newValue, activeThumb) => {
+        let newTime;
         if (activeThumb === 0) {
-            setTime([Math.min(newValue[0], time[1] - MIN_TIME_PERIOD), time[1]]);
+            newTime = [Math.min(newValue[0], time[1] - MIN_TIME_PERIOD), time[1]];
         } else {
-            setTime([time[0], Math.max(newValue[1], time[0] + MIN_TIME_PERIOD)]);
+            newTime = [time[0], Math.max(newValue[1], time[0] + MIN_TIME_PERIOD)];
         }
+        const updatedDisplayTime = newTime.map((time) => {
+            let timeOfDay = "a.m.";
+            let updatedHour = Math.floor(time / 60);
+            const updatedMinutes = time % 60;
+            if (updatedHour >= 12) {
+                timeOfDay = "p.m.";
+                updatedHour = updatedHour === 12 ? updatedHour : updatedHour - 12;
+            }
+            return updatedHour + ":" + (updatedMinutes === 0 ? "00" : updatedMinutes) + " " + timeOfDay;
+        });
+        props.timeCallback(newTime);
+        setDisplayTime(updatedDisplayTime);
+        setTime(newTime);
     };
 
     const weekdayFilters = props.days.map((day) => {
-        return <CheckBoxFilter name={day} dayCallback={props.dayCallback} key={day} />;
+        return <CheckBoxFilter name={day} prefix="time" dayCallback={props.dayCallback} key={day} />;
     });
 
     return (
@@ -132,22 +150,62 @@ function TimeFilters(props) {
                 <h4>Day of Week</h4>
                 {weekdayFilters}
                 <h4>Time Period</h4>
-                <Box sx={{width: {lg: 0.8}}} >
-                    <Typography />
+                <Box sx={{width: {xs: 0.8}, fontFamily: "Montsserat, Trebuchet MS, Arial, sans-serif"}} >
+                    <p className="time-filter-label">{displayTime[0] + " - " + displayTime[1]}</p>
                     <Slider
-                        getAriaLabel={() => 'Filter food banks by hours of operation'}
+                        id="time-slider-input"
+                        getAriaLabel={() => { return "Filter food banks by hours of operation"; }}
                         value={time}
                         min={480}
                         max={1200}
                         step={15}
                         onChange={handleTimeChange}
                         valueLabelDisplay="off"
-                        // getAriaValueText={valuetext}
+                        getAriaValueText={(value, idx) => { return displayTime[idx]; }}
                         disableSwap
                     />
                 </Box>
             </Form>
         </Col>
+    );
+}
+
+function LocationFilters(props) {
+    return (
+        <Col md="6" lg="12" className="filter-category" id="filter-time">
+            <h3>Location</h3>
+            <Form>
+                <Form.Select aria-label="Location select input">
+                    <option>Hello world</option>
+                    <option>Hello world</option>
+                    <option>Hello world</option>
+                    <option>Hello world</option>
+                </Form.Select>
+            </Form>
+        </Col>
+
+        // <section className="filter-category" id="filter-location">
+        // {/* Possibly change to select city instead; alternatively based location on navigator.geolocate (js) */}
+        // <h3>Location</h3>
+        //     <fieldset>
+        //         {/* <div className="input-element">
+        //             <input id="location-all" type="radio" name="location-radius" checked />
+        //             <label htmlFor="location-all">Any Location</label> 
+        //         </div>
+        //         <div className="input-element">
+        //             <input id="location-5" type="radio" name="location-radius" />
+        //             <label htmlFor="location-5">Within 5 Miles</label> 
+        //         </div>
+        //         <div className="input-element">
+        //             <input id="location-10" type="radio" name="location-radius" />
+        //             <label htmlFor="location-10">Within 10 Miles</label> 
+        //         </div>
+        //         <div className="input-element">
+        //             <input id="location-20" type="radio" name="location-radius" />
+        //             <label htmlFor="location-20">Within 20 Miles</label> 
+        //         </div> */}
+        //     </fieldset>
+        // </section>
     );
 }
 
@@ -159,18 +217,18 @@ function CheckBoxFilter(props) {
         setChecked(!checked);
     }
 
-    const timeID = "time-" + props.name;
+    const elementID = props.prefix + "-" + props.name;
 
     return (
         <div className="input-element">
             <input
                 type="checkbox"
-                id={timeID}
+                id={elementID}
                 name={props.name}
                 checked={checked}
                 onChange={handleChange}
             />
-            <Form.Label htmlFor={timeID}>{props.name}</Form.Label>
+            <Form.Label htmlFor={elementID}>{props.name}</Form.Label>
         </div>
     );
 }
