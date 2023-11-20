@@ -2,6 +2,8 @@ import { Header } from '../Header';
 import { ResultsPanel } from './ResultPanel';
 import { FiltersPanel } from './FiltersPanel';
 import { SearchBar } from './SearchBar';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import { useState } from 'react';
 
 const DAYS_OF_WEEK = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
@@ -98,9 +100,9 @@ export function BankFinder(props) {
     return (
         <div>
             <Header title="Find a Food Bank" background="find-a-bank"/>
-            <div className="container">
+            <Container>
                 <SearchBar submitCallback={handleSearchSubmit} />
-                <div className="row">
+                <Row>
                     <FiltersPanel
                         days={DAYS_OF_WEEK}
                         donationTypes={DONATION_TYPES}
@@ -108,8 +110,8 @@ export function BankFinder(props) {
                         timeCallback={handleTimeUpdate}
                     />
                     <ResultsPanel banks={displayBanks} />
-                </div>
-            </div>
+                </Row>
+            </Container>
         </div>
     );
 }
