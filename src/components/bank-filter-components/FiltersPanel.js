@@ -1,9 +1,10 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import { Box, Slider, Typography } from "@mui/material";
+import { Box, Slider } from "@mui/material";
 import { useState } from "react";
 
+const MIN_TIME_PERIOD = 15;
 export function FiltersPanel(props) {
     // TODO: add filters to filter.json
 
@@ -19,6 +20,7 @@ export function FiltersPanel(props) {
                         dayCallback={props.dayCallback}
                         timeCallback={props.timeCallback}
                     />
+                    <LocationFilters />
                 </Row>
             </section>
         </Col>
@@ -111,8 +113,6 @@ export function FiltersPanel(props) {
     );
 }
 
-const MIN_TIME_PERIOD = 15;
-
 function TimeFilters(props) {
     const [time, setTime] = useState([480, 1200]);
     const [displayTime, setDisplayTime] = useState(["8:00 a.m.", "8:00 p.m."])
@@ -140,7 +140,7 @@ function TimeFilters(props) {
     };
 
     const weekdayFilters = props.days.map((day) => {
-        return <CheckBoxFilter name={day} dayCallback={props.dayCallback} key={day} />;
+        return <CheckBoxFilter name={day} prefix="time" dayCallback={props.dayCallback} key={day} />;
     });
 
     return (
@@ -150,7 +150,7 @@ function TimeFilters(props) {
                 <h4>Day of Week</h4>
                 {weekdayFilters}
                 <h4>Time Period</h4>
-                <Box sx={{width: {lg: 0.8}, fontFamily: "Montsserat, Trebuchet MS, Arial, sans-serif"}} >
+                <Box sx={{width: {xs: 0.8}, fontFamily: "Montsserat, Trebuchet MS, Arial, sans-serif"}} >
                     <p className="time-filter-label">{displayTime[0] + " - " + displayTime[1]}</p>
                     <Slider
                         id="time-slider-input"
@@ -170,6 +170,45 @@ function TimeFilters(props) {
     );
 }
 
+function LocationFilters(props) {
+    return (
+        <Col md="6" lg="12" className="filter-category" id="filter-time">
+            <h3>Location</h3>
+            <Form>
+                <Form.Select aria-label="Location select input">
+                    <option>Hello world</option>
+                    <option>Hello world</option>
+                    <option>Hello world</option>
+                    <option>Hello world</option>
+                </Form.Select>
+            </Form>
+        </Col>
+
+        // <section className="filter-category" id="filter-location">
+        // {/* Possibly change to select city instead; alternatively based location on navigator.geolocate (js) */}
+        // <h3>Location</h3>
+        //     <fieldset>
+        //         {/* <div className="input-element">
+        //             <input id="location-all" type="radio" name="location-radius" checked />
+        //             <label htmlFor="location-all">Any Location</label> 
+        //         </div>
+        //         <div className="input-element">
+        //             <input id="location-5" type="radio" name="location-radius" />
+        //             <label htmlFor="location-5">Within 5 Miles</label> 
+        //         </div>
+        //         <div className="input-element">
+        //             <input id="location-10" type="radio" name="location-radius" />
+        //             <label htmlFor="location-10">Within 10 Miles</label> 
+        //         </div>
+        //         <div className="input-element">
+        //             <input id="location-20" type="radio" name="location-radius" />
+        //             <label htmlFor="location-20">Within 20 Miles</label> 
+        //         </div> */}
+        //     </fieldset>
+        // </section>
+    );
+}
+
 function CheckBoxFilter(props) {
     const [checked, setChecked] = useState(false);
 
@@ -178,18 +217,18 @@ function CheckBoxFilter(props) {
         setChecked(!checked);
     }
 
-    const timeID = "time-" + props.name;
+    const elementID = props.prefix + "-" + props.name;
 
     return (
         <div className="input-element">
             <input
                 type="checkbox"
-                id={timeID}
+                id={elementID}
                 name={props.name}
                 checked={checked}
                 onChange={handleChange}
             />
-            <Form.Label htmlFor={timeID}>{props.name}</Form.Label>
+            <Form.Label htmlFor={elementID}>{props.name}</Form.Label>
         </div>
     );
 }

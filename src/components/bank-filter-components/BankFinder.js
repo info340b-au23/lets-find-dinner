@@ -37,7 +37,7 @@ export function BankFinder(props) {
     }
 
     const handleTimeUpdate = function(updatedTime) {
-        const {days, ...rest} = timeFilters;
+        const {days} = timeFilters;
         setTimeFilters({days, timeStart: updatedTime[0], timeEnd: updatedTime[1]});
     }
 
@@ -94,24 +94,6 @@ export function BankFinder(props) {
         }
         return true;
     });
-
-    // {
-    //     "name": "Open Meal Service",
-    //     "address": "201 Alaskan Wy",
-    //     "city": "Seattle",
-    //     "zip": 98104,
-    //     "hoursOpen": {
-    //         "Mon": "11:30am-12:30pm,3:30pm-4:30pm",
-    //         "Tues": "11:30am-12:30pm,3:30pm-4:30pm",
-    //         "Wed": "11:30am-12:30pm,3:30pm-4:30pm",
-    //         "Thurs": "11:30am-12:30pm,3:30pm-4:30pm",
-    //         "Fri": "11:30am-12:30pm,3:30pm-4:30pm",
-    //         "Sat": "1:30pm-3:00pm"
-    //     },
-    //     "phone": "2066471780",
-    //     "website": "https://www.oslserves.org/open-meal-service",
-    //     "bid": "0007"
-    // },
 
     return (
         <div>
