@@ -1,4 +1,4 @@
-export default function Footer(props) {
+export function Footer(props) {
     return (
         <footer>
             <div className="container">
