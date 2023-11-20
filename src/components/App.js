@@ -1,6 +1,7 @@
 import { NavBar } from './NavBar';
 import { Footer } from './Footer';
 import { BankFinder } from './bank-filter-components/BankFinder';
+import About from './About';
 import Volunteer from './Contact';
 import Home from './Home';
 import FoodBankProfile from './food-bank-profile';
@@ -18,9 +19,9 @@ export default function App(props) {
         <div>
             <NavBar logginIn={loggedIn} />
             {/* <Home /> */}
-            {/* <About /> */}
+            <About />
             {/* <Volunteer /> */}
-            <BankFinder banks={bankList} />
+            {/* <BankFinder banks={bankList} /> */}
             {/* <Login /> */}
             {/* <Profile /> */}
             <Footer />
