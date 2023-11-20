@@ -128,9 +128,9 @@ function TimeFilters(props) {
             let timeOfDay = "a.m.";
             let updatedHour = Math.floor(time / 60);
             const updatedMinutes = time % 60;
-            if (updatedHour > 12) {
-                updatedHour -= 12;
+            if (updatedHour >= 12) {
                 timeOfDay = "p.m.";
+                updatedHour = updatedHour === 12 ? updatedHour : updatedHour - 12;
             }
             return updatedHour + ":" + (updatedMinutes === 0 ? "00" : updatedMinutes) + " " + timeOfDay;
         });
@@ -151,7 +151,7 @@ function TimeFilters(props) {
                 {weekdayFilters}
                 <h4>Time Period</h4>
                 <Box sx={{width: {lg: 0.8}, fontFamily: "Montsserat, Trebuchet MS, Arial, sans-serif"}} >
-                    <label className="time-filter-label">{displayTime[0] + " - " + displayTime[1]}</label>
+                    <p className="time-filter-label">{displayTime[0] + " - " + displayTime[1]}</p>
                     <Slider
                         id="time-slider-input"
                         getAriaLabel={() => { return "Filter food banks by hours of operation"; }}

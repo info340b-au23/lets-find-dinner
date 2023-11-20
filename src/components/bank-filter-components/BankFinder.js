@@ -7,6 +7,7 @@ import { useState } from 'react';
 const DAYS_OF_WEEK = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
 const DONATION_TYPES = ["produce", "bread", "dairy", "poultry", "red-meat", "nonperishables", "clothing",
                           "bedding", "toiletries", "baby", "cleaning"];
+const MIN_PER_HOUR = 60;
 
 // TODO: implement ResultCard component; do we need a key?
 // TOOD: implement FilterGroup
@@ -32,7 +33,7 @@ export function BankFinder(props) {
         const updatedDays = days.map((checkDay, idx) => {
             return idx === dayIdx ? !checkDay : checkDay;
         });
-        setTimeFilters({rest, days: updatedDays});
+        setTimeFilters({...rest, days: updatedDays});
     }
 
     const handleTimeUpdate = function(updatedTime) {
@@ -55,27 +56,62 @@ export function BankFinder(props) {
             }
         }
         const days = timeFilters.days;
-        if (days.includes(true)) {
-            let matchedDay = false;
+        let matchedDays = [];
+        const filterOnDays = days.includes(true);
+        if (filterOnDays) {
             for (const day in bank.hoursOpen) {
                 if (days[DAYS_OF_WEEK.indexOf(day)]) {
-                    matchedDay = true;
+                    matchedDays.push(day);
                 }
             }
-            if (!matchedDay) {
+            if (matchedDays.length === 0) {
                 return false;
             }
         }
+        let matchedTime = false;
         for (const day in bank.hoursOpen) {
             const times = bank.hoursOpen[day].split(",");
-            for (const time of times) {
-                
+            if ((filterOnDays && matchedDays.includes(day)) || !filterOnDays) {
+                for (const period of times) {
+                    const [start, end] = period.split("-").map((time) => {
+                        const colonIdx = time.indexOf(":");
+                        let hour = parseInt(time.substring(0, colonIdx));
+                        if (time.substring(time.length - 2) === "pm" && hour !== 12) {
+                            hour += 12;
+                        }
+                        const min = parseInt(time.substring(colonIdx + 1));
+                        return hour * MIN_PER_HOUR + min;
+                    });
+                    if ((timeFilters.timeStart < start && timeFilters.timeEnd > start) ||
+                            (timeFilters.timeStart >= start && timeFilters.timeStart < end)) {
+                        matchedTime = true;
+                    }
+                }
             }
+        }
+        if (!matchedTime) {
+            return false;
         }
         return true;
     });
 
-    console.log(timeFilters.timeStart + " " + timeFilters.timeEnd);
+    // {
+    //     "name": "Open Meal Service",
+    //     "address": "201 Alaskan Wy",
+    //     "city": "Seattle",
+    //     "zip": 98104,
+    //     "hoursOpen": {
+    //         "Mon": "11:30am-12:30pm,3:30pm-4:30pm",
+    //         "Tues": "11:30am-12:30pm,3:30pm-4:30pm",
+    //         "Wed": "11:30am-12:30pm,3:30pm-4:30pm",
+    //         "Thurs": "11:30am-12:30pm,3:30pm-4:30pm",
+    //         "Fri": "11:30am-12:30pm,3:30pm-4:30pm",
+    //         "Sat": "1:30pm-3:00pm"
+    //     },
+    //     "phone": "2066471780",
+    //     "website": "https://www.oslserves.org/open-meal-service",
+    //     "bid": "0007"
+    // },
 
     return (
         <div>

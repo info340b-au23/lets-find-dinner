@@ -90,25 +90,9 @@
         "bid": "0006"
 
     },
+
     {
-        "name": "Open Meal Service",
-        "address": "201 Alaskan Wy",
-        "city": "Seattle",
-        "zip": 98104,
-        "hoursOpen": {
-            "Mon": "11:30am-12:30pm,3:30pm-4:30pm",
-            "Tues": "11:30am-12:30pm,3:30pm-4:30pm",
-            "Wed": "11:30am-12:30pm,3:30pm-4:30pm",
-            "Thurs": "11:30am-12:30pm,3:30pm-4:30pm",
-            "Fri": "11:30am-12:30pm,3:30pm-4:30pm",
-            "Sat": "1:30pm-3:00pm"
-        },
-        "phone": "2066471780",
-        "website": "https://www.oslserves.org/open-meal-service",
-        "bid": "0007"
-    },
-    {
-        "name": "Paradise of Praise Food Bank - Food Distribution Center",
+        "name": "Paradise of Praise Food Bank",
         "address": "1316 SW Holden St",
         "city": "Seattle",
         "zip": 98106,
