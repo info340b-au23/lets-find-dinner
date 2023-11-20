@@ -27,7 +27,7 @@ export function ResultsPanel(props) {
 
 // TODO: think about whether we should add donations section to each ResultCard?
 // TODO: think about adding an autocomplete that goes to volunteer form for bank apply; not necessary though
-// TODO: pagination, may save for the break
+// TODO: pagination, may save for the holiday break
 function ResultCard({bankData}) {
     const [expanded, setExpanded] = useState(false);
 

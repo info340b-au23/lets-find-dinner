@@ -114,11 +114,24 @@ function TimeFilters(props) {
     const [displayTime, setDisplayTime] = useState(["8:00 a.m.", "8:00 p.m."])
 
     const handleTimeChange = (event, newValue, activeThumb) => {
+        let newTime;
         if (activeThumb === 0) {
-            setTime([Math.min(newValue[0], time[1] - MIN_TIME_PERIOD), time[1]]);
+            newTime = [Math.min(newValue[0], time[1] - MIN_TIME_PERIOD), time[1]];
         } else {
-            setTime([time[0], Math.max(newValue[1], time[0] + MIN_TIME_PERIOD)]);
+            newTime = [time[0], Math.max(newValue[1], time[0] + MIN_TIME_PERIOD)];
         }
+        const updatedDisplayTime = newTime.map((time) => {
+            let timeOfDay = "a.m.";
+            let updatedHour = Math.floor(time / 60);
+            const updatedMinutes = time % 60;
+            if (updatedHour > 12) {
+                updatedHour -= 12;
+                timeOfDay = "p.m.";
+            }
+            return updatedHour + ":" + (updatedMinutes === 0 ? "00" : updatedMinutes) + " " + timeOfDay;
+        });
+        setDisplayTime(updatedDisplayTime);
+        setTime(newTime);
     };
 
     const weekdayFilters = props.days.map((day) => {
@@ -132,17 +145,18 @@ function TimeFilters(props) {
                 <h4>Day of Week</h4>
                 {weekdayFilters}
                 <h4>Time Period</h4>
-                <Box sx={{width: {lg: 0.8}}} >
-                    <Typography />
+                <Box sx={{width: {lg: 0.8}, fontFamily: "Montsserat, Trebuchet MS, Arial, sans-serif"}} >
+                    <label htmlFor="time-slider-input" className="time-filter-label">{displayTime[0] + " - " + displayTime[1]}</label>
                     <Slider
-                        getAriaLabel={() => 'Filter food banks by hours of operation'}
+                        id="time-slider-input"
+                        getAriaLabel={() => { return "Filter food banks by hours of operation"; }}
                         value={time}
                         min={480}
                         max={1200}
                         step={15}
                         onChange={handleTimeChange}
                         valueLabelDisplay="off"
-                        // getAriaValueText={valuetext}
+                        getAriaValueText={(value, idx) => { return displayTime[idx]; }}
                         disableSwap
                     />
                 </Box>
