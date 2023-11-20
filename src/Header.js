@@ -1,7 +1,7 @@
 function NavBar(props) {
     return (
         <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-            <div className="container-fluid">
+            <div v className="container-fluid">
                 <a href="index.html" className="navbar-brand ps-lg-4">Let's Find Dinner!</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation menu">
                     <span className="navbar-toggler-icon"></span>
