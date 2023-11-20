@@ -5,7 +5,7 @@ import { SearchBar } from './SearchBar';
 import { useState } from 'react';
 
 const DAYS_OF_WEEK = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
-const DONATION_FILTERS = ["produce", "bread", "dairy", "poultry", "red-meat", "nonperishables", "clothing",
+const DONATION_TYPES = ["produce", "bread", "dairy", "poultry", "red-meat", "nonperishables", "clothing",
                           "bedding", "toiletries", "baby", "cleaning"];
 
 // TODO: implement ResultCard component; do we need a key?
@@ -14,8 +14,8 @@ const DONATION_FILTERS = ["produce", "bread", "dairy", "poultry", "red-meat", "n
 
 export function BankFinder(props) {
     const [timeFilters, setTimeFilters] = useState({
-        hourStart: "6:00",
-        hourEnd: "18:00",
+        timeStart: 480,
+        timeEnd: 1200,
         days: [false, false, false, false, false, false, false]
     });
     const [donationFilters, setDonationFilters] = useState([]);
@@ -35,7 +35,10 @@ export function BankFinder(props) {
         setTimeFilters({rest, days: updatedDays});
     }
 
-    console.log(timeFilters.days);
+    const handleTimeUpdate = function(updatedTime) {
+        const {days, ...rest} = timeFilters;
+        setTimeFilters({days, timeStart: updatedTime[0], timeEnd: updatedTime[1]});
+    }
 
     const queryTerms = searchQuery.split(" ");
     const displayBanks = props.banks.filter((bank) => {
@@ -56,7 +59,6 @@ export function BankFinder(props) {
             let matchedDay = false;
             for (const day in bank.hoursOpen) {
                 if (days[DAYS_OF_WEEK.indexOf(day)]) {
-                    // more code inside if for processing time
                     matchedDay = true;
                 }
             }
@@ -64,8 +66,16 @@ export function BankFinder(props) {
                 return false;
             }
         }
+        for (const day in bank.hoursOpen) {
+            const times = bank.hoursOpen[day].split(",");
+            for (const time of times) {
+                
+            }
+        }
         return true;
     });
+
+    console.log(timeFilters.timeStart + " " + timeFilters.timeEnd);
 
     return (
         <div>
@@ -73,7 +83,12 @@ export function BankFinder(props) {
             <div className="container">
                 <SearchBar submitCallback={handleSearchSubmit} />
                 <div className="row">
-                    <FiltersPanel days={DAYS_OF_WEEK} dayCallback={handleDayUpdate} />
+                    <FiltersPanel
+                        days={DAYS_OF_WEEK}
+                        donationTypes={DONATION_TYPES}
+                        dayCallback={handleDayUpdate}
+                        timeCallback={handleTimeUpdate}
+                    />
                     <ResultsPanel banks={displayBanks} />
                 </div>
             </div>

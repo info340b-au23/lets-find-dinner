@@ -14,7 +14,11 @@ export function FiltersPanel(props) {
                     <h2>Filters</h2>
                 </Row>
                 <Row>
-                    <TimeFilters days={props.days} dayCallback={props.dayCallback} />
+                    <TimeFilters
+                        days={props.days}
+                        dayCallback={props.dayCallback}
+                        timeCallback={props.timeCallback}
+                    />
                 </Row>
             </section>
         </Col>
@@ -130,6 +134,7 @@ function TimeFilters(props) {
             }
             return updatedHour + ":" + (updatedMinutes === 0 ? "00" : updatedMinutes) + " " + timeOfDay;
         });
+        props.timeCallback(newTime);
         setDisplayTime(updatedDisplayTime);
         setTime(newTime);
     };
@@ -146,7 +151,7 @@ function TimeFilters(props) {
                 {weekdayFilters}
                 <h4>Time Period</h4>
                 <Box sx={{width: {lg: 0.8}, fontFamily: "Montsserat, Trebuchet MS, Arial, sans-serif"}} >
-                    <label htmlFor="time-slider-input" className="time-filter-label">{displayTime[0] + " - " + displayTime[1]}</label>
+                    <label className="time-filter-label">{displayTime[0] + " - " + displayTime[1]}</label>
                     <Slider
                         id="time-slider-input"
                         getAriaLabel={() => { return "Filter food banks by hours of operation"; }}
