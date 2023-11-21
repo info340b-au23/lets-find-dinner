@@ -88,6 +88,8 @@ function ResultCard({bankData}) {
                             <Card.Body id={bankData.bid + "-info"}>
                                 <h4>Location</h4>
                                 <p>{fullAddress}</p>
+                                <h4>Donation Requests</h4>
+                                <p>{bankData.requests.join(", ")}</p>
                                 <h4>Hours</h4>
                                 {hours}
                                 <h4>Contact</h4>

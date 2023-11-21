@@ -13,7 +13,7 @@
         "phone": "2067897800",
         "website": "https://www.ballardfoodbank.org",
         "bid": "0001",
-        "requests": ["produce", "bread", "poultry", "red-meat", "nonperishables", "toiletries", "baby"]
+        "requests": ["Produce", "Bread", "Poultry", "Red-Meat", "Nonperishables", "Toiletries", "Baby"]
     },
     {
         "name": "Pike Market Senior Center & Food Bank",
@@ -29,7 +29,7 @@
         "email": "boardmember@pmsc-dtfb.org",
         "website": "https://www.pmsc-fb.org/food-bank",
         "bid": "0002",
-        "requests": ["nonperishables", "clothing", "bedding", "toiletries", "baby", "cleaning"]
+        "requests": ["Nonperishables", "Clothing", "Bedding", "Toiletries", "Baby", "Cleaning"]
     },
     {
         "name": "University District Food Bank",
@@ -46,7 +46,7 @@
         "email": "volunteer@udistrictfoodbank.org",
         "website": "https://www.udistrictfoodbank.org/",
         "bid": "0003",
-        "requests": ["produce", "bread", "dairy", "nonperishables", "cleaning"]
+        "requests": ["Produce", "Bread", "Dairy", "Nonperishables", "Cleaning"]
     },
     {
         "name": "The Auburn Food Bank",
@@ -62,7 +62,7 @@
         "phone": "2538338925",
         "website": "https://www.theauburnfoodbank.org",
         "bid": "0004",
-        "requests": ["produce", "dairy", "poultry", "nonperishables", "baby", "cleaning"]
+        "requests": ["Produce", "Dairy", "Poultry", "Nonperishables", "Baby", "Cleaning"]
     },
     {
         "name": "White Center Food Bank",
@@ -78,7 +78,7 @@
         "phone": "2538338925",
         "website": "https://www.whitecenterfoodbank.org/",
         "bid": "0005",
-        "requests": ["bread", "dairy", "poultry", "nonperishables", "clothing", "toiletries", "baby"]
+        "requests": ["Bread", "Dairy", "Poultry", "Nonperishables", "Clothing", "Toiletries", "Baby"]
     },
     {
         "name": "FamilyWorks - Wallingford Food Bank",
@@ -93,7 +93,7 @@
         "phone": "2066471780",
         "website": "https://familyworksseattle.org/",
         "bid": "0006",
-        "requests": ["poultry", "red-meat"]
+        "requests": ["Poultry", "Red-Meat"]
     },
     {
         "name": "Open Meal Service",
@@ -111,7 +111,7 @@
         "phone": "2066471780",
         "website": "https://www.oslserves.org/open-meal-service",
         "bid": "0007",
-        "requests": ["produce", "bread", "dairy", "nonperishables"]
+        "requests": ["Produce", "Bread", "Dairy", "Nonperishables"]
     },
     {
         "name": "Paradise of Praise Food Bank",
@@ -123,7 +123,7 @@
         },
         "phone": "2062342713",
         "bid": "0008",
-        "requests": ["bread", "dairy", "nonperishables", "clothing", "toiletries", "baby", "cleaning"]
+        "requests": ["Bread", "Dairy", "Nonperishables", "Clothing", "Toiletries", "Baby", "Cleaning"]
     },
     {
         "name": "YWCA Central Area Food Bank",
@@ -136,7 +136,7 @@
         "website": "https://www.ywcaworks.org/programs/central-area-food-bank",
         "email": "foodbank@ywcaworks.org",
         "bid": "0009",
-        "requests": ["clothing", "bedding", "toiletries", "baby", "cleaning"]
+        "requests": ["Clothing", "Bedding", "Toiletries", "Baby", "Cleaning"]
     },
     {
         "name": "West Seattle Food Bank",
@@ -152,6 +152,6 @@
         "phone": "2069329023",
         "website": "https://westseattlefoodbank.org/",
         "bid": "0010",
-        "requests": ["produce", "bread", "dairy", "poultry", "red-meat", "nonperishables"]
+        "requests": ["Produce", "Bread", "Dairy", "Poultry", "Red-Meat", "Nonperishables"]
     }
 ]

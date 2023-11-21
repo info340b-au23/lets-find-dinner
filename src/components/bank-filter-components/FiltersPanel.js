@@ -159,7 +159,7 @@ function CheckBoxFilter(props) {
                 checked={checked}
                 onChange={handleChange}
             />
-            <Form.Label htmlFor={elementID}>{props.name[0].toUpperCase() + props.name.substring(1)}</Form.Label>
+            <Form.Label htmlFor={elementID}>{props.name}</Form.Label>
         </div>
     );
 }

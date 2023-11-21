@@ -7,8 +7,8 @@ import Row from 'react-bootstrap/Row';
 import { useState } from 'react';
 
 const DAYS_OF_WEEK = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
-const DONATION_TYPES = ["produce", "bread", "dairy", "poultry", "red-meat", "nonperishables", "clothing",
-                          "bedding", "toiletries", "baby", "cleaning"];
+const DONATION_TYPES = ["Produce", "Bread", "Dairy", "Poultry", "Red-Meat", "Nonperishables", "Clothing",
+                          "Bedding", "Toiletries", "Baby", "Cleaning"];
 const MIN_PER_HOUR = 60;
 
 // TODO: implement ResultCard component; do we need a key?
