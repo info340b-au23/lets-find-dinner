@@ -171,15 +171,18 @@ function TimeFilters(props) {
 }
 
 function LocationFilters(props) {
+    const [selectedLocation, setSelectedLocation] = useState("");
+    
+    const handleChange = (event) => {
+        
+    };
+
     return (
         <Col md="6" lg="12" className="filter-category" id="filter-time">
             <h3>Location</h3>
             <Form>
                 <Form.Select aria-label="Location select input">
-                    <option>Hello world</option>
-                    <option>Hello world</option>
-                    <option>Hello world</option>
-                    <option>Hello world</option>
+
                 </Form.Select>
             </Form>
         </Col>
