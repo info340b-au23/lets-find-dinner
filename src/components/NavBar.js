@@ -15,7 +15,7 @@ export function NavBar(props) {
                         <Nav.Link href="find-a-food-bank">Find a Food Bank</Nav.Link>
                     </Nav>
                     <Nav className="d-flex pe-lg-4">
-                        <Nav.Link href="login">{props.loggedIn ? "Sign Out" : "Sign In"}</Nav.Link>
+                        <Nav.Link href={props.loggedIn ? "sign-out" : "login"}>{props.loggedIn ? "Sign Out" : "Sign In"}</Nav.Link>
                         <Nav.Link href="account">Account</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

@@ -274,9 +274,12 @@ table {
     padding-bottom: 2rem;
 }
 
-.login-card {
-    margin-top: 2rem;
-    text-align: center;
+.login-form-field {
+    max-width: 250px;
+}
+
+.login-page-button, .login-form-field {
+    margin-bottom: 0.5rem;
 }
 
 @media (min-width: 576px) {
@@ -336,6 +339,15 @@ table {
         background-image:
             linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
             url("../public/img/food-shelves.jpg");
+        background-size: cover;
+        overflow-x: hidden;
+        padding-top: 22vh;
+    }
+
+    .login-page-title {
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
+            url("../public/img/volunteers.jpg");
         background-size: cover;
         overflow-x: hidden;
         padding-top: 22vh;
