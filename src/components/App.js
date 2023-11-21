@@ -1,10 +1,10 @@
 import { NavBar } from './NavBar';
-import { Footer } from './Footer';
-import { BankFinder } from './bank-filter-components/BankFinder';
-import About from './About';
-import Volunteer from './Contact';
 import { Home } from './Home';
+import { About } from './About';
+import Volunteer from './Contact';
+import { BankFinder } from './bank-filter-components/BankFinder';
 import FoodBankProfile from './food-bank-profile';
+import { MisDirect } from './Misdirect';
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import bankList from '../data/banks.json';
@@ -28,8 +28,8 @@ export default function App(props) {
                 <Route path="about" element={<About />} />
                 <Route path="volunteer" element={<Volunteer />} />
                 <Route path="find-a-food-bank" element={<BankFinder banks={bankList} cities={uniqueCities} />} />
+                <Route path="*" element={<MisDirect />} />
             </Routes>
-            <Footer />
         </div>
     );
 }

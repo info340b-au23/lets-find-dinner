@@ -3,6 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button"
 import { Header } from "./Header";
+import { Footer } from "./Footer";
 
 export function Home(props) {
     return (
@@ -52,6 +53,7 @@ export function Home(props) {
             </Row>
           </Container>
         </Container>
+        <Footer fixFooter={false} />
       </div>
     );
   }

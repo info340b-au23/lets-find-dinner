@@ -60,7 +60,7 @@ footer a {
     font-weight: bold;
 }
 
-.page-title {
+.page-title, .no-background-img {
     background-color: #ce313f;
     color: ivory;
 }
@@ -105,11 +105,11 @@ footer a {
     color: #ce313f;
 }
 
-/* Home styling */
 img {
     display: none;
 }
 
+/* Home styling */
 #home-veggies {
     width: 100%;
 }
@@ -119,6 +119,10 @@ img {
 }
 
 /* About styling */
+#strawberries-img {
+    max-width: 400px;
+    margin-bottom: 1.5rem;
+}
 
 /* Volunteer Form styling */
 #contact-submit-btn {
@@ -229,7 +233,7 @@ img {
     color: ivory;
 }
 
-.page-title, .sub-section-title {
+.page-title, .no-background-img, .sub-section-title {
     padding: 0.75rem 1rem 0.75rem 0;
     margin-bottom: 1rem;
     margin-right: 2rem;
@@ -276,7 +280,7 @@ table {
 }
 
 @media (min-width: 576px) {
-    .page-title {
+    .page-title, .no-background-img {
         width: 100vw;
 
     }
@@ -328,12 +332,25 @@ table {
         padding-top: 22vh;
     }
 
+    .about-page-title {
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
+            url("../public/img/food-shelves.jpg");
+        background-size: cover;
+        overflow-x: hidden;
+        padding-top: 22vh;
+    }
+
     .header {
         margin-bottom: 2.5rem;
     }
 
     .sub-section-title {
         background-color: #ce313f;
+    }
+
+    .no-background-img {
+        padding-top: 10vh;
     }
 }
 
