@@ -1,33 +1,46 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import { Box, Slider } from "@mui/material";
-import { useState } from "react";
 
 const MIN_TIME_PERIOD = 15;
 
 export function FiltersPanel(props) {
+    const handleResetButton = () => {
+        props.resetCallback();
+    };
+
     return (
         <Col lg="3">
             <section id="search-filters">
                 <Row className="shadow-lg sub-section-title">
                     <h2>Filters</h2>
                 </Row>
+                <Form>
+                    <Button variant="warning" id="clear-filters-button" onClick={handleResetButton}>Clear All Filters</Button>
+                </Form>
                 <Row>
                     <Col md="6" lg="12">
                         <TimeFilters
                             days={props.days}
+                            dayValues={props.dayValues}
+                            timeValues={props.timeValues}
+                            displayTimeValues={props.displayTimeValues}
                             dayCallback={props.dayCallback}
                             timeCallback={props.timeCallback}
+                            displayTimeCallback={props.displayTimeCallback}
                         />
                         <LocationFilters
                             cities={props.cities}
+                            cityValue={props.cityValue}
                             cityCallback={props.cityCallback}
                         />
                     </Col>
                     <Col md="6" lg="12">
                         <DonationFilters
                             donationTypes={props.donationTypes}
+                            donationValues={props.donationValues}
                             donationCallback={props.donationCallback}
                         />
                     </Col>
@@ -38,11 +51,9 @@ export function FiltersPanel(props) {
 }
 
 function TimeFilters(props) {
-    const [time, setTime] = useState([480, 1200]);
-    const [displayTime, setDisplayTime] = useState(["8:00 a.m.", "8:00 p.m."])
-
     const handleTimeChange = (event, newValue, activeThumb) => {
         let newTime;
+        let time = props.timeValues;
         if (activeThumb === 0) {
             newTime = [Math.min(newValue[0], time[1] - MIN_TIME_PERIOD), time[1]];
         } else {
@@ -59,12 +70,17 @@ function TimeFilters(props) {
             return updatedHour + ":" + (updatedMinutes === 0 ? "00" : updatedMinutes) + " " + timeOfDay;
         });
         props.timeCallback(newTime);
-        setDisplayTime(updatedDisplayTime);
-        setTime(newTime);
+        props.displayTimeCallback(updatedDisplayTime);
     };
 
-    const weekdayFilters = props.days.map((day) => {
-        return <CheckBoxFilter name={day} prefix="time" callback={props.dayCallback} key={day} />;
+    const weekdayFilters = props.days.map((day, idx) => {
+        return <CheckBoxFilter
+                    name={day}
+                    prefix="time"
+                    callback={props.dayCallback}
+                    key={day}
+                    checked={props.dayValues[idx]}
+                />;
     });
 
     return (
@@ -75,17 +91,17 @@ function TimeFilters(props) {
                 {weekdayFilters}
                 <h4>Time Period</h4>
                 <Box sx={{width: {xs: 0.8}, fontFamily: "Montsserat, Trebuchet MS, Arial, sans-serif"}} >
-                    <p className="time-filter-label">{displayTime[0] + " - " + displayTime[1]}</p>
+                    <p className="time-filter-label">{props.displayTimeValues[0] + " - " + props.displayTimeValues[1]}</p>
                     <Slider
                         id="time-slider-input"
                         getAriaLabel={() => { return "Filter food banks by hours of operation"; }}
-                        value={time}
+                        value={props.timeValues}
                         min={480}
                         max={1200}
                         step={15}
                         onChange={handleTimeChange}
                         valueLabelDisplay="off"
-                        getAriaValueText={(value, idx) => { return displayTime[idx]; }}
+                        getAriaValueText={(value, idx) => { return props.displayTimeValues[idx]; }}
                         disableSwap
                     />
                 </Box>
@@ -95,12 +111,9 @@ function TimeFilters(props) {
 }
 
 function LocationFilters(props) {
-    const [selectedLocation, setSelectedLocation] = useState("");
-    
     const handleChange = (event) => {
         const newLocation = event.target.value;
         props.cityCallback(newLocation);
-        setSelectedLocation(newLocation);
     };
 
     const cityOptions = props.cities.map((city) => {
@@ -114,7 +127,7 @@ function LocationFilters(props) {
                 <Form.Select
                     id="location-select-input"
                     aria-label="Location select input"
-                    value={selectedLocation}
+                    value={props.cityValue}
                     onChange={handleChange}
                 >
                     <option value="">All Cities</option>
@@ -126,8 +139,14 @@ function LocationFilters(props) {
 }
 
 function DonationFilters(props) {
-    const donationFilters = props.donationTypes.map((donation) => {
-        return <CheckBoxFilter name={donation} prefix="donation" callback={props.donationCallback} key={donation} />;
+    const donationFilters = props.donationTypes.map((donation, idx) => {
+        return <CheckBoxFilter
+                    name={donation}
+                    prefix="donation"
+                    callback={props.donationCallback}
+                    key={donation}
+                    checked={props.donationValues[idx]}
+                />;
     });
     
     return (
@@ -141,11 +160,8 @@ function DonationFilters(props) {
 }
 
 function CheckBoxFilter(props) {
-    const [checked, setChecked] = useState(false);
-
     const handleChange = (event) => {
         props.callback(event.target.name);
-        setChecked(!checked);
     }
 
     const elementID = props.prefix + "-" + props.name;
@@ -156,7 +172,7 @@ function CheckBoxFilter(props) {
                 type="checkbox"
                 id={elementID}
                 name={props.name}
-                checked={checked}
+                checked={props.checked}
                 onChange={handleChange}
             />
             <Form.Label htmlFor={elementID}>{props.name}</Form.Label>

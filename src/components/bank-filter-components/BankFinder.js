@@ -21,6 +21,7 @@ export function BankFinder(props) {
         timeEnd: 1200,
         days: [false, false, false, false, false, false, false]
     });
+    const [displayTime, setDisplayTime] = useState(["8:00 a.m.", "8:00 p.m."]);
     const [donationFilters, setDonationFilters] = useState(
         [false, false, false, false, false, false, false,
         false, false, false, false]
@@ -46,6 +47,10 @@ export function BankFinder(props) {
         setTimeFilters({days, timeStart: updatedTime[0], timeEnd: updatedTime[1]});
     }
 
+    const handleDisplayTimeUpdate = function(updatedDisplayTime) {
+        setDisplayTime(updatedDisplayTime);
+    }
+
     const handleCityUpdate = function(updatedCity) {
         setCity(updatedCity);
     }
@@ -59,6 +64,20 @@ export function BankFinder(props) {
             return includeDonation;
         });
         setDonationFilters(updatedDonations);
+    }
+
+    const handleReset = function() {
+        setTimeFilters({
+            timeStart: 480,
+            timeEnd: 1200,
+            days: [false, false, false, false, false, false, false]
+        });
+        setDonationFilters(
+            [false, false, false, false, false, false, false,
+            false, false, false, false]
+        );
+        setCity("");
+        setSearchQuery("");
     }
 
     const queryTerms = searchQuery.split(" ");
@@ -137,8 +156,15 @@ export function BankFinder(props) {
                         days={DAYS_OF_WEEK}
                         donationTypes={DONATION_TYPES}
                         cities={props.cities}
+                        dayValues={timeFilters.days}
+                        timeValues={[timeFilters.timeStart, timeFilters.timeEnd]}
+                        displayTimeValues={displayTime}
+                        cityValue={city}
+                        donationValues={donationFilters}
+                        resetCallback={handleReset}
                         dayCallback={handleDayUpdate}
                         timeCallback={handleTimeUpdate}
+                        displayTimeCallback={handleDisplayTimeUpdate}
                         cityCallback={handleCityUpdate}
                         donationCallback={handleDonationUpdate}
                     />
