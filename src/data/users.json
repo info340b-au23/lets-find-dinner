@@ -1,0 +1,20 @@
+[
+    {
+        "username": "raysmith1234",
+        "name": "Raymond Smith",
+        "email": "email@email.com",
+        "phone": "1234567891",
+        "volunteerHistory": {
+            "04-25-2002": {
+                "name": "Annie's Community Kitchen",
+                "hours": "3"
+            },
+            "12-04-2001": {
+                "name": "Ballard Food Bank",
+                "hours": "5"
+            }
+        },
+        "password": "1234"
+        
+    }
+]
