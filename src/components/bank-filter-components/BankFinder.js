@@ -21,8 +21,11 @@ export function BankFinder(props) {
         timeEnd: 1200,
         days: [false, false, false, false, false, false, false]
     });
-    const [donationFilters, setDonationFilters] = useState([]);
-    const [city, setCity] = useState(null);
+    const [donationFilters, setDonationFilters] = useState(
+        [false, false, false, false, false, false, false,
+        false, false, false, false]
+    );
+    const [city, setCity] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
 
     const handleSearchSubmit = function(query) {
@@ -41,6 +44,21 @@ export function BankFinder(props) {
     const handleTimeUpdate = function(updatedTime) {
         const {days} = timeFilters;
         setTimeFilters({days, timeStart: updatedTime[0], timeEnd: updatedTime[1]});
+    }
+
+    const handleCityUpdate = function(updatedCity) {
+        setCity(updatedCity);
+    }
+
+    const handleDonationUpdate = function(donation) {
+        const donationIdx = DONATION_TYPES.indexOf(donation);
+        const updatedDonations = donationFilters.map((includeDonation, idx) => {
+            if (idx === donationIdx) {
+                return !includeDonation;
+            }
+            return includeDonation;
+        });
+        setDonationFilters(updatedDonations);
     }
 
     const queryTerms = searchQuery.split(" ");
@@ -94,6 +112,18 @@ export function BankFinder(props) {
         if (!matchedTime) {
             return false;
         }
+        if (city !== "" && bank.city !== city) {
+            return false;
+        }
+        if (donationFilters.includes(true)) {
+            let matchedDonation = false;
+            for (const donation of bank.requests) {
+                matchedDonation |= donationFilters[DONATION_TYPES.indexOf(donation)];
+            }
+            if (!matchedDonation) {
+                return false;
+            }
+        }
         return true;
     });
 
@@ -106,8 +136,11 @@ export function BankFinder(props) {
                     <FiltersPanel
                         days={DAYS_OF_WEEK}
                         donationTypes={DONATION_TYPES}
+                        cities={props.cities}
                         dayCallback={handleDayUpdate}
                         timeCallback={handleTimeUpdate}
+                        cityCallback={handleCityUpdate}
+                        donationCallback={handleDonationUpdate}
                     />
                     <ResultsPanel banks={displayBanks} />
                 </Row>

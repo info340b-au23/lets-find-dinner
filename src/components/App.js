@@ -5,8 +5,8 @@ import About from './About';
 import Volunteer from './Contact';
 import Home from './Home';
 import FoodBankProfile from './food-bank-profile';
-import bankList from '../data/banks.json';
 import { useState } from 'react';
+import bankList from '../data/banks.json';
 
 export default function App(props) {
     const [loggedIn, setLoginStatus] = useState(false);
@@ -15,13 +15,17 @@ export default function App(props) {
         setLoginStatus(!loggedIn);
     };
 
+    const uniqueCities = [...new Set(bankList.map((bankData) => {
+        return bankData.city;
+    }))].sort();
+
     return (
         <div>
             <NavBar logginIn={loggedIn} />
             {/* <Home /> */}
-            <About />
+            {/* <About /> */}
             {/* <Volunteer /> */}
-            {/* <BankFinder banks={bankList} /> */}
+            <BankFinder banks={bankList} cities={uniqueCities} />
             {/* <Login /> */}
             {/* <Profile /> */}
             <Footer />
