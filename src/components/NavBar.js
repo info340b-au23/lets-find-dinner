@@ -3,13 +3,10 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 
 export function NavBar(props) {
-    const navItemClass = "nav-item";
-    const navLinkActiveClass = "nav-link active";
-
     return (
         <Navbar expand="lg" bg="dark" data-bs-theme="dark">
             <Container fluid>
-                <Navbar.Brand href="home" className="ps-lg-4">Let's Find Dinner!</Navbar.Brand>
+                <Navbar.Brand href="/" className="ps-lg-4">Let's Find Dinner!</Navbar.Brand>
                 <Navbar.Toggle className="white" aria-controls="navbar-content" />
                 <Navbar.Collapse id="navbar-content">
                     <Nav className="me-auto">

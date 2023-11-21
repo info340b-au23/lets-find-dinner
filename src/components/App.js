@@ -6,6 +6,7 @@ import Volunteer from './Contact';
 import { Home } from './Home';
 import FoodBankProfile from './food-bank-profile';
 import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import bankList from '../data/banks.json';
 
 export default function App(props) {
@@ -22,12 +23,12 @@ export default function App(props) {
     return (
         <div>
             <NavBar logginIn={loggedIn} />
-            <Home />
-            {/* <About /> */}
-            {/* <Volunteer /> */}
-            {/* <BankFinder banks={bankList} cities={uniqueCities} /> */}
-            {/* <Login /> */}
-            {/* <Profile /> */}
+            <Routes>
+                <Route index element={<Home />} />
+                <Route path="about" element={<About />} />
+                <Route path="volunteer" element={<Volunteer />} />
+                <Route path="find-a-food-bank" element={<BankFinder banks={bankList} cities={uniqueCities} />} />
+            </Routes>
             <Footer />
         </div>
     );
