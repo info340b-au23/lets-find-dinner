@@ -61,7 +61,13 @@ function ReturnBankData(bankName) {
                             </tr>
                             <tr>
                                 <td>Requests:</td>
-                                <td>{item.requests}</td> 
+                                <td>{
+                                    <ol>{item.requests.map(item => {
+                                    return (
+                                        <li>{item} </li>
+                                    )
+                                    })}</ol>
+                                }</td> 
                             </tr>
                         </table>
                     );
