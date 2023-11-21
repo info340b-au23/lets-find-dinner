@@ -11,10 +11,6 @@ const DONATION_TYPES = ["Produce", "Bread", "Dairy", "Poultry", "Red-Meat", "Non
                           "Bedding", "Toiletries", "Baby", "Cleaning"];
 const MIN_PER_HOUR = 60;
 
-// TODO: implement ResultCard component; do we need a key?
-// TOOD: implement FilterGroup
-// TODO: implement FilterItem? could be combined in FilterGroup, but best to decompose as much as reasonably possible
-
 export function BankFinder(props) {
     const [timeFilters, setTimeFilters] = useState({
         timeStart: 480,
