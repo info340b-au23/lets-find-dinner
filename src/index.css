@@ -72,12 +72,8 @@ footer a {
 }
 
 .non-search-btn {
-    font-size: 1.25rem;
-    border: 1px solid grey;
-}
-
-.non-search-btn {
-    color: ivory;
+    font-size: 1rem;
+    margin-right: 0.5rem;
 }
 
 .non-search-btn a {
@@ -85,28 +81,9 @@ footer a {
     text-decoration: none;
 }
 
-.btn--darkred, .btn--darkred:focus {
+.btn--dark-red, .btn--dark-red:focus {
     background-color: #330a08;
-}
-
-.btn--darkred:hover {
-    background-color: #ce313f;
-}
-
-.btn--darkred:active {
-    background-color: #cf1b2a;
-}
-
-.btn--tan, .btn--tan:focus {
-    background-color: #c37231;
-}
-
-.btn--tan:hover {
-    background-color: #d4803d;
-}
-
-.btn--tan:active {
-    background-color: #e38c46;
+    border: none;
 }
 
 .navbar-brand {
@@ -133,29 +110,15 @@ img {
     display: none;
 }
 
-.home-page-hook p {
-    font-family: 'Poppins', 'Helvetica', Arial, sans-serif;
-    font-weight: bold;
-    font-size: 2rem;
+#home-veggies {
+    width: 100%;
 }
 
-#pantry-shopping-img {
-    width: 50%;
-    margin-bottom: 2rem;
-}
-
-.home-page-title h1 {
-    font-size: 2rem;
-}
-
-.home-page-selection {
+.home-page-buttons {
     margin-bottom: 1.5rem;
 }
 
 /* About styling */
-#uw-food-bank-img {
-    width: 60%;
-}
 
 /* Volunteer Form styling */
 #contact-submit-btn {
@@ -342,7 +305,7 @@ table {
         padding: 0.75rem 1.5rem;
         margin-left: 1rem;
         margin-bottom: 1rem;
-        width: 460px;
+        max-width: 700px;
         background:
             linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));  
     }
@@ -351,6 +314,15 @@ table {
         background-image:
             linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
             url("../public/img/foodbank.jpg");
+        background-size: cover;
+        overflow-x: hidden;
+        padding-top: 22vh;
+    }
+
+    .home-page-title {
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
+            url("../public/img/pantry.jpg");
         background-size: cover;
         overflow-x: hidden;
         padding-top: 22vh;

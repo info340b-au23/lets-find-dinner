@@ -3,7 +3,7 @@ import { Footer } from './Footer';
 import { BankFinder } from './bank-filter-components/BankFinder';
 import About from './About';
 import Volunteer from './Contact';
-import Home from './Home';
+import { Home } from './Home';
 import FoodBankProfile from './food-bank-profile';
 import { useState } from 'react';
 import bankList from '../data/banks.json';
@@ -22,10 +22,10 @@ export default function App(props) {
     return (
         <div>
             <NavBar logginIn={loggedIn} />
-            {/* <Home /> */}
+            <Home />
             {/* <About /> */}
             {/* <Volunteer /> */}
-            <BankFinder banks={bankList} cities={uniqueCities} />
+            {/* <BankFinder banks={bankList} cities={uniqueCities} /> */}
             {/* <Login /> */}
             {/* <Profile /> */}
             <Footer />
