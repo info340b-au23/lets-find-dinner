@@ -14,17 +14,22 @@ export function Login(props) {
                 <Row>
                     <h2>Welcome back!</h2>
                     <Form id="login-form">
-                        <Form.Control
-                            type="text"
-                            name="username"
-                            id="username-field"
-                            className="login-form-field"
-                            placeholder="Username"
-                        />
+                        <Form.Group controlId="validate-username">
+                            <Form.Control
+                                required
+                                type="text"
+                                name="username"
+                                id="login-username-field"
+                                className="login-form-field"
+                                placeholder="Username"
+                                autoComplete="off"
+                            />
+                            <Form.Control.Feedback>Heck yeah</Form.Control.Feedback>
+                        </Form.Group>
                         <Form.Control
                             type="password"
                             name="password"
-                            id="password-field"
+                            id="login-password-field"
                             className="login-form-field"
                             placeholder="Password"
                         />
@@ -35,6 +40,11 @@ export function Login(props) {
                         <Link to="/" >
                             <Button id="client-sign-up-button" className="non-search-btn login-page-button" type="button" variant="danger">
                                 Create a client account
+                            </Button>
+                        </Link>
+                        <Link to="/" >
+                            <Button id="provider-sign-up-button" className="non-search-btn login-page-button" type="button" variant="danger">
+                                Create a provider account
                             </Button>
                         </Link>
                     </Form>

@@ -24,6 +24,14 @@ export default function App(props) {
     // if user logs in after already logged in, send to account
     // if user is logged in, clicking the sign out sends them to you are signed out.
     // You are now signed out. Click here to return to login.
+
+    // login page: add form validation - see bootstrap react
+    // signup-client - edit button link in login
+    // signup-provider - edit button link in login
+    // logout
+    // 
+
+    // later: check volunteer form, add header
     return (
         <div>
             <NavBar logginIn={loggedIn} />

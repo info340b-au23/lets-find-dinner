@@ -344,10 +344,19 @@ table {
         padding-top: 22vh;
     }
 
-    .login-page-title {
+    .volunteer-page-title {
         background-image:
             linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
             url("../public/img/volunteers.jpg");
+        background-size: cover;
+        overflow-x: hidden;
+        padding-top: 22vh;
+    }
+
+    .login-page-title {
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
+            url("../public/img/vegetables.jpg");
         background-size: cover;
         overflow-x: hidden;
         padding-top: 22vh;
