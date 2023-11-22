@@ -97,11 +97,11 @@ footer a {
 
 /* NavBar styling */
 
-.navbar a {
+.navbar a, .nav-link:focus {
     color: white;
 }
 
-.navbar a:hover {
+.navbar a:hover, .nav-link.active:hover {
     color: #ce313f;
 }
 
