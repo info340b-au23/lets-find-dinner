@@ -19,7 +19,7 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-    font-size: 2.75rem;
+    font-size: 2rem;
 }
 
 h2 {
@@ -97,11 +97,11 @@ footer a {
 
 /* NavBar styling */
 
-.navbar a {
+.navbar a, .nav-link:focus {
     color: white;
 }
 
-.navbar a:hover {
+.navbar a:hover, .nav-link.active:hover {
     color: #ce313f;
 }
 
@@ -283,9 +283,12 @@ table {
 }
 
 @media (min-width: 576px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
     .page-title, .no-background-img {
         width: 100vw;
-
     }
 
     .sub-section-title {
@@ -296,6 +299,10 @@ table {
 }
 
 @media (min-width: 768px) {
+    h1 {
+        font-size: 2.75rem;
+    }
+
     img {
         display: block;
     }
@@ -344,10 +351,19 @@ table {
         padding-top: 22vh;
     }
 
-    .login-page-title {
+    .volunteer-page-title {
         background-image:
             linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
             url("../public/img/volunteers.jpg");
+        background-size: cover;
+        overflow-x: hidden;
+        padding-top: 22vh;
+    }
+
+    .login-page-title {
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),  
+            url("../public/img/vegetables.jpg");
         background-size: cover;
         overflow-x: hidden;
         padding-top: 22vh;
