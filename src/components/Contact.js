@@ -1,5 +1,36 @@
-<<<<<<< HEAD
-export default function ContactForm(props) {
+export default function ContactForm() {
+  const handleFormSubmit = () => {
+    const emailInput = document.getElementById("email_input");
+    const emailValue = emailInput.value;
+    if (!isValidEmail(emailValue)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    const zipCodeInput = document.getElementById("zip_code_input");
+    const zipCodeValue = zipCodeInput.value;
+    if (!isValidZipCode(zipCodeValue)) {
+      alert("Please enter a valid 6-digit zip code.");
+      return;
+    }
+
+    const isValidEmail = (email) => {
+      const atIndex = email.indexOf('@');
+      const dotIndex = email.lastIndexOf('.');
+    
+      return atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < email.length - 1;
+    }
+    const isValidZipCode = (zipCode) => {
+      if (zipCode.length === 6) {
+        for (let i = 0; i < zipCode.length; i++) {
+          if (!isDigit(zipCode[i])) {
+            return false;
+          }
+        }
+        return true;
+      }
+      return false;
+    };
  return (
       <form>
         <h2 className="text-small">Fill out the form below.</h2>
@@ -35,54 +66,9 @@ export default function ContactForm(props) {
               </input>
           </section>
         </div>
-        <button id="contact-submit-btn" className="rounded non-search-btn btn--darkred" type="button">Apply</button>
+        <button id="contact-submit-btn" className="rounded non-search-btn btn--darkred" type="button" onClick={handleFormSubmit}>Apply</button>
       </form>
- )
+ );
+}
 }
 
-=======
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-
-export function VolunteerForm(props) {
-    return (
-        <div>
-            <Container>
-
-            </Container>
-        <form>
-            <h2 className="text-small">Fill out the form below.</h2>
-            <div className="contact-information">
-            <section className="contact-field">
-                <label for="name_input">Name</label>
-                <div className="name_input" type="name" name="name">
-                </div>
-            </section>
-            <section className="contact-field">
-                <label for="email_input">Email</label>
-                <div className="email_input" type="email" name="email">
-                </div>
-            </section>
-            <section className="contact-field">
-                <label for="age_input">Age</label>
-                <div className="age_input" type="age" name="age">
-                    </div>
-            </section>
-            <section className="contact-field">
-                <label for="phone_input">Phone</label>
-                <div className="phone_input" type="input" name="age">
-                    </div>
-            </section>
-            <section className="contact-field">
-                <label for="zip_code_input">Zip Code</label>
-                <div className="zip_code_input" type="zip_code_input" name="zip_code_input">
-                </div>
-            </section>
-            </div>
-            <button id="contact-submit-btn" className="rounded non-search-btn btn--darkred" type="button">Apply</button>
-        </form>
-        </div>
-    )
-}
->>>>>>> 89dc4dfdc77f11cb689aa7ab0d72c0a5e5c1ec10
