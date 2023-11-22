@@ -19,7 +19,7 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-    font-size: 2.75rem;
+    font-size: 2rem;
 }
 
 h2 {
@@ -283,9 +283,12 @@ table {
 }
 
 @media (min-width: 576px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
     .page-title, .no-background-img {
         width: 100vw;
-
     }
 
     .sub-section-title {
@@ -296,6 +299,10 @@ table {
 }
 
 @media (min-width: 768px) {
+    h1 {
+        font-size: 2.75rem;
+    }
+
     img {
         display: block;
     }

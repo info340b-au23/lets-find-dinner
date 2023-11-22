@@ -1,7 +1,7 @@
 import { NavBar } from './NavBar';
 import { Home } from './Home';
 import { About } from './About';
-import Volunteer from './Contact';
+import { VolunteerForm } from './Contact';
 import { BankFinder } from './bank-filter-components/BankFinder';
 import { Login } from './Login';
 import FoodBankProfile from './food-bank-profile';
@@ -12,7 +12,7 @@ import bankList from '../data/banks.json';
 
 export default function App(props) {
     const [loggedUser, setLoginStatus] = useState(null);
-    
+
     const handleLogin = function(user) {
         setLoginStatus(user);
     };
@@ -37,7 +37,7 @@ export default function App(props) {
             <Routes>
                 <Route index element={<Home />} />
                 <Route path="about" element={<About />} />
-                <Route path="volunteer" element={<Volunteer />} />
+                <Route path="volunteer" element={<VolunteerForm />} />
                 <Route path="find-a-food-bank" element={<BankFinder banks={bankList} cities={uniqueCities} />} />
                 <Route path="login" element={<Login loginCallback={handleLogin} />} />
                 <Route path="*" element={<MisDirect />} />
