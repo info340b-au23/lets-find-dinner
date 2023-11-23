@@ -34,10 +34,28 @@ export function VolunteerForm(props) {
         setZipCode(event.target.value);
     }
 
+    const isValidEmail = (email) => {
+        const atIndex = email.indexOf('@');
+        const dotIndex = email.lastIndexOf('.');
+        return atIndex !== -1 && dotIndex > atIndex && dotIndex < email.length - 1;
+    }
+
+    const isValidZipCode = (zipCode) => {
+        return zipCode.length === 5 && !isNaN(zipCode);
+    };
+
     const handleSubmit = (event) => {
         if (event.currentTarget.checkValidity() === false) {
             setValidated(false);
         } else {
+            if (!isValidEmail(email)) {
+                setValidated(false);
+                return;
+            }
+            if (!isValidZipCode(zipCode)) {
+                setValidated(false);
+                return;
+            }
             setValidated(true);
         }
         event.preventDefault();
@@ -51,10 +69,11 @@ export function VolunteerForm(props) {
             <Container className="text-content">
                 <Row>
                     <h2 className="text-small">To apply for a volunteer position at a local food bank, fill out the application below.</h2>
-                    <Form id="volunteer-form" onSubmit={handleSubmit}>
+                    <Form noValidate validated={validated} id="volunteer-form" onSubmit={handleSubmit}>
                         <Form.Group>
                             <Form.Label htmlFor="name-input" className="volunteer-label">Name</Form.Label>
                             <Form.Control
+                                required
                                 id="name-input"
                                 className="volunteer-form-field"
                                 name="name-input"
@@ -66,17 +85,21 @@ export function VolunteerForm(props) {
                         <Form.Group>
                             <Form.Label htmlFor="email-input" className="volunteer-label">Email</Form.Label>
                             <Form.Control
+                                required
                                 id="email-input"
                                 className="volunteer-form-field"
                                 name="email-input"
                                 value={email}
                                 type="text"
+                                isInvalid={validated === false}
                                 onChange={handleEmailChange}
                             />
+                            <Form.Control.Feedback type="invalid">Please enter a valid email address.</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label htmlFor="phone-input" className="volunteer-label">Phone</Form.Label>
                             <Form.Control
+                                required
                                 id="phone-input"
                                 className="volunteer-form-field"
                                 name="phone-input"
@@ -88,6 +111,7 @@ export function VolunteerForm(props) {
                         <Form.Group>
                             <Form.Label htmlFor="age-input" className="volunteer-label">Age</Form.Label>
                             <Form.Control
+                                required
                                 id="age-input"
                                 className="volunteer-form-field"
                                 name="age-input"
@@ -99,13 +123,16 @@ export function VolunteerForm(props) {
                         <Form.Group>
                             <Form.Label htmlFor="zip-code-input" className="volunteer-label">Zip Code</Form.Label>
                             <Form.Control
+                                required
                                 id="zip-code-input"
                                 className="volunteer-form-field"
                                 name="zip-code-input"
                                 value={zipCode}
                                 type="text"
+                                isInvalid={validated === false}
                                 onChange={handleZipCodeChange}
                             />
+                            <Form.Control.Feedback type="invalid">Please enter a valid 5-digit zip code.</Form.Control.Feedback>
                         </Form.Group>
                         {validated && <p>You have successfully applied!</p>}
                         <Button
@@ -121,5 +148,5 @@ export function VolunteerForm(props) {
             </Container>
             <Footer fixFooter={false} />
         </div>
-    )
+    );
 }
