@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button"
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { Link } from "react-router-dom";
 
 export function Home(props) {
     return (
@@ -30,11 +31,11 @@ export function Home(props) {
                 Anyone can explore food banks in King County and help fight food insecurity. Below are some resources for combating food insecurity in your local community.
               </p>
               <div className="home-page-buttons">
-                <Button variant="danger" id="home-btn-volunteer" className="non-search-btn btn--dark-red">
-                  <a href="contact.html">Volunteer</a>
+                <Button as={Link} variant="danger" to="volunteer" id="home-btn-volunteer" className="non-search-btn btn--dark-red">
+                  Volunteer
                 </Button>
-                <Button variant="danger" id="home-btn-bank-search" className="non-search-btn btn--dark-red">
-                  <a href="find-a-bank.html">Donate/Find Food</a>
+                <Button as={Link} variant="danger" to="find-a-food-bank" id="home-btn-bank-search" className="non-search-btn btn--dark-red">
+                  Donate/Find Food
                 </Button>
               </div>
               <Row className="sub-section-title">
