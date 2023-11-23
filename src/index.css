@@ -38,6 +38,7 @@ hr {
     border: 2px solid #c37231;
     margin-top: 0;
     opacity: 0.5;
+    max-width: 400px;
 }
 
 footer {
@@ -259,12 +260,17 @@ table {
     text-align: left;
 }
 
-.profile-content h3 {
+.profile-content h3, .profile-bank-info h3 {
     font-size: 1.25rem;
 }
 
-.profile-password-display {
+/* .profile-password-display {
     letter-spacing: 4px;
+} */
+
+.profile-password-display * {
+    margin-right: 1rem;
+    display: inline;
 }
 
 #password-hide-btn {
