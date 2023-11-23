@@ -45,6 +45,7 @@ export function VolunteerForm(props) {
     };
 
     const handleSubmit = (event) => {
+        event.preventDefault();
         if (event.currentTarget.checkValidity() === false) {
             setValidated(false);
         } else {
@@ -58,7 +59,6 @@ export function VolunteerForm(props) {
             }
             setValidated(true);
         }
-        event.preventDefault();
     }
 
     console.log(validated);
