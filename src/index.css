@@ -125,15 +125,18 @@ img {
 }
 
 /* Volunteer Form styling */
-#contact-submit-btn {
-    margin-top: 1.5rem;
+.volunteer-label {
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
-.contact-field label {
-    display: block;
-    font-weight: bold;
+.volunteer-form-field {
+    max-width: 250px;
+    margin-bottom: 0.5rem;
+}
+
+.text-small {
     font-size: 1.5rem;
-    padding-bottom: 1rem;
 }
 
 /* Bank Search styling */
@@ -389,5 +392,9 @@ table {
 
     .text-content {
         padding-right: 20%;
+    }
+
+    .text-small {
+        font-size: 2rem;
     }
 }
