@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Let's Find Dinner!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Let's Find Dinner! is an interactive web application developed as a project for INFO 340 at the University of Washington.
+Let's Find Dinner! is made for three different groups of users within King County: consumers (food bank users), volunteers, and food banks.
+The main goal of this app is to aid in centralizing food bank information for users.  
 
-## Available Scripts
+## There are three main features of Let's Find Dinner!
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### **Food Bank Finder**
+The primary feature of Let's find dinner is a search function in which users can filter for available foodbanks
+by hours of operation, location, as well as specific donation requests for items that food banks need. This 
+function allows for consumers to find available food banks. Volunteers and food banks are also able to interact
+through the donation request filtering. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### **Volunteer Form**
+Volunteers are able to navigate to the volunteer page to submit their contact information for volunteer work. 
+This can be helpful as it centralizes volunteering into one form that Let's Find Dinner could disseminate to 
+food banks. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### **Account Creation / Login**
+All users are able to make a user account. Let's Find Dinner supports two different styles of accounts: one for
+volunteers or consumers, and another for food banks. Both styles of accounts can be viewed in the profile page for 
+individualized information per account. 
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Created by Soha Sultana, Richard Tran, Carol Yan, Raymond Smith
