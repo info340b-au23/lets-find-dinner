@@ -51,23 +51,25 @@ export function VolunteerForm(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setValidated(true);
+
         if (event.currentTarget.checkValidity() === false) {
-            setValidated(false);
-        } else {
-            if (!isValidEmail(email)) {
-                setValidated(false);
-                return;
-            }
-            if (!isValidZipCode(zipCode)) {
-                setValidated(false);
-                return;
-            }
-            if (!isValidPhone(phone)) {
-                setValidated(false);
-                return;
-            }
-            setValidated(true);
+            return;
         }
+        if (!isValidEmail(email)) {
+            setValidated(false);
+            return;
+        }
+        if (!isValidZipCode(zipCode)) {
+            setValidated(false);
+            return;
+        }
+        if (!isValidPhone(phone)) {
+            setValidated(false);
+            return;
+        }
+        setValidated(true);
+        
     }
 
     console.log(validated);
@@ -100,7 +102,7 @@ export function VolunteerForm(props) {
                                 name="email-input"
                                 value={email}
                                 type="text"
-                                isInvalid={validated === false}
+                                isInvalid={validated === false && !isValidEmail(email)} 
                                 onChange={handleEmailChange}
                             />
                             <Form.Control.Feedback type="invalid">Please enter a valid email address.</Form.Control.Feedback>
@@ -114,7 +116,7 @@ export function VolunteerForm(props) {
                                 name="phone-input"
                                 value={phone}
                                 type="text"
-                                isInvalid={validated === false}
+                                isInvalid={validated === false && !isValidPhone(phone)}
                                 onChange={handlePhoneChange}
                             />
                             <Form.Control.Feedback type="invalid">Please enter a valid 10-digit phone number.</Form.Control.Feedback>
@@ -140,7 +142,7 @@ export function VolunteerForm(props) {
                                 name="zip-code-input"
                                 value={zipCode}
                                 type="text"
-                                isInvalid={validated === false}
+                                isInvalid={validated === false && !isValidZipCode(zipCode)}
                                 onChange={handleZipCodeChange}
                             />
                             <Form.Control.Feedback type="invalid">Please enter a valid 5-digit zip code.</Form.Control.Feedback>
