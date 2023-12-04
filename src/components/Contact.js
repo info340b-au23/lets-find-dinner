@@ -49,6 +49,11 @@ export function VolunteerForm(props) {
         return validPhone.test(phone);
     }
 
+    const isValidAge = (age) => {
+        const validAge = parseInt(age);
+        return !isNaN(validAge) && validAge > 12 && validAge < 100;
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         setValidated(true);
@@ -67,6 +72,11 @@ export function VolunteerForm(props) {
         if (!isValidPhone(phone)) {
             setValidated(false);
             return;
+        }
+
+        if (!isValidAge(age)){
+            setValidated(false);
+            return
         }
         setValidated(true);
         
@@ -130,8 +140,10 @@ export function VolunteerForm(props) {
                                 name="age-input"
                                 value={age}
                                 type="text"
+                                isInvalid={validated === false && !isValidAge(age)}
                                 onChange={handleAgeChange}
                             />
+                            <Form.Control.Feedback type="invalid">Please enter your age between 13 and 100 years old.</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label htmlFor="zip-code-input" className="volunteer-label">Zip Code</Form.Label>
