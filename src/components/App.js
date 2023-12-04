@@ -51,3 +51,21 @@ function RequireAuth(props) {
     }
     return <Outlet />
 }
+
+// // Import the functions you need from the SDKs you need
+// import { initializeApp } from "firebase/app";
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
+
+// // Your web app's Firebase configuration
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDSjUgcZJgVaXAnFLkQgvv8CBMLreO6yCU",
+//   authDomain: "lets-find-dinner.firebaseapp.com",
+//   projectId: "lets-find-dinner",
+//   storageBucket: "lets-find-dinner.appspot.com",
+//   messagingSenderId: "257731440186",
+//   appId: "1:257731440186:web:42aa4c3756372abf648f03"
+// };
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);

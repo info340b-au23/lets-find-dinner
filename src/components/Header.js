@@ -14,13 +14,15 @@ export function Header(props) {
     
     return(
         <Container fluid className="header">
-            <Container fluid className={titleClassList}>
-                <Row className={rowClassList}>
-                    <Col>
-                        <h1>{props.title}</h1>
-                    </Col>
-                </Row>
-            </Container>
+            <header>
+                <Container fluid className={titleClassList}>
+                    <Row className={rowClassList}>
+                        <Col>
+                            <h1>{props.title}</h1>
+                        </Col>
+                    </Row>
+                </Container>
+            </header>
         </Container>
     )
 }
