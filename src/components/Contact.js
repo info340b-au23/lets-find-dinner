@@ -44,6 +44,11 @@ export function VolunteerForm(props) {
         return zipCode.length === 5 && !isNaN(zipCode);
     };
 
+    const isValidPhone = (phone) => {
+        const validPhone = /^\d{10}$/;
+        return validPhone.test(phone);
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         if (event.currentTarget.checkValidity() === false) {
@@ -54,6 +59,10 @@ export function VolunteerForm(props) {
                 return;
             }
             if (!isValidZipCode(zipCode)) {
+                setValidated(false);
+                return;
+            }
+            if (!isValidPhone(phone)) {
                 setValidated(false);
                 return;
             }
@@ -105,8 +114,10 @@ export function VolunteerForm(props) {
                                 name="phone-input"
                                 value={phone}
                                 type="text"
+                                isInvalid={validated === false}
                                 onChange={handlePhoneChange}
                             />
+                            <Form.Control.Feedback type="invalid">Please enter a valid 10-digit phone number.</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label htmlFor="age-input" className="volunteer-label">Age</Form.Label>
