@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,6 +15,12 @@ export function Login(props) {
     const [passwordText, setPasswordText] = useState("");
 
     const navigate = useNavigate();
+
+    let minHeight = 0;
+
+    useEffect(() => {
+        
+    }, [minHeight]);
 
     const handleLoginSubmit = (event) => {
         if (event.currentTarget.checkValidity() === false) {
@@ -95,7 +101,7 @@ export function Login(props) {
                     </Link>
                 </Row>
             </Container>
-            <Footer fixFooter={false} />
+            <Footer fixFooter={true} />
         </div>
     );
 }
