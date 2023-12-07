@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 
 export function Footer(props) {
     return (
-        <footer className={props.fixFooter ? "fixed-bottom" : ""}>
+        <footer className={props.fixFooter ? "" : ""}>
             <Container>
                 <p>Let's Find Dinner! was created by Soha Sultana, Richard Tran, Carol Yan, Raymond Smith.</p>
                 <address>
