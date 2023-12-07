@@ -1,17 +1,36 @@
 import { NavBar } from './NavBar';
 import { Home } from './Home';
+import { Footer } from './Footer';
 import { About } from './About';
 import { VolunteerForm } from './Contact';
 import { BankFinder } from './bank-filter-components/BankFinder';
 import { Login } from './Login';
 import { FoodBankProfile } from './FoodBankProfile';
 import { MisDirect } from './Misdirect';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import bankList from '../data/banks.json';
 
 export default function App(props) {
     const [loggedUser, setLoginStatus] = useState(null);
+    const [fixFooter, setFixFooter] = useState(false);
+
+    const bodyRef = useRef(null);
+
+    useEffect(() => {
+        const defaultHeight = bodyRef.current.clientHeight;
+        const onResize = () => {
+            if (window.innerHeight > defaultHeight) {
+                setFixFooter(true);
+            } else {
+                setFixFooter(false);
+            }
+        }
+        window.addEventListener("resize", onResize);
+        return () => {
+            window.removeEventListener("resize", onResize);
+        }
+    }, []);
 
     const handleLogin = function(user) {
         setLoginStatus(user);
@@ -25,10 +44,8 @@ export default function App(props) {
         return bankData.city;
     }))].sort();
 
-    // signup-client - edit button link in login
-    // signup-provider - edit button link in login
     return (
-        <div>
+        <div ref={bodyRef}>
             <NavBar user={loggedUser} handleLogout={handleLogout} />
             <Routes>
                 <Route index element={<Home />} />
@@ -41,6 +58,7 @@ export default function App(props) {
                 </Route>
                 <Route path="*" element={<MisDirect />} />
             </Routes>
+            <Footer fixFooter={fixFooter} />
         </div>
     );
 }
