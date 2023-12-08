@@ -2,7 +2,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Header } from './Header';
-import { Footer } from './Footer';
 
 export function MisDirect(props) {
     return (
@@ -16,7 +15,6 @@ export function MisDirect(props) {
                     </Col>
                 </Row>
             </Container>
-            <Footer fixFooter={true} />
         </div>
     );
 }

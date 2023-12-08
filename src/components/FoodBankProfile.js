@@ -1,7 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Header } from "./Header";
-import { Footer } from "./Footer";
 import { useState } from 'react';
 
 export function FoodBankProfile({bankList}){
@@ -104,7 +103,6 @@ export function FoodBankProfile({bankList}){
                     </section>
                 </Row>
             </Container>
-            <Footer fixFooter={false} />
         </div>
     )
 }

@@ -3,7 +3,6 @@ import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Header } from './Header';
-import { Footer } from './Footer';
 import { useState } from 'react';
 
 export function VolunteerForm(props) {
@@ -171,7 +170,6 @@ export function VolunteerForm(props) {
                     </Form>
                 </Row>
             </Container>
-            <Footer fixFooter={false} />
         </div>
     );
 }

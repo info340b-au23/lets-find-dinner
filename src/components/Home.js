@@ -3,7 +3,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button"
 import { Header } from "./Header";
-import { Footer } from "./Footer";
 import { Link } from "react-router-dom";
 
 export function Home(props) {
@@ -54,7 +53,6 @@ export function Home(props) {
             </Row>
           </Container>
         </Container>
-        <Footer fixFooter={false} />
       </div>
     );
   }

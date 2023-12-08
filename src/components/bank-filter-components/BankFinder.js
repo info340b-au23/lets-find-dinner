@@ -2,7 +2,6 @@ import { Header } from '../Header';
 import { ResultsPanel } from './ResultPanel';
 import { FiltersPanel } from './FiltersPanel';
 import { SearchBar } from './SearchBar';
-import { Footer } from '../Footer';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useState } from 'react';
@@ -168,7 +167,6 @@ export function BankFinder(props) {
                     <ResultsPanel banks={displayBanks} />
                 </Row>
             </Container>
-            <Footer fixFooter={false} />
         </div>
     );
 }

@@ -3,9 +3,9 @@ import Row from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Header } from './Header';
-import { Footer } from './Footer';
 import { Link } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,12 +15,6 @@ export function Login(props) {
     const [passwordText, setPasswordText] = useState("");
 
     const navigate = useNavigate();
-
-    
-
-    useEffect(() => {
-        
-    }, [])
 
     const handleLoginSubmit = (event) => {
         if (event.currentTarget.checkValidity() === false) {
@@ -101,7 +95,6 @@ export function Login(props) {
                     </Link>
                 </Row>
             </Container>
-            <Footer fixFooter={true} />
         </div>
     );
 }
