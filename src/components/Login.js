@@ -18,7 +18,6 @@ export function Login({heightCallback, ...props}) {
     const containerRef = useRef(null);
 
     useEffect(() => {
-        console.log("login triggered");
         heightCallback(containerRef.current.clientHeight);
     });
 
@@ -51,7 +50,7 @@ export function Login({heightCallback, ...props}) {
     return (
         <div ref={containerRef}>
             <Header title="Login" background="login-page" /> 
-            <Container className="text-content pb-3">
+            <Container className="text-content margin-bottom-body">
                 <Row>
                     <h2>Welcome back!</h2>
                     <Form noValidate validated={validated} onSubmit={handleLoginSubmit} id="login-form">

@@ -4,14 +4,14 @@ import { FiltersPanel } from './FiltersPanel';
 import { SearchBar } from './SearchBar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const DAYS_OF_WEEK = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
 const DONATION_TYPES = ["Produce", "Bread", "Dairy", "Poultry", "Red-Meat", "Nonperishables", "Clothing",
                           "Bedding", "Toiletries", "Baby", "Cleaning"];
 const MIN_PER_HOUR = 60;
 
-export function BankFinder(props) {
+export function BankFinder({heightCallback, ...props}) {
     const [timeFilters, setTimeFilters] = useState({
         timeStart: 480,
         timeEnd: 1200,
@@ -28,6 +28,12 @@ export function BankFinder(props) {
     const handleSearchSubmit = function(query) {
         setSearchQuery(query);
     }
+
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        heightCallback(containerRef.current.clientHeight);
+    })
 
     const handleDayUpdate = function(day) {
         const {days, ...rest} = timeFilters;
@@ -143,9 +149,9 @@ export function BankFinder(props) {
     });
 
     return (
-        <div>
+        <div ref={containerRef}>
             <Header title="Find a Food Bank" background="find-a-bank"/>
-            <Container>
+            <Container className="margin-bottom-body">
                 <SearchBar submitCallback={handleSearchSubmit} />
                 <Row>
                     <FiltersPanel

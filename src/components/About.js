@@ -1,12 +1,19 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Header } from './Header';
+import { useEffect, useRef } from 'react';
 
-export function About() {
+export function About({heightCallback, ...props}) {
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        heightCallback(containerRef.current.clientHeight);
+    })
+
     return (
-        <div>
+        <div ref={containerRef}>
             <Header title="Our Mission" background="about-page" />
-            <Container className="text-content">
+            <Container className="text-content margin-bottom-body">
                 <section className="about">
                     <Row>
                         <img id="strawberries-img" src="img/strawberries.jpg" alt="a hand holding delicious strawberries" />

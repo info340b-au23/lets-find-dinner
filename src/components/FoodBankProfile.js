@@ -1,10 +1,16 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Header } from "./Header";
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-export function FoodBankProfile({bankList}){
+export function FoodBankProfile({heightCallback, bankList}){
     const [displayPassword, setDisplayPassword] = useState(false);
+
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        heightCallback(containerRef.current.clientHeight);
+    })
 
     const currentBank = "West Seattle Food Bank";
     const password = <p>examplePassword</p>
@@ -32,9 +38,9 @@ export function FoodBankProfile({bankList}){
         <p>There are currently no donation requests for your bank.</p>
 
     return (
-        <div>
+        <div ref={containerRef}>
             <Header title="Account Overview" />
-            <Container className="text-content">
+            <Container className="text-content margin-bottom-body">
                 <Row>
                     <section className="profile-content">
                         <h2>Profile Information</h2>
