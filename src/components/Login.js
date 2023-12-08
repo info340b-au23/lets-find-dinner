@@ -4,17 +4,23 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Header } from './Header';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-
+import { useState, useEffect, useRef } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-export function Login(props) {
+export function Login({heightCallback, ...props}) {
     const [validated, setValidated] = useState(null);
     const [usernameText, setUsernameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
 
     const navigate = useNavigate();
+
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        console.log("login triggered");
+        heightCallback(containerRef.current.clientHeight);
+    });
 
     const handleLoginSubmit = (event) => {
         if (event.currentTarget.checkValidity() === false) {
@@ -43,9 +49,9 @@ export function Login(props) {
     }
 
     return (
-        <div>
+        <div ref={containerRef}>
             <Header title="Login" background="login-page" /> 
-            <Container className="text-content">
+            <Container className="text-content pb-3">
                 <Row>
                     <h2>Welcome back!</h2>
                     <Form noValidate validated={validated} onSubmit={handleLoginSubmit} id="login-form">

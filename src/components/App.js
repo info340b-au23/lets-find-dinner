@@ -7,32 +7,40 @@ import { BankFinder } from './bank-filter-components/BankFinder';
 import { Login } from './Login';
 import { FoodBankProfile } from './FoodBankProfile';
 import { MisDirect } from './Misdirect';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import bankList from '../data/banks.json';
 
 export default function App(props) {
     const [loggedUser, setLoginStatus] = useState(null);
     const [fixFooter, setFixFooter] = useState(false);
+    const [bodyHeight, setBodyHeight] = useState(0);
+    const [footerHeight, setFooterHeight] = useState(0);
 
-    const bodyRef = useRef(null);
+    const bodyHeightCallback = function(height) {
+        setBodyHeight(height);
+    };
 
+    const footerHeightCallback = function(height) {
+        setFooterHeight(height);
+    };
+    
+    // problem: changing pages is not necessarily a resize event
     useEffect(() => {
-        const defaultHeight = bodyRef.current.clientHeight;
         const onResize = () => {
-            if (window.innerHeight > defaultHeight) {
+            console.log(window.innerHeight);
+            console.log(bodyHeight)
+            if (window.innerHeight > footerHeight + bodyHeight) {
                 setFixFooter(true);
             } else {
                 setFixFooter(false);
             }
         }
-        console.log("hello world");
-        onResize();
         window.addEventListener("resize", onResize);
         return () => {
             window.removeEventListener("resize", onResize);
         }
-    }, []);
+    }, [bodyHeight, footerHeight]);
 
     const handleLogin = function(user) {
         setLoginStatus(user);
@@ -47,20 +55,20 @@ export default function App(props) {
     }))].sort();
 
     return (
-        <div ref={bodyRef}>
+        <div>
             <NavBar user={loggedUser} handleLogout={handleLogout} />
             <Routes>
                 <Route index element={<Home />} />
                 <Route path="about" element={<About />} />
-                <Route path="volunteer" element={<VolunteerForm />} />
+                <Route path="volunteer" element={<VolunteerForm heightCallback={bodyHeightCallback} />} />
                 <Route path="find-a-food-bank" element={<BankFinder banks={bankList} cities={uniqueCities} />} />
-                <Route path="login" element={<Login loginCallback={handleLogin} />} />
+                <Route path="login" element={<Login loginCallback={handleLogin} heightCallback={bodyHeightCallback} />} />
                 <Route element={<RequireAuth loggedUser={loggedUser} />}>
                     <Route path="account" element={<FoodBankProfile bankList={bankList} />} />
                 </Route>
                 <Route path="*" element={<MisDirect />} />
             </Routes>
-            <Footer fixFooter={fixFooter} />
+            <Footer fixFooter={fixFooter} heightCallback={footerHeightCallback} />
         </div>
     );
 }

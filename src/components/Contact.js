@@ -3,9 +3,16 @@ import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Header } from './Header';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export function VolunteerForm(props) {
+export function VolunteerForm({heightCallback, ...props}) {
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        console.log("contact triggered");
+        heightCallback(containerRef.current.clientHeight);
+    })
+
     const [validated, setValidated] = useState(null);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -81,12 +88,10 @@ export function VolunteerForm(props) {
         
     }
 
-    console.log(validated);
-
     return (
-        <div>
+        <div ref={containerRef}>
             <Header title="Volunteer Form" background="volunteer-page" />
-            <Container className="text-content">
+            <Container className="text-content pb-3">
                 <Row>
                     <h2 className="text-small">To apply for a volunteer position at a local food bank, fill out the application below.</h2>
                     <Form noValidate validated={validated} id="volunteer-form" onSubmit={handleSubmit}>

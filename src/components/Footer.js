@@ -1,8 +1,15 @@
 import Container from 'react-bootstrap/Container';
+import { useEffect, useRef } from 'react';
 
-export function Footer(props) {
+export function Footer({heightCallback, ...props}) {
+    const footerRef = useRef(null);
+    
+    useEffect(() => {
+        heightCallback(footerRef.current.clientHeight);
+    }, [heightCallback]);
+    
     return (
-        <footer className={props.fixFooter ? "fixed-bottom" : ""}>
+        <footer className={props.fixFooter ? "fixed-bottom" : ""} ref={footerRef}>
             <Container>
                 <p>Let's Find Dinner! was created by Soha Sultana, Richard Tran, Carol Yan, Raymond Smith.</p>
                 <address>

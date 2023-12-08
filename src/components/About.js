@@ -1,7 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Header } from './Header';
-import { Footer } from './Footer';
 
 export function About() {
     return (
@@ -23,7 +22,6 @@ export function About() {
                     </Row>
                 </section>
             </Container>
-            <Footer fixFooter={false} />
         </div>
     );
 }
