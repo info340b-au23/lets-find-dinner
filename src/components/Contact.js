@@ -171,7 +171,6 @@ export function VolunteerForm(props) {
                     </Form>
                 </Row>
             </Container>
-            <Footer fixFooter={false} />
         </div>
     );
 }

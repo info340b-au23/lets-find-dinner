@@ -16,7 +16,6 @@ export function MisDirect(props) {
                     </Col>
                 </Row>
             </Container>
-            <Footer fixFooter={true} />
         </div>
     );
 }

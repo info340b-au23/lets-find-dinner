@@ -7,7 +7,7 @@ import { BankFinder } from './bank-filter-components/BankFinder';
 import { Login } from './Login';
 import { FoodBankProfile } from './FoodBankProfile';
 import { MisDirect } from './Misdirect';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useLayoutEffect, useRef } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import bankList from '../data/banks.json';
 
@@ -17,7 +17,7 @@ export default function App(props) {
 
     const bodyRef = useRef(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const defaultHeight = bodyRef.current.clientHeight;
         const onResize = () => {
             if (window.innerHeight > defaultHeight) {
@@ -26,6 +26,8 @@ export default function App(props) {
                 setFixFooter(false);
             }
         }
+        console.log("hello world");
+        onResize();
         window.addEventListener("resize", onResize);
         return () => {
             window.removeEventListener("resize", onResize);

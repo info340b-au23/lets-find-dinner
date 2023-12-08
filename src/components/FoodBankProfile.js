@@ -104,7 +104,6 @@ export function FoodBankProfile({bankList}){
                     </section>
                 </Row>
             </Container>
-            <Footer fixFooter={false} />
         </div>
     )
 }
