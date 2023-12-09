@@ -4,6 +4,23 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Header } from './Header';
 import { useEffect, useRef, useState } from 'react';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDSjUgcZJgVaXAnFLkQgvv8CBMLreO6yCU",
+    authDomain: "lets-find-dinner.firebaseapp.com",
+    projectId: "lets-find-dinner",
+    storageBucket: "lets-find-dinner.appspot.com",
+    messagingSenderId: "257731440186",
+    appId: "1:257731440186:web:42aa4c3756372abf648f03"
+  };
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const database = firebase.database();  
+
 
 export function VolunteerForm({heightCallback, ...props}) {
     const containerRef = useRef(null);
@@ -62,29 +79,28 @@ export function VolunteerForm({heightCallback, ...props}) {
     const handleSubmit = (event) => {
         event.preventDefault();
         setValidated(true);
-
+    
         if (event.currentTarget.checkValidity() === false) {
             return;
         }
-        if (!isValidEmail(email)) {
+        if (!isValidEmail(email) || !isValidZipCode(zipCode) || !isValidPhone(phone) || !isValidAge(age)) {
             setValidated(false);
             return;
         }
-        if (!isValidZipCode(zipCode)) {
-            setValidated(false);
-            return;
-        }
-        if (!isValidPhone(phone)) {
-            setValidated(false);
-            return;
-        }
-
-        if (!isValidAge(age)){
-            setValidated(false);
-            return
-        }
-        setValidated(true);
-        
+    
+        database.ref('volunteers').push({
+            name,
+            email,
+            phone,
+            age: parseInt(age),
+            zipCode: parseInt(zipCode),
+        })
+        .then(() => {
+            setValidated(true);
+        })
+        .catch((error) => {
+            console.error("Error pushing data to Firebase:", error);
+        });
     }
 
     return (
