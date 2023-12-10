@@ -10,27 +10,37 @@ import { MisDirect } from './Misdirect';
 import { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import bankList from '../data/banks.json';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 export default function App(props) {
-    const [loggedUser, setLoginStatus] = useState(null);
-    const [fixFooter, setFixFooter] = useState(false);
-    const [bodyHeight, setBodyHeight] = useState(0);
+    const [loggedUser, setLoggedUser] = useState(null);
+    const [pageHeight, setPageHeight] = useState(0);
     const [footerHeight, setFooterHeight] = useState(0);
+    const [bodyHeight, setBodyHeight] = useState(0);
 
-    const bodyHeightCallback = function(height) {
-        setBodyHeight(height);
-    };
+    useEffect(() => {
+        const auth = getAuth();
 
-    const footerHeightCallback = function(height) {
-        setFooterHeight(height);
-    };
+        const unregisterFunction = onAuthStateChanged(auth, (firebaseUser) => {
+            if (firebaseUser) {
+                setLoggedUser(firebaseUser);
+            } else {
+                setLoggedUser(null);
+            }
+        });
+
+        function cleanup() {
+            unregisterFunction();
+        }
+        return cleanup;
+    }, []);
 
     useEffect(() => {
         const onResize = function() {
-            if (window.innerHeight > footerHeight + bodyHeight) {
-                setFixFooter(true);
+            if (window.innerHeight > (footerHeight + pageHeight)) {
+                setBodyHeight(window.innerHeight - footerHeight - 10);
             } else {
-                setFixFooter(false);
+                setBodyHeight(0);
             }
         }
         onResize();
@@ -38,15 +48,15 @@ export default function App(props) {
         return () => {
             window.removeEventListener("resize", onResize);
         }
-    }, [bodyHeight, footerHeight]);
+    }, [pageHeight, footerHeight]);
 
-    const handleLogin = function(user) {
-        setLoginStatus(user);
+    const pageHeightCallback = function(height) {
+        setPageHeight(height);
     };
 
-    const handleLogout = function() {
-        setLoginStatus(null);
-    }
+    const footerHeightCallback = function(height) {
+        setFooterHeight(height);
+    };
 
     const uniqueCities = [...new Set(bankList.map((bankData) => {
         return bankData.city;
@@ -54,36 +64,38 @@ export default function App(props) {
 
     return (
         <div>
-            <NavBar user={loggedUser} handleLogout={handleLogout} />
-            <Routes>
-                <Route index element={<Home heightCallback={bodyHeightCallback} />} />
-                <Route path="about" element={<About heightCallback={bodyHeightCallback} />} />
-                <Route path="volunteer" element={<VolunteerForm heightCallback={bodyHeightCallback} />} />
-                <Route
-                    path="find-a-food-bank"
-                    element={
-                        <BankFinder
-                            banks={bankList}
-                            cities={uniqueCities}
-                            heightCallback={bodyHeightCallback}
-                        />
-                    }
-                />
-                <Route
-                    path="login"
-                    element={
-                        <Login
-                            loginCallback={handleLogin}
-                            heightCallback={bodyHeightCallback}
-                        />
-                    }
-                />
-                <Route element={<RequireAuth loggedUser={loggedUser} />}>
-                    <Route path="account" element={<FoodBankProfile bankList={bankList} heightCallback={bodyHeightCallback} />} />
-                </Route>
-                <Route path="*" element={<MisDirect heightCallback={bodyHeightCallback} />} />
-            </Routes>
-            <Footer fixFooter={fixFooter} heightCallback={footerHeightCallback} />
+            <div id="page-body" style={{"minHeight": bodyHeight}}>
+                <NavBar user={loggedUser} />
+                <Routes>
+                    <Route index element={<Home heightCallback={pageHeightCallback} />} />
+                    <Route path="about" element={<About heightCallback={pageHeightCallback} />} />
+                    <Route path="volunteer" element={<VolunteerForm heightCallback={pageHeightCallback} />} />
+                    <Route
+                        path="find-a-food-bank"
+                        element={
+                            <BankFinder
+                                banks={bankList}
+                                cities={uniqueCities}
+                                heightCallback={pageHeightCallback}
+                            />
+                        }
+                    />
+                    <Route
+                        path="login"
+                        element={
+                            <Login
+                                user={loggedUser}
+                                heightCallback={pageHeightCallback}
+                            />
+                        }
+                    />
+                    <Route element={<RequireAuth loggedUser={loggedUser} />}>
+                        <Route path="account" element={<FoodBankProfile bankList={bankList} heightCallback={pageHeightCallback} />} />
+                    </Route>
+                    <Route path="*" element={<MisDirect heightCallback={pageHeightCallback} />} />
+                </Routes>
+            </div>
+            <Footer heightCallback={footerHeightCallback} />
         </div>
     );
 }
@@ -94,21 +106,3 @@ function RequireAuth(props) {
     }
     return <Outlet />
 }
-
-// // Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
-
-// // Your web app's Firebase configuration
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDSjUgcZJgVaXAnFLkQgvv8CBMLreO6yCU",
-//   authDomain: "lets-find-dinner.firebaseapp.com",
-//   projectId: "lets-find-dinner",
-//   storageBucket: "lets-find-dinner.appspot.com",
-//   messagingSenderId: "257731440186",
-//   appId: "1:257731440186:web:42aa4c3756372abf648f03"
-// };
-
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);

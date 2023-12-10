@@ -151,7 +151,7 @@ export function BankFinder({heightCallback, ...props}) {
     return (
         <div ref={containerRef}>
             <Header title="Find a Food Bank" background="find-a-bank"/>
-            <Container className="margin-bottom-body">
+            <Container className="pb-4">
                 <SearchBar submitCallback={handleSearchSubmit} />
                 <Row>
                     <FiltersPanel

@@ -109,10 +109,6 @@ img {
     display: none;
 }
 
-.margin-bottom-body {
-    padding-bottom: 3rem;
-}
-
 /* Home styling */
 #home-veggies {
     width: 100%;
@@ -267,13 +263,13 @@ table {
     font-size: 1.25rem;
 }
 
-/* .profile-password-display {
-    letter-spacing: 4px;
-} */
-
 .profile-password-display * {
     margin-right: 1rem;
     display: inline;
+}
+
+.profile-password-display {
+    padding-bottom: 1rem;
 }
 
 #password-hide-btn {

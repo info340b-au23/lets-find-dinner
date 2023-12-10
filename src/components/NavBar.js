@@ -2,11 +2,15 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import { NavLink } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
 
 export function NavBar(props) {
     const handleLogout = () => {
-        if (props.user !== null) {
-            props.handleLogout();
+        if (props.user) {
+            signOut(getAuth())
+                .catch((err) => {
+                    console.log(err);
+                })
         }
     }
 
@@ -22,7 +26,7 @@ export function NavBar(props) {
                         <Nav.Link as={NavLink} to="find-a-food-bank">Find a Food Bank</Nav.Link>
                     </Nav>
                     <Nav className="d-flex pe-lg-4">
-                        <Nav.Link as={NavLink} onClick={handleLogout} to={props.user !== null ? "/" : "login"}>{props.user !== null ? "Sign Out" : "Sign In"}</Nav.Link>
+                        <Nav.Link as={NavLink} onClick={handleLogout} to={props.user ? "/" : "login"}>{props.user ? "Sign Out" : "Sign In"}</Nav.Link>
                         <Nav.Link as={NavLink} to="account">Account</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

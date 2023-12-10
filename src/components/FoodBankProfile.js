@@ -40,7 +40,7 @@ export function FoodBankProfile({heightCallback, bankList}){
     return (
         <div ref={containerRef}>
             <Header title="Account Overview" />
-            <Container className="text-content margin-bottom-body">
+            <Container className="text-content pb-4">
                 <Row>
                     <section className="profile-content">
                         <h2>Profile Information</h2>

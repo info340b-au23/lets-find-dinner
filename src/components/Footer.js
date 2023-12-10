@@ -9,7 +9,7 @@ export function Footer({heightCallback, ...props}) {
     }, [heightCallback]);
     
     return (
-        <footer className={props.fixFooter ? "fixed-bottom" : ""} ref={footerRef}>
+        <footer ref={footerRef}>
             <Container>
                 <p>Let's Find Dinner! was created by Soha Sultana, Richard Tran, Carol Yan, Raymond Smith.</p>
                 <address>

@@ -20,7 +20,7 @@ export function Home({heightCallback, ...props}) {
         background="home-page"
       />
       <Container>
-        <Container className="text-content margin-bottom-body">
+        <Container className="text-content pb-4">
           <Row>
             <h2>Welcome to Let's Find Dinner!</h2>
           </Row>

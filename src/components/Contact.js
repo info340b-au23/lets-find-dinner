@@ -90,7 +90,7 @@ export function VolunteerForm({heightCallback, ...props}) {
     return (
         <div ref={containerRef}>
             <Header title="Volunteer Form" background="volunteer-page" />
-            <Container className="text-content margin-bottom-body">
+            <Container className="text-content pb-4">
                 <Row>
                     <h2 className="text-small">To apply for a volunteer position at a local food bank, fill out the application below.</h2>
                     <Form noValidate validated={validated} id="volunteer-form" onSubmit={handleSubmit}>
