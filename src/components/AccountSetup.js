@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Header } from "./Header";
 import { useState, useEffect, useRef } from 'react';
 import { getDatabase } from 'firebase/database';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export function Setup({heightCallback, ...props}) {
     const [validated, setValidated] = useState(null);

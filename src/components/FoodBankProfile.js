@@ -2,9 +2,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Header } from "./Header";
 import { useState, useEffect, useRef } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 export function FoodBankProfile({heightCallback, user}){
     // const [displayPassword, setDisplayPassword] = useState(false);
+
+    const navigate = useNavigate();
 
     const containerRef = useRef(null);
 
@@ -41,6 +45,19 @@ export function FoodBankProfile({heightCallback, user}){
     //     </ul> :
     //     <p>There are currently no donation requests for your bank.</p>
 
+    useEffect(() => {
+        const db = getDatabase();
+        const userRef = ref(db, "users/" + user.uid);
+        
+        onValue(userRef, (snapshot) => {
+            console.log("here");
+            if (!snapshot.exists()) {
+                console.log("here2");
+                navigate("/account-setup");
+            }
+        });
+    });
+
     return (
         <div ref={containerRef}>
             <Header title="Account Overview" />
@@ -51,17 +68,6 @@ export function FoodBankProfile({heightCallback, user}){
                         <hr />
 
                         <h2>You're almost there...</h2>
-                    <p className="mb-0">We need some more information before we can finish setting up your account.</p>
-                    <p>You can update this information later on your account page.</p>
-                    <h2>You're almost there...</h2>
-                    <p className="mb-0">We need some more information before we can finish setting up your account.</p>
-                    <p>You can update this information later on your account page.</p>
-                    <h2>You're almost there...</h2>
-                    <p className="mb-0">We need some more information before we can finish setting up your account.</p>
-                    <p>You can update this information later on your account page.</p>
-                    <h2>You're almost there...</h2>
-                    <p className="mb-0">We need some more information before we can finish setting up your account.</p>
-                    <p>You can update this information later on your account page.</p>
                         
                         {/* <h3>Username</h3>
                         <p>cooltestbank340</p> */}

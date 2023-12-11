@@ -7,7 +7,7 @@ export function Header(props) {
     let rowClassList = "shadow "
     if (props.background) {
         titleClassList = props.background + "-title";
-        rowClassList += "page-title";
+        rowClassList += "page-title ms-5";
     } else {
         rowClassList += "no-background-img ps-lg-4 m";
     }

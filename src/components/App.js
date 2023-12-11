@@ -110,7 +110,7 @@ export default function App(props) {
                             />
                         }
                     />
-                    <Route path="setup" element={<Setup heightCallback={pageHeightCallback} bankList={bankList} />} />
+                    <Route path="account-setup" element={<Setup user={loggedUser} heightCallback={pageHeightCallback} bankList={bankList} />} />
                     <Route element={<RequireAuth loggedUser={loggedUser} />}>
                         <Route path="account" element={<FoodBankProfile bankList={bankList} user={loggedUser} heightCallback={pageHeightCallback} />} />
                     </Route>
@@ -126,6 +126,5 @@ function RequireAuth(props) {
     if (!props.loggedUser) {
         return <Navigate to="/login"/>
     }
-    
     return <Outlet />
 }
