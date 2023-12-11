@@ -12,7 +12,8 @@ const firebaseConfig = {
   projectId: "lets-find-dinner",
   storageBucket: "lets-find-dinner.appspot.com",
   messagingSenderId: "257731440186",
-  appId: "1:257731440186:web:42aa4c3756372abf648f03"
+  appId: "1:257731440186:web:42aa4c3756372abf648f03",
+  databaseURL: "https://lets-find-dinner-default-rtdb.firebaseio.com/"
 };
 
 const app = initializeApp(firebaseConfig);

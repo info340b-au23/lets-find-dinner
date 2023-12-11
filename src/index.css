@@ -124,19 +124,24 @@ img {
     margin-bottom: 1.5rem;
 }
 
-/* Volunteer Form styling */
-.volunteer-label {
+/* Form styling */
+.volunteer-label, .setup-label {
     font-weight: bold;
     font-size: 1.25rem;
 }
 
-.volunteer-form-field {
+.volunteer-form-field, .setup-form-field {
     max-width: 250px;
     margin-bottom: 0.5rem;
 }
 
 .text-small {
     font-size: 1.5rem;
+}
+
+.setup-invalid {
+    font-size: 0.9rem;
+    color: #dc3545;
 }
 
 /* Bank Search styling */
@@ -296,7 +301,7 @@ table {
     }
     
     .page-title, .no-background-img {
-        width: 100vw;
+        width: 100%;
     }
 
     .sub-section-title {
@@ -347,7 +352,7 @@ table {
             url("../public/img/pantry.jpg");
         background-size: cover;
         overflow-x: hidden;
-        padding-top: 22vh;
+        padding-top: 20vh;
     }
 
     .about-page-title {

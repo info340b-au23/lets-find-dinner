@@ -9,11 +9,13 @@ import { FoodBankProfile } from './FoodBankProfile';
 import { MisDirect } from './Misdirect';
 import { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import bankList from '../data/banks.json';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getDatabase, onValue, ref } from 'firebase/database';
+import { Setup } from './AccountSetup';
 
 export default function App(props) {
     const [loggedUser, setLoggedUser] = useState(null);
+    const [bankList, setBankList] = useState([]);
     const [pageHeight, setPageHeight] = useState(0);
     const [footerHeight, setFooterHeight] = useState(0);
     const [bodyHeight, setBodyHeight] = useState(0);
@@ -23,6 +25,10 @@ export default function App(props) {
 
         const unregisterFunction = onAuthStateChanged(auth, (firebaseUser) => {
             if (firebaseUser) {
+                firebaseUser.name = firebaseUser.displayName;
+                firebaseUser.uid = firebaseUser.uid;
+                firebaseUser.email = firebaseUser.email;
+                firebaseUser.phone = firebaseUser.phoneNumber;
                 setLoggedUser(firebaseUser);
             } else {
                 setLoggedUser(null);
@@ -58,6 +64,21 @@ export default function App(props) {
         setFooterHeight(height);
     };
 
+    useEffect(() => {
+        const db = getDatabase();
+        const bankListRef = ref(db, "banks");
+
+        const unregisterFunction = onValue(bankListRef, (snapshot) => {
+            const updatedList = snapshot.val();
+            setBankList(updatedList);
+        });
+
+        function cleanup() {
+            unregisterFunction();
+        }
+        return cleanup;
+    }, []);
+
     const uniqueCities = [...new Set(bankList.map((bankData) => {
         return bankData.city;
     }))].sort();
@@ -69,7 +90,7 @@ export default function App(props) {
                 <Routes>
                     <Route index element={<Home heightCallback={pageHeightCallback} />} />
                     <Route path="about" element={<About heightCallback={pageHeightCallback} />} />
-                    <Route path="volunteer" element={<VolunteerForm heightCallback={pageHeightCallback} />} />
+                    <Route path="volunteer" element={<VolunteerForm user={loggedUser} heightCallback={pageHeightCallback} />} />
                     <Route
                         path="find-a-food-bank"
                         element={
@@ -89,8 +110,9 @@ export default function App(props) {
                             />
                         }
                     />
+                    <Route path="setup" element={<Setup heightCallback={pageHeightCallback} bankList={bankList} />} />
                     <Route element={<RequireAuth loggedUser={loggedUser} />}>
-                        <Route path="account" element={<FoodBankProfile bankList={bankList} heightCallback={pageHeightCallback} />} />
+                        <Route path="account" element={<FoodBankProfile bankList={bankList} user={loggedUser} heightCallback={pageHeightCallback} />} />
                     </Route>
                     <Route path="*" element={<MisDirect heightCallback={pageHeightCallback} />} />
                 </Routes>
@@ -104,5 +126,6 @@ function RequireAuth(props) {
     if (!props.loggedUser) {
         return <Navigate to="/login"/>
     }
+    
     return <Outlet />
 }

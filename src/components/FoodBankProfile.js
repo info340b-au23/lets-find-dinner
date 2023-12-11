@@ -3,8 +3,8 @@ import Row from 'react-bootstrap/Row';
 import { Header } from "./Header";
 import { useState, useEffect, useRef } from 'react';
 
-export function FoodBankProfile({heightCallback, bankList}){
-    const [displayPassword, setDisplayPassword] = useState(false);
+export function FoodBankProfile({heightCallback, user}){
+    // const [displayPassword, setDisplayPassword] = useState(false);
 
     const containerRef = useRef(null);
 
@@ -12,30 +12,34 @@ export function FoodBankProfile({heightCallback, bankList}){
         heightCallback(containerRef.current.clientHeight);
     })
 
-    const currentBank = "West Seattle Food Bank";
-    const password = <p>examplePassword</p>
-    const hiddenPassword = <p>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</p>
+    useEffect(() => {
+        
+    })
 
-    const handlePasswordToggle = (event) => {
-        setDisplayPassword(!displayPassword);
-    }
+    // const currentBank = "West Seattle Food Bank";
+    // const password = <p>examplePassword</p>
+    // const hiddenPassword = <p>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</p>
 
-    const bankData = bankList.reduce((acc, curr) => {
-        if (curr.name === currentBank) {
-            return curr;
-        }
-        return acc;
-    }, {});
+    // const handlePasswordToggle = (event) => {
+    //     setDisplayPassword(!displayPassword);
+    // }
 
-    const donationRequests = bankData.requests.map((request, idx) => {
-        return <li key={bankData.bid + "-profile-request-" + idx}>{request}</li>
-    });
+    // const bankData = bankList.reduce((acc, curr) => {
+    //     if (curr.name === currentBank) {
+    //         return curr;
+    //     }
+    //     return acc;
+    // }, {});
 
-    const donationElement = donationRequests.length > 0 ?
-        <ul>
-            {donationRequests}
-        </ul> :
-        <p>There are currently no donation requests for your bank.</p>
+    // const donationRequests = bankData.requests.map((request, idx) => {
+    //     return <li key={bankData.bid + "-profile-request-" + idx}>{request}</li>
+    // });
+
+    // const donationElement = donationRequests.length > 0 ?
+    //     <ul>
+    //         {donationRequests}
+    //     </ul> :
+    //     <p>There are currently no donation requests for your bank.</p>
 
     return (
         <div ref={containerRef}>
@@ -45,11 +49,24 @@ export function FoodBankProfile({heightCallback, bankList}){
                     <section className="profile-content">
                         <h2>Profile Information</h2>
                         <hr />
-                        
-                        <h3>Username</h3>
-                        <p>cooltestbank340</p>
 
-                        <h3>Password</h3>
+                        <h2>You're almost there...</h2>
+                    <p className="mb-0">We need some more information before we can finish setting up your account.</p>
+                    <p>You can update this information later on your account page.</p>
+                    <h2>You're almost there...</h2>
+                    <p className="mb-0">We need some more information before we can finish setting up your account.</p>
+                    <p>You can update this information later on your account page.</p>
+                    <h2>You're almost there...</h2>
+                    <p className="mb-0">We need some more information before we can finish setting up your account.</p>
+                    <p>You can update this information later on your account page.</p>
+                    <h2>You're almost there...</h2>
+                    <p className="mb-0">We need some more information before we can finish setting up your account.</p>
+                    <p>You can update this information later on your account page.</p>
+                        
+                        {/* <h3>Username</h3>
+                        <p>cooltestbank340</p> */}
+
+                        {/* <h3>Password</h3>
                         <div className="profile-password-display">
                             {displayPassword ? password : hiddenPassword}
                             <div onClick={handlePasswordToggle}>
@@ -58,19 +75,19 @@ export function FoodBankProfile({heightCallback, bankList}){
                                     <i aria-label="show-password" className="fa-solid fa-eye"></i>
                                 }
                             </div>
-                        </div>
+                        </div> */}
         
                         <h3>Name</h3>
-                        <p>Tim Carlson</p>
+                        <p>{user.name}</p>
         
                         <h3>Email</h3>
-                        <p>informatics@uw.edu</p>
+                        <p>{user.email}</p>
 
                         <h3>Phone Number</h3>
                         <p>123-456-7890</p>
                     </section>
-                    <section className="profile-bank-info">
-                        <h2>Food Bank Overview</h2>
+                    {/* <section className="profile-bank-info">
+                        <h2>Food Bank Dashboard</h2>
                         <hr />
 
                         <h3>Bank Name</h3>
@@ -106,7 +123,7 @@ export function FoodBankProfile({heightCallback, bankList}){
                         <h3>Donation Requests</h3>
                         {donationElement}
 
-                    </section>
+                    </section> */}
                 </Row>
             </Container>
         </div>

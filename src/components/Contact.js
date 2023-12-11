@@ -2,27 +2,14 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import { Header } from './Header';
+import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getDatabase, ref } from 'firebase/database';  
+import { ModalBody } from 'react-bootstrap';
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDSjUgcZJgVaXAnFLkQgvv8CBMLreO6yCU",
-    authDomain: "lets-find-dinner.firebaseapp.com",
-    projectId: "lets-find-dinner",
-    storageBucket: "lets-find-dinner.appspot.com",
-    messagingSenderId: "257731440186",
-    appId: "1:257731440186:web:42aa4c3756372abf648f03"
-  };
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const database = firebase.database();  
-
-
-export function VolunteerForm({heightCallback, ...props}) {
+export function VolunteerForm({heightCallback, user}) {
     const containerRef = useRef(null);
 
     useEffect(() => {
@@ -30,11 +17,19 @@ export function VolunteerForm({heightCallback, ...props}) {
     })
 
     const [validated, setValidated] = useState(null);
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
+    const [name, setName] = useState(
+        user && user.name ? user.name : ""
+    );
+    const [email, setEmail] = useState(
+        user && user.email ? user.email : ""
+    );
+    const [phone, setPhone] = useState(
+        user && user.phone ? user.phone : ""
+    );
     const [age, setAge] = useState("");
     const [zipCode, setZipCode] = useState("");
+    const [foodbank, setFoodBank] = useState("");
+    const [showSuccess, setShow] = useState(false);
     
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -54,6 +49,10 @@ export function VolunteerForm({heightCallback, ...props}) {
 
     const handleZipCodeChange = (event) => {
         setZipCode(event.target.value);
+    }
+
+    const isValidName = (name) => {
+        return name.length !== 0;
     }
 
     const isValidEmail = (email) => {
@@ -76,32 +75,63 @@ export function VolunteerForm({heightCallback, ...props}) {
         return !isNaN(validAge) && validAge > 12 && validAge < 100;
     };
 
+    const resetForm = () => {
+        setName("");
+        setEmail("");
+        setPhone("");
+        setAge("");
+        setZipCode("");
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        setValidated(true);
+        event.stopPropagation();
     
-        if (event.currentTarget.checkValidity() === false) {
-            return;
-        }
-        if (!isValidEmail(email) || !isValidZipCode(zipCode) || !isValidPhone(phone) || !isValidAge(age)) {
+        // if (event.currentTarget.checkValidity() === false) {
+        //     return;
+        // }
+        if (!isValidName(name) || !isValidEmail(email) || !isValidZipCode(zipCode) || !isValidPhone(phone) || !isValidAge(age)) {
             setValidated(false);
-            return;
-        }
-    
-        database.ref('volunteers').push({
-            name,
-            email,
-            phone,
-            age: parseInt(age),
-            zipCode: parseInt(zipCode),
-        })
-        .then(() => {
+        } else {
+            const db = getDatabase();
+            const date = new Date();
+            let submitDate = "";
+            if (date.getMonth() + 1 < 10) {
+                submitDate += 0;
+            }
+            submitDate += (date.getMonth() + 1) + "-";
+            if (date.getDate() < 10) {
+                submitDate += 0;
+            }
+            submitDate += date.getDate() + "-" + date.getFullYear();
+
             setValidated(true);
-        })
-        .catch((error) => {
-            console.error("Error pushing data to Firebase:", error);
-        });
+            resetForm();
+            setShow(true);
+        }
+
+        // database.ref('volunteers').push({
+        //     name,
+        //     email,
+        //     phone,
+        //     age: parseInt(age),
+        //     zipCode: parseInt(zipCode),
+        // })
+        // .then(() => {
+        //     setValidated(true);
+        // })
+        // .catch((error) => {
+        //     console.error("Error pushing data to Firebase:", error);
+        // });
     }
+
+    const handleClose = () => {
+        setShow(false);
+    }
+
+    const pageDescription = user ?
+        <p>Previously submitted applications can be viewed on your account page.</p> :
+        <p>Log in to view previously submitted applications.</p>
 
     return (
         <div ref={containerRef}>
@@ -109,7 +139,8 @@ export function VolunteerForm({heightCallback, ...props}) {
             <Container className="text-content pb-4">
                 <Row>
                     <h2 className="text-small">To apply for a volunteer position at a local food bank, fill out the application below.</h2>
-                    <Form noValidate validated={validated} id="volunteer-form" onSubmit={handleSubmit}>
+                    {pageDescription}
+                    <Form noValidate id="volunteer-form" onSubmit={handleSubmit}>
                         <Form.Group>
                             <Form.Label htmlFor="name-input" className="volunteer-label">Name</Form.Label>
                             <Form.Control
@@ -119,8 +150,11 @@ export function VolunteerForm({heightCallback, ...props}) {
                                 name="name-input"
                                 value={name}
                                 type="text"
+                                isValid={validated === false && isValidName(name)}
+                                isInvalid={validated === false && !isValidName(name)}
                                 onChange={handleNameChange}
                             />
+                            <Form.Control.Feedback type="invalid">Please enter your name.</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label htmlFor="email-input" className="volunteer-label">Email</Form.Label>
@@ -131,6 +165,7 @@ export function VolunteerForm({heightCallback, ...props}) {
                                 name="email-input"
                                 value={email}
                                 type="text"
+                                isValid={validated === false && isValidEmail(email)}
                                 isInvalid={validated === false && !isValidEmail(email)} 
                                 onChange={handleEmailChange}
                             />
@@ -145,6 +180,7 @@ export function VolunteerForm({heightCallback, ...props}) {
                                 name="phone-input"
                                 value={phone}
                                 type="text"
+                                isValid={validated === false && isValidPhone(phone)}
                                 isInvalid={validated === false && !isValidPhone(phone)}
                                 onChange={handlePhoneChange}
                             />
@@ -159,6 +195,7 @@ export function VolunteerForm({heightCallback, ...props}) {
                                 name="age-input"
                                 value={age}
                                 type="text"
+                                isValid={validated === false && isValidAge(age)}
                                 isInvalid={validated === false && !isValidAge(age)}
                                 onChange={handleAgeChange}
                             />
@@ -173,16 +210,33 @@ export function VolunteerForm({heightCallback, ...props}) {
                                 name="zip-code-input"
                                 value={zipCode}
                                 type="text"
+                                isValid={validated === false && isValidZipCode(zipCode)}
                                 isInvalid={validated === false && !isValidZipCode(zipCode)}
                                 onChange={handleZipCodeChange}
                             />
                             <Form.Control.Feedback type="invalid">Please enter a valid 5-digit zip code.</Form.Control.Feedback>
                         </Form.Group>
-                        {validated && <p>You have successfully applied!</p>}
+                        {validated && 
+                            <Modal show={showSuccess} onHide={handleClose}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title><strong>Thank you for your application.</strong></Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <p>You have successfully applied!</p>
+                                    <p>Your requested food bank will contact you via email when your application has been reviewed.</p>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    {user &&
+                                        <Button variant="danger" as={Link} to="/account">Account</Button>
+                                    }
+                                    <Button variant="primary" onClick={handleClose}>Close</Button>
+                                </Modal.Footer>
+                            </Modal>
+                        }
                         <Button
                             id="volunteer-submit-btn"
                             variant="danger"
-                            className="non-search-btn btn--dark-red"
+                            className="non-search-btn btn--dark-red mt-3"
                             type="submit"
                         >
                             Apply

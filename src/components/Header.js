@@ -3,25 +3,21 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 export function Header(props) {
-    let titleClassList = "m-lg-0";
+    let titleClassList = "header ";
     let rowClassList = "shadow "
     if (props.background) {
-        titleClassList += " " + props.background + "-title";
+        titleClassList = props.background + "-title";
         rowClassList += "page-title";
     } else {
-        rowClassList += "no-background-img ps-lg-4";
+        rowClassList += "no-background-img ps-lg-4 m";
     }
     
     return(
-        <Container fluid className="header">
+        <Container fluid className={titleClassList + " mb-5"}>
             <header>
-                <Container fluid className={titleClassList}>
-                    <Row className={rowClassList}>
-                        <Col>
-                            <h1>{props.title}</h1>
-                        </Col>
-                    </Row>
-                </Container>
+                <Col className={rowClassList}>
+                    <h1>{props.title}</h1>
+                </Col>
             </header>
         </Container>
     )

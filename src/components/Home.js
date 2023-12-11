@@ -9,6 +9,14 @@ import { useEffect, useRef } from "react";
 export function Home({heightCallback, ...props}) {
   const containerRef = useRef(null);
 
+  const onButtonClick = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  }
+
   useEffect(() => {
     heightCallback(containerRef.current.clientHeight);
   })
@@ -37,10 +45,10 @@ export function Home({heightCallback, ...props}) {
               Anyone can explore food banks in King County and help fight food insecurity. Below are some resources for combating food insecurity in your local community.
             </p>
             <div className="home-page-buttons">
-              <Button as={Link} variant="danger" to="volunteer" id="home-btn-volunteer" className="non-search-btn btn--dark-red">
+              <Button onClick={onButtonClick} as={Link} variant="danger" to="/volunteer" id="home-btn-volunteer" className="non-search-btn btn--dark-red">
                 Volunteer
               </Button>
-              <Button as={Link} variant="danger" to="find-a-food-bank" id="home-btn-bank-search" className="non-search-btn btn--dark-red">
+              <Button onClick={onButtonClick} as={Link} variant="danger" to="/find-a-food-bank" id="home-btn-bank-search" className="non-search-btn btn--dark-red">
                 Donate/Find Food
               </Button>
             </div>
