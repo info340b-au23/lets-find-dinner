@@ -28,7 +28,6 @@ export default function App(props) {
                 firebaseUser.name = firebaseUser.displayName;
                 firebaseUser.uid = firebaseUser.uid;
                 firebaseUser.email = firebaseUser.email;
-                firebaseUser.phone = firebaseUser.phoneNumber;
                 setLoggedUser(firebaseUser);
             } else {
                 setLoggedUser(null);
@@ -90,7 +89,16 @@ export default function App(props) {
                 <Routes>
                     <Route index element={<Home heightCallback={pageHeightCallback} />} />
                     <Route path="about" element={<About heightCallback={pageHeightCallback} />} />
-                    <Route path="volunteer" element={<VolunteerForm user={loggedUser} heightCallback={pageHeightCallback} />} />
+                    <Route
+                        path="volunteer"
+                        element={
+                            <VolunteerForm
+                                user={loggedUser}
+                                heightCallback={pageHeightCallback}
+                                bankList={bankList}
+                            />
+                        }
+                    />
                     <Route
                         path="find-a-food-bank"
                         element={
@@ -110,9 +118,9 @@ export default function App(props) {
                             />
                         }
                     />
-                    <Route path="account-setup" element={<Setup user={loggedUser} heightCallback={pageHeightCallback} bankList={bankList} />} />
                     <Route element={<RequireAuth loggedUser={loggedUser} />}>
                         <Route path="account" element={<FoodBankProfile bankList={bankList} user={loggedUser} heightCallback={pageHeightCallback} />} />
+                        <Route path="account-setup" element={<Setup user={loggedUser} heightCallback={pageHeightCallback} bankList={bankList} />} />
                     </Route>
                     <Route path="*" element={<MisDirect heightCallback={pageHeightCallback} />} />
                 </Routes>

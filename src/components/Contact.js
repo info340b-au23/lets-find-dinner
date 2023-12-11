@@ -7,9 +7,9 @@ import { Header } from './Header';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { getDatabase, ref } from 'firebase/database';  
-import { ModalBody } from 'react-bootstrap';
+import { Dropdown, DropdownMenu, DropdownToggle, ModalBody } from 'react-bootstrap';
 
-export function VolunteerForm({heightCallback, user}) {
+export function VolunteerForm({heightCallback, user, bankList}) {
     const containerRef = useRef(null);
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export function VolunteerForm({heightCallback, user}) {
     );
     const [age, setAge] = useState("");
     const [zipCode, setZipCode] = useState("");
-    const [foodbank, setFoodBank] = useState("");
+    const [foodBank, setFoodBank] = useState("");
     const [showSuccess, setShow] = useState(false);
     
     const handleNameChange = (event) => {
@@ -49,6 +49,10 @@ export function VolunteerForm({heightCallback, user}) {
 
     const handleZipCodeChange = (event) => {
         setZipCode(event.target.value);
+    }
+    
+    const handleFoodBankChange = (event) => {
+        setFoodBank(event.target.value);
     }
 
     const isValidName = (name) => {
@@ -74,6 +78,10 @@ export function VolunteerForm({heightCallback, user}) {
         const validAge = parseInt(age);
         return !isNaN(validAge) && validAge > 12 && validAge < 100;
     };
+
+    const isValidFoodBank = (foodBank) => {
+        return foodBank.length !== 0;
+    }
 
     const resetForm = () => {
         setName("");
@@ -129,6 +137,13 @@ export function VolunteerForm({heightCallback, user}) {
         setShow(false);
     }
 
+    const bankOptions = bankList.sort((a, b) => {
+        return a.name.localeCompare(b.name);
+    })
+    .map((bank) => {
+        return <option key={bank.bid} value={bank.name}>{bank.name}</option>
+    });
+
     const pageDescription = user ?
         <p>Previously submitted applications can be viewed on your account page.</p> :
         <p>Log in to view previously submitted applications.</p>
@@ -141,6 +156,25 @@ export function VolunteerForm({heightCallback, user}) {
                     <h2 className="text-small">To apply for a volunteer position at a local food bank, fill out the application below.</h2>
                     {pageDescription}
                     <Form noValidate id="volunteer-form" onSubmit={handleSubmit}>
+                        <Form.Group>
+                            <Form.Label htmlFor="food-bank-input" className="volunteer-label">Food Bank</Form.Label>
+                            <Form.Select
+                                required
+                                id="food-bank-input"
+                                className="volunteer-form-field"
+                                name="food-bank-input"
+                                value={foodBank}
+                                type="select"
+                                as="select"
+                                isValid={validated === false && isValidFoodBank(foodBank)}
+                                isInvalid={validated === false && !isValidFoodBank(foodBank)}
+                                onChange={handleFoodBankChange}
+                            >
+                                <option value="">Select a food bank</option>
+                                {bankOptions}
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid">Please select a food bank.</Form.Control.Feedback>
+                        </Form.Group>
                         <Form.Group>
                             <Form.Label htmlFor="name-input" className="volunteer-label">Name</Form.Label>
                             <Form.Control

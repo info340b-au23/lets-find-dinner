@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Header } from "./Header";
 import { useState, useEffect, useRef } from 'react';
-import { getDatabase } from 'firebase/database';
+import { getDatabase, ref, onValue, set as firebaseSet } from 'firebase/database';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 export function Setup({heightCallback, ...props}) {
@@ -31,6 +31,18 @@ export function Setup({heightCallback, ...props}) {
             }
             setValidated(false);
         } else {
+            const db = getDatabase();
+            const userRef = ref(db, "users/" + props.user.uid);
+            let newUserData = {
+                name: props.user.name,
+                email: props.user.email,
+                uid: props.user.uid,
+                phone: phone
+            }
+            if (bid.length !== 0) {
+                newUserData[bid] = bid;
+            }
+            firebaseSet(userRef, newUserData);
             navigate("/account");
         }
     };
@@ -57,6 +69,17 @@ export function Setup({heightCallback, ...props}) {
             return acc;
         }, undefined);
     };
+
+    useEffect(() => {
+        const db = getDatabase();
+        const userRef = ref(db, "users/" + props.user.uid);
+        
+        onValue(userRef, (snapshot) => {
+            if (snapshot.exists()) {
+                navigate("/account-setup");
+            }
+        });
+    });
 
     return(
         <div ref={containerRef}>
