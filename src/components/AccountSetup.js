@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Header } from "./Header";
 import { useState, useEffect, useRef } from 'react';
 import { getDatabase, ref, onValue, set as firebaseSet } from 'firebase/database';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export function Setup({heightCallback, ...props}) {
     const [validated, setValidated] = useState(null);
@@ -33,14 +33,15 @@ export function Setup({heightCallback, ...props}) {
         } else {
             const db = getDatabase();
             const userRef = ref(db, "users/" + props.user.uid);
+            let phoneStr = phone.substring(0, 3) + "-" + phone.substring(3, 6) + "-" + phone.substring(6);
             let newUserData = {
                 name: props.user.name,
                 email: props.user.email,
                 uid: props.user.uid,
-                phone: phone
+                phone: phoneStr
             }
             if (bid.length !== 0) {
-                newUserData[bid] = bid;
+                newUserData["bid"] = bid;
             }
             firebaseSet(userRef, newUserData);
             navigate("/account");
@@ -74,11 +75,17 @@ export function Setup({heightCallback, ...props}) {
         const db = getDatabase();
         const userRef = ref(db, "users/" + props.user.uid);
         
-        onValue(userRef, (snapshot) => {
+        const unregisterFunction = onValue(userRef, (snapshot) => {
             if (snapshot.exists()) {
                 navigate("/account-setup");
             }
         });
+
+        function cleanup() {
+            unregisterFunction();
+        }
+
+        return cleanup;
     });
 
     return(
@@ -88,7 +95,7 @@ export function Setup({heightCallback, ...props}) {
                 <Row>
                     <h2>You're almost there...</h2>
                     <p className="mb-0">We need some more information before we can finish setting up your account.</p>
-                    <p>You can update this information later on your account page.</p>
+                    {/* <p>You can update this information later on your account page.</p> */}
                 </Row>
                 <Row>
                     <Form noValidate id="volunteer-form" onSubmit={handleSubmit}>

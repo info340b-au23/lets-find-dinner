@@ -26,8 +26,6 @@ export default function App(props) {
         const unregisterFunction = onAuthStateChanged(auth, (firebaseUser) => {
             if (firebaseUser) {
                 firebaseUser.name = firebaseUser.displayName;
-                firebaseUser.uid = firebaseUser.uid;
-                firebaseUser.email = firebaseUser.email;
                 setLoggedUser(firebaseUser);
             } else {
                 setLoggedUser(null);

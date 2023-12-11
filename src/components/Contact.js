@@ -6,8 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import { Header } from './Header';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import { getDatabase, ref } from 'firebase/database';  
-import { Dropdown, DropdownMenu, DropdownToggle, ModalBody } from 'react-bootstrap';
+import { getDatabase, ref, onValue, push as firebasePush } from 'firebase/database';
 
 export function VolunteerForm({heightCallback, user, bankList}) {
     const containerRef = useRef(null);
@@ -17,15 +16,9 @@ export function VolunteerForm({heightCallback, user, bankList}) {
     })
 
     const [validated, setValidated] = useState(null);
-    const [name, setName] = useState(
-        user && user.name ? user.name : ""
-    );
-    const [email, setEmail] = useState(
-        user && user.email ? user.email : ""
-    );
-    const [phone, setPhone] = useState(
-        user && user.phone ? user.phone : ""
-    );
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const [age, setAge] = useState("");
     const [zipCode, setZipCode] = useState("");
     const [foodBank, setFoodBank] = useState("");
@@ -94,14 +87,10 @@ export function VolunteerForm({heightCallback, user, bankList}) {
     const handleSubmit = (event) => {
         event.preventDefault();
         event.stopPropagation();
-    
-        // if (event.currentTarget.checkValidity() === false) {
-        //     return;
-        // }
-        if (!isValidName(name) || !isValidEmail(email) || !isValidZipCode(zipCode) || !isValidPhone(phone) || !isValidAge(age)) {
+
+        if (!isValidName(name) || !isValidEmail(email) || !isValidZipCode(zipCode) || !isValidPhone(phone) || !isValidAge(age) || !isValidFoodBank(foodBank)) {
             setValidated(false);
         } else {
-            const db = getDatabase();
             const date = new Date();
             let submitDate = "";
             if (date.getMonth() + 1 < 10) {
@@ -113,29 +102,65 @@ export function VolunteerForm({heightCallback, user, bankList}) {
             }
             submitDate += date.getDate() + "-" + date.getFullYear();
 
+            const db = getDatabase();
+            const userVolRef = ref(db, "volunteer-apps-users/" + user.uid);
+            let phoneStr = phone.substring(0, 3) + "-" + phone.substring(3, 6) + "-" + phone.substring(6);
+            const bid = bankList.reduce((acc, curr) => {
+                if (curr.name === foodBank) {
+                    return curr.bid;
+                }
+                return acc;
+            }, "");
+            let app = {
+                date: submitDate,
+                name: name,
+                email: email,
+                phone: phoneStr,
+                age: age,
+                zip: zipCode,
+                foodBankName: foodBank,
+                bid: bid,
+                approval: null
+            }
+            firebasePush(userVolRef, app);
+
+            const bankVolRef = ref(db, "volunteer-apps-providers/" + bid);
+            firebasePush(bankVolRef, app);
+
             setValidated(true);
             resetForm();
             setShow(true);
         }
-
-        // database.ref('volunteers').push({
-        //     name,
-        //     email,
-        //     phone,
-        //     age: parseInt(age),
-        //     zipCode: parseInt(zipCode),
-        // })
-        // .then(() => {
-        //     setValidated(true);
-        // })
-        // .catch((error) => {
-        //     console.error("Error pushing data to Firebase:", error);
-        // });
     }
 
     const handleClose = () => {
         setShow(false);
     }
+
+    useEffect(() => {
+        if (user) {
+            const db = getDatabase();
+            const userRef = ref(db, "users/" + user.uid);
+            
+            const unregisterFunction = onValue(userRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    const user = snapshot.val();
+                    const phone = user.phone.replaceAll("-", "");
+                    const email = user.email;
+                    const name = user.name;
+                    setName(name);
+                    setEmail(email);
+                    setPhone(phone);
+                }
+            });
+    
+            function cleanup() {
+                unregisterFunction();
+            }
+            
+            return cleanup;
+        }
+    }, [user])
 
     const bankOptions = bankList.sort((a, b) => {
         return a.name.localeCompare(b.name);

@@ -1,12 +1,15 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Table from 'react-bootstrap/Table';
 import { Header } from "./Header";
 import { useState, useEffect, useRef } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
-export function FoodBankProfile({heightCallback, user}){
-    // const [displayPassword, setDisplayPassword] = useState(false);
+export function FoodBankProfile({heightCallback, user, bankList}){
+    const [userInfo, setUserInfo] = useState(null);
+    const [userVolunteerHistory, setUserVolHistory] = useState(null);
+    const [bankVolunterApps, setBankAppHistory] = useState(null);
 
     const navigate = useNavigate();
 
@@ -17,16 +20,23 @@ export function FoodBankProfile({heightCallback, user}){
     })
 
     useEffect(() => {
-        
+        const db = getDatabase();
+        const userRef = ref(db, "users/" + user.uid);
+        const unregisterFunction = onValue(userRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const userInfo = snapshot.val();
+                setUserInfo(snapshot);
+            } else {
+                console.log("An error occurred while retrieivng the user's profile.");
+            }
+        })
+
+        function cleanup() {
+            unregisterFunction();
+        }
+
+        return cleanup;
     })
-
-    // const currentBank = "West Seattle Food Bank";
-    // const password = <p>examplePassword</p>
-    // const hiddenPassword = <p>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</p>
-
-    // const handlePasswordToggle = (event) => {
-    //     setDisplayPassword(!displayPassword);
-    // }
 
     // const bankData = bankList.reduce((acc, curr) => {
     //     if (curr.name === currentBank) {
@@ -49,14 +59,138 @@ export function FoodBankProfile({heightCallback, user}){
         const db = getDatabase();
         const userRef = ref(db, "users/" + user.uid);
         
-        onValue(userRef, (snapshot) => {
-            console.log("here");
+        const unregisterFunction = onValue(userRef, (snapshot) => {
             if (!snapshot.exists()) {
-                console.log("here2");
                 navigate("/account-setup");
             }
         });
+
+        function cleanup() {
+            unregisterFunction()
+        }
+
+        return cleanup;
     });
+
+    useEffect(() => {
+        const db = getDatabase();
+        const userVolRef = ref(db, "volunteer-apps-users/" + user.uid);
+
+        const unregisterFunction = onValue(userVolRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const history = snapshot.val();
+                const historyKeys = Object.keys(history);
+                const appList = historyKeys.map((key) => {
+                    const app = {...history[key]};
+                    app.key = key;
+                    return app;
+                });
+                setUserVolHistory(appList);
+            } else {
+                setUserVolHistory(null);
+            }
+        });
+
+        function cleanup() {
+            unregisterFunction();
+        }
+
+        return cleanup;
+    })
+
+    useEffect(() => {
+        if (userInfo && userInfo.bid) {
+            const db = getDatabase();
+            const bankVolRef = ref(db, "volunteer-apps-providers/" + userInfo.bid);
+
+            const unregisterFunction = onValue(bankVolRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    const bankHistory = snapshot.val();
+                    const bankHistoryKeys = Object.keys(bankHistory);
+                    const bankApps = bankHistoryKeys.map((key) => {
+                        const app = {...bankHistory[key]};
+                        app.key = key;
+                        return app;
+                    });
+                    setBankAppHistory(bankApps);
+                } else {
+                    console.log("An error occurred while retrieving food bank volunteer history.");
+                }
+            });
+
+            function cleanup() {
+                unregisterFunction();
+            }
+
+            return cleanup;
+        }
+    });
+
+    const profileInfo = !userInfo ?
+        <p>Loading profile information...</p> :
+        <div>
+            <h3>Name</h3>
+            <p>{userInfo.name}</p>
+
+            <h3>Email</h3>
+            <p>{userInfo.email}</p>
+
+            <h3>Phone Number</h3>
+            <p>{userInfo.phone}</p>
+        </div>
+
+    const userVolRows = !userVolunteerHistory ?
+        <tr>
+            <td colSpan={7}>You have not submitted any volunteer applications.</td>
+        </tr>
+        :
+        userVolunteerHistory.map((app) => {
+            const res = 
+                <tr key={app.key}>
+                    <td>{app.date}</td>
+                    <td>{app.name}</td>
+                    <td>{app.age}</td>
+                    <td>{app.email}</td>
+                    <td>{app.phone}</td>
+                    <td>{app.zip}</td>
+                    <td>{app.foodBankName}</td>
+                </tr>;
+            return res;
+        })
+
+    // const foodBankInfo 
+        // <h3>Bank Name</h3>
+        // <p>{bankData.name}</p>
+
+        // <h3>Bank ID</h3>
+        // <p>{bankData.bid}</p>
+
+        // <h3>Bank Address</h3>
+        // <p>{bankData.address}</p>
+
+        // {bankData.phone &&
+        //     <div>
+        //         <h3>Bank Phone</h3>
+        //         <p>{bankData.phone}</p>
+        //     </div>
+        // }
+
+        // {bankData.email &&
+        //     <div>
+        //         <h3>Bank Email</h3>
+        //         <p>{bankData.email}</p>
+        //     </div>
+        // }
+
+        // {bankData.website &&
+        //     <div>
+        //         <h3>Bank Website URL</h3>
+        //         <p><a href={bankData.website}>{bankData.website}</a></p>
+        //     </div>
+        // }
+
+        // <h3>Donation Requests</h3>
+        // {donationElement};
 
     return (
         <div ref={containerRef}>
@@ -66,70 +200,32 @@ export function FoodBankProfile({heightCallback, user}){
                     <section className="profile-content">
                         <h2>Profile Information</h2>
                         <hr />
-
-                        <h2>You're almost there...</h2>
-                        
-                        {/* <h3>Username</h3>
-                        <p>cooltestbank340</p> */}
-
-                        {/* <h3>Password</h3>
-                        <div className="profile-password-display">
-                            {displayPassword ? password : hiddenPassword}
-                            <div onClick={handlePasswordToggle}>
-                                {displayPassword ?
-                                    <i aria-label="hide-password" className="fa-solid fa-eye-slash"></i> :
-                                    <i aria-label="show-password" className="fa-solid fa-eye"></i>
-                                }
-                            </div>
-                        </div> */}
         
-                        <h3>Name</h3>
-                        <p>{user.name}</p>
-        
-                        <h3>Email</h3>
-                        <p>{user.email}</p>
+                        {profileInfo}
 
-                        <h3>Phone Number</h3>
-                        <p>123-456-7890</p>
+                        <h3 className="mb-3">Volunteer Application History</h3>
+                        <Table responsive bordered>
+                            <thead className="table-dark">
+                                <tr>
+                                    <th className="py-3">Application Date</th>
+                                    <th className="py-3">Name</th>
+                                    <th className="py-3">Age</th>
+                                    <th className="py-3">Email</th>
+                                    <th className="py-3">Phone</th>
+                                    <th className="py-3">Zip Code</th>
+                                    <th className="py-3">Food Bank</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {userVolRows}
+                            </tbody>
+                        </Table>
                     </section>
-                    {/* <section className="profile-bank-info">
+                    <section className="profile-bank-info">
                         <h2>Food Bank Dashboard</h2>
                         <hr />
 
-                        <h3>Bank Name</h3>
-                        <p>{bankData.name}</p>
-
-                        <h3>Bank ID</h3>
-                        <p>{bankData.bid}</p>
-
-                        <h3>Bank Address</h3>
-                        <p>{bankData.address}</p>
-
-                        {bankData.phone &&
-                            <div>
-                                <h3>Bank Phone</h3>
-                                <p>{bankData.phone}</p>
-                            </div>
-                        }
-
-                        {bankData.email &&
-                            <div>
-                                <h3>Bank Email</h3>
-                                <p>{bankData.email}</p>
-                            </div>
-                        }
-
-                        {bankData.website &&
-                            <div>
-                                <h3>Bank Website URL</h3>
-                                <p><a href={bankData.website}>{bankData.website}</a></p>
-                            </div>
-                        }
-
-                        <h3>Donation Requests</h3>
-                        {donationElement}
-
-                    </section> */}
+                    </section>
                 </Row>
             </Container>
         </div>
