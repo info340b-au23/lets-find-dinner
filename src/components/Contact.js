@@ -103,7 +103,6 @@ export function VolunteerForm({heightCallback, user, bankList}) {
             submitDate += date.getDate() + "-" + date.getFullYear();
 
             const db = getDatabase();
-            const userVolRef = ref(db, "volunteer-apps-users/" + user.uid);
             let phoneStr = phone.substring(0, 3) + "-" + phone.substring(3, 6) + "-" + phone.substring(6);
             const bid = bankList.reduce((acc, curr) => {
                 if (curr.name === foodBank) {
@@ -120,9 +119,16 @@ export function VolunteerForm({heightCallback, user, bankList}) {
                 zip: zipCode,
                 foodBankName: foodBank,
                 bid: bid,
-                approval: null
+                approval: "Pending"
             }
-            firebasePush(userVolRef, app);
+
+            if (user) {
+                const userVolRef = ref(db, "volunteer-apps-users/" + user.uid);
+                const newVolAppRef = firebasePush(userVolRef, app);
+                const volAppKey = newVolAppRef.key;
+                app.volKey = volAppKey;
+                app.uid = user.uid;
+            }
 
             const bankVolRef = ref(db, "volunteer-apps-providers/" + bid);
             firebasePush(bankVolRef, app);
