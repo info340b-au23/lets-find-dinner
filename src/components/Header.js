@@ -1,23 +1,19 @@
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 export function Header(props) {
     let titleClassList = "header ";
     let rowClassList = "shadow "
     if (props.background) {
         titleClassList = props.background + "-title";
-        rowClassList += "page-title ms-5";
+        rowClassList += "page-title";
     } else {
-        rowClassList += "no-background-img ps-lg-4 m";
+        rowClassList += "no-background-img ps-3 ps-lg-4";
     }
     
     return(
-        <Container fluid className={titleClassList + " mb-5"}>
-            <header>
-                <Col className={rowClassList}>
-                    <h1>{props.title}</h1>
-                </Col>
+        <Container fluid className={titleClassList + " mb-4 px-0"}>
+            <header className={rowClassList}>
+                <h1>{props.title}</h1>
             </header>
         </Container>
     )

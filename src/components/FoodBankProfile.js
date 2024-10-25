@@ -138,8 +138,6 @@ export function FoodBankProfile({heightCallback, user, bankList}){
                         return app;
                     });
                     setBankAppHistory(bankApps);
-                } else {
-                    console.log("An error occurred while retrieving food bank volunteer history.");
                 }
             });
 
@@ -166,7 +164,7 @@ export function FoodBankProfile({heightCallback, user, bankList}){
 
     const userVolRows = !userVolunteerHistory ?
         <tr>
-            <td colSpan={7}>You have not submitted any volunteer applications.</td>
+            <td colSpan={8}>You have not submitted any volunteer applications.</td>
         </tr>
         :
         userVolunteerHistory.map((app) => {
